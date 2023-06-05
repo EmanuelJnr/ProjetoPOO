@@ -17,8 +17,8 @@ public class TelaLoginAdmin extends TelaPadrao{
 		CampoDeTexto tfEmail = new CampoDeTexto("", 260, 200, 300, 20);
 		CampoDeTexto tfSenha = new CampoDeTexto("", 260, 250, 300, 20);
 		
-		Botao btnConfirmar = new Botao("Confirmar", 260, 510, 120, 30);
-		Botao btnVoltar = new Botao("Voltar", 400, 510, 120, 30);
+		Botao btnConfirmar = new Botao("Confirmar", 12, 260, 510, 120, 30);
+		Botao btnVoltar = new Botao("Voltar", 12, 400, 510, 120, 30);
 		
 		titulo.setHorizontalAlignment(Label.CENTER);
 		
