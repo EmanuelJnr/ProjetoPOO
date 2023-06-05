@@ -35,4 +35,7 @@ public class TelaLoginAdmin extends TelaPadrao{
 		add(btnVoltar);
 		setVisible(true);
 	}
+	public static void main(String[] args) {
+		new TelaLoginAdmin("Tela Login Admin");
+	}
 }
