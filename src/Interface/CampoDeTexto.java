@@ -9,7 +9,7 @@ public class CampoDeTexto extends JTextField{
 	
 	public CampoDeTexto(String nome, int x, int y, int comprimento, int altura) {
 		super(nome);
-		setFont(new Font("Tahoma", Font.PLAIN, 10));
+		setFont(new Font("Tahoma", Font.PLAIN, 14));
 		setBounds(x, y, comprimento, altura);
 	}
 }
