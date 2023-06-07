@@ -1,13 +1,12 @@
 package Interface;
 
-import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import Funcionalidades.Fontes;
 
-public class Label extends JLabel{
+public class CampoDeSenha extends JPasswordField{
 	private static final long serialVersionUID = 1L;
-	
-	public Label(String nome, int x, int y, int comprimento, int altura) {
-		super(nome);
+
+	public CampoDeSenha(int x, int y, int comprimento, int altura) {
 		setFont(Fontes.padrao());
 		setBounds(x, y, comprimento, altura);
 	}

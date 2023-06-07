@@ -1,54 +1,69 @@
 package Telas;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 import Interface.Botao;
+import Interface.CriarImagem;
 import Interface.Label;
+import Ouvintes.OuvinteNovaTela;
 
 public class TelaPrincipal extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
-	private Label logo;
+	private Botao btnOrcamentos;
+	private Botao btnFornecedores;
+	private Botao btnReunioes;
+	private Botao btnServicos;
+	private Botao btnPacotes;
+	private Botao btnClientes;
+	private Botao btnPlanilha;
+	private Botao btnLogout;
 
-	public TelaPrincipal(String nome) {
-		super(nome);
+	public TelaPrincipal() {
+		super("Tela Principal");
 		addBotoes();
+		ouvintesBotoes();
 		addLabel();
 		setVisible(true);
 	}
 	
 	public void addBotoes() {
-		add(new Botao("Orçamentos/Contratos", 10, 230, 281, 160, 36));
+		btnOrcamentos = new Botao("Orçamentos/Contratos", 230, 281, 160, 36);
+		add(btnOrcamentos);
 		
-		add(new Botao("Fornecedores", 12, 410, 281, 160, 36));
+		btnFornecedores = new Botao("Fornecedores", 410, 281, 160, 36);
+		add(btnFornecedores);
 		
-		add(new Botao("Reuniões", 12, 230, 338, 160, 36));
+		btnReunioes = new Botao("Reuniões", 230, 338, 160, 36);
+		add(btnReunioes);
 		
-		add(new Botao("Serviços", 12, 410, 338, 160, 36));
+		btnServicos = new Botao("Serviços", 410, 338, 160, 36);
+		add(btnServicos);
 		
-		add(new Botao("Pacotes", 12, 230, 396, 160, 36));
+		btnPacotes = new Botao("Pacotes", 230, 396, 160, 36);
+		add(btnPacotes);
 		
-		add(new Botao("Clientes", 12, 410, 396, 160, 36));
+		btnClientes = new Botao("Clientes", 410, 396, 160, 36);
+		add(btnClientes);
 		
-		add(new Botao("Gerar Planilha", 12, 313, 449, 160, 36));
+		btnPlanilha = new Botao("Gerar Planilha", 313, 449, 160, 36);
+		add(btnPlanilha);
 		
-		add(new Botao("Logout", 12, 620, 510, 160, 36));
+		btnLogout = new Botao("Logout", 610, 510, 160, 36);
+		add(btnLogout);
 	}
+	
+	public void ouvintesBotoes() {
+		OuvinteNovaTela.proximaTela(btnOrcamentos, this, "TelaOrcamentos");
+		OuvinteNovaTela.proximaTela(btnFornecedores, this, "TelaFornecedores");
+		OuvinteNovaTela.proximaTela(btnReunioes, this, "TelaReunioes");
+		OuvinteNovaTela.proximaTela(btnServicos, this, "TelaServicos");
+		OuvinteNovaTela.proximaTela(btnPacotes, this, "TelaPacotes");
+		OuvinteNovaTela.proximaTela(btnClientes, this, "TelaClientes");
+		OuvinteNovaTela.proximaTela(btnPlanilha, this, "TelaPlanilhaFinancas");
+		OuvinteNovaTela.proximaTela(btnLogout, this, "TelaLoginAdmin");
+	}
+	
 	public void addLabel() {
-		logo = new Label("", 200, -60, 400, 400);
-		logo.setIcon(getImg("PartyHelper.png",400,400));
+		Label logo = new Label("", 200, -60, 400, 400);
+		logo.setIcon(CriarImagem.getImg("PartyHelper.png",400,400));
 		add(logo);
-	}
-	public ImageIcon getImg(String nome, int x, int y) {
-		String caminhoDaImagem = "Imagens/" + nome;
-		ClassLoader classLoader = this.getClass().getClassLoader();
-		ImageIcon icone = new ImageIcon(classLoader.getResource(caminhoDaImagem));
-		Image image = icone.getImage();
-		Image newimg = image.getScaledInstance(x, y,  java.awt.Image.SCALE_SMOOTH);
-		return icone = new ImageIcon(newimg);
-	}
-	public static void main(String[] args) {
-		new TelaPrincipal("Tela Principal");
 	}
 }
