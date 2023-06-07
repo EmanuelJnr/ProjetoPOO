@@ -26,10 +26,6 @@ public class TelaLoginAdmin extends TelaPadrao{
 		addCTSenha();
 		setVisible(true);
 	}
-<<<<<<< Updated upstream
-	public static void main(String[] args) {
-		new TelaLoginAdmin("Tela Login Admin");
-=======
 
 	public void addBotoes() {
 		btnEntrar = new Botao("Entrar", 260, 510, 120, 30);
@@ -70,6 +66,5 @@ public class TelaLoginAdmin extends TelaPadrao{
 	private void addCTSenha() {
 		tfSenha = new CampoDeSenha(260, 250, 300, 20);
 		add(tfSenha);
->>>>>>> Stashed changes
 	}
 }
