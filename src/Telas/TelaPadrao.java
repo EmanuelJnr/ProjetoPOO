@@ -3,7 +3,7 @@ package Telas;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-public class TelaPadrao extends JFrame{
+public abstract class TelaPadrao extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	public TelaPadrao(String nome) {
