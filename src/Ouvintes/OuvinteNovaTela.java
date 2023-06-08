@@ -5,12 +5,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import Telas.TelaCadastroFornecedor;
 import Telas.TelaClientes;
+import Telas.TelaDetalharFornecedor;
+import Telas.TelaFiltrarFornecedor;
 import Telas.TelaFornecedores;
 import Telas.TelaLoginAdmin;
 import Telas.TelaOrcamentos;
 import Telas.TelaPacotes;
 import Telas.TelaPlanilhaFinancas;
+import Telas.TelaPrincipal;
 import Telas.TelaReunioes;
 import Telas.TelaServicos;
 
@@ -48,7 +52,19 @@ public abstract class OuvinteNovaTela implements ActionListener{
 				case "TelaLoginAdmin":
 					new TelaLoginAdmin();
 					break;
-				}
+				case "TelaFiltrarFornecedor":
+					new TelaFiltrarFornecedor();
+					break;
+				case "TelaPrincipal":
+					new TelaPrincipal();
+					break;
+				case "TelaCadastroFornecedor":
+					new TelaCadastroFornecedor();
+					break;
+				case "TelaDetalharFornecedor":
+					new TelaDetalharFornecedor();
+					break;
+				} // Fim do switch case
 				
 			}
 		});
