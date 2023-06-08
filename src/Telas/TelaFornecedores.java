@@ -58,26 +58,20 @@ public class TelaFornecedores extends TelaPadrao{
 	}
 	
 	public void addBotoes() {
-		btnCadastrar = new Botao("Cadastrar",130,500,120,30);
+		btnCadastrar = new Botao("Cadastrar",200,500,120,30);
 		OuvinteNovaTela.proximaTela(btnCadastrar, this, "TelaCadastroFornecedor");
 		add(btnCadastrar);
 		
-		btnDetalhar = new Botao("Detalhar",270,500,120,30);
+		btnDetalhar = new Botao("Detalhar/Editar",340,500,120,30);
+		OuvinteNovaTela.proximaTela(btnDetalhar, this, "TelaDetalharFornecedor");
 		add(btnDetalhar);
 		
-		btnExcluir = new Botao("Excluir",410,500,120,30);
-		add(btnExcluir);
-		
-		btnVoltar = new Botao("Voltar",550,500,120,30);
+		btnVoltar = new Botao("Voltar",480,500,120,30);
 		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
 		add(btnVoltar);
 		
 		btnFiltrar = new Botao("Filtrar",130,60,120,30);
 		OuvinteNovaTela.proximaTela(btnFiltrar, this, "TelaFiltrarFornecedor");
 		add(btnFiltrar);
-	}
-	
-	public static void main(String[] args) {
-		new TelaFornecedores();
 	}
 }

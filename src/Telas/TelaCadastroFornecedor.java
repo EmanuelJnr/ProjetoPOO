@@ -1,5 +1,8 @@
 package Telas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
@@ -31,6 +34,8 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		addRadioButton();
 		addBox();
 		addBotoes();
+		OuvinteConfirmar();
+		OuvinteAdicionar();
 		setVisible(true);
 	}
 	
@@ -39,10 +44,29 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		add(boxEscolha);
 	}
 	
+	public void OuvinteConfirmar() {
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Fazer a confirmação e verificação dos campos de texto.
+				dispose();
+				new TelaFornecedores();
+			}
+		});
+	}
+	
+	public void OuvinteAdicionar() {
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Fazer com que adicione um serviço à ComboBox.
+			}
+		});
+	}
+	
 	public void addBotoes() {
 		btnConfirmar = new Botao("Confirmar",270,500,120,30);
 		btnVoltar = new Botao("Voltar",410,500,120,30);
 		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaFornecedores");
+		
 		btnAdicionar = new Botao("Adicionar",553,260,120,30);
 		
 		add(btnAdicionar);
@@ -82,9 +106,5 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		add(new Label("Nome:",125,180,50,30));
 		add(new Label("E-mail:",385,180, 50,30));
 		add(new Label("Serviço(s):",365,260,100,30));
-	}
-	
-	public static void main(String[] args) {
-		new TelaCadastroFornecedor();
 	}
 }

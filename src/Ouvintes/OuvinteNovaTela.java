@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import Telas.TelaCadastroFornecedor;
 import Telas.TelaClientes;
+import Telas.TelaDetalharFornecedor;
 import Telas.TelaFiltrarFornecedor;
 import Telas.TelaFornecedores;
 import Telas.TelaLoginAdmin;
@@ -59,6 +60,9 @@ public abstract class OuvinteNovaTela implements ActionListener{
 					break;
 				case "TelaCadastroFornecedor":
 					new TelaCadastroFornecedor();
+					break;
+				case "TelaDetalharFornecedor":
+					new TelaDetalharFornecedor();
 					break;
 				} // Fim do switch case
 				
