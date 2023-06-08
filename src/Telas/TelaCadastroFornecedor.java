@@ -8,6 +8,7 @@ import Funcionalidades.Fontes;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
+import Ouvintes.OuvinteNovaTela;
 
 public class TelaCadastroFornecedor extends TelaPadrao {
 	private static final long serialVersionUID = 1L;
@@ -34,14 +35,15 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 	}
 	
 	public void addBox() {
-		boxEscolha.setBounds(435,220,100,30);
+		boxEscolha.setBounds(435,260,100,30);
 		add(boxEscolha);
 	}
 	
 	public void addBotoes() {
 		btnConfirmar = new Botao("Confirmar",270,500,120,30);
 		btnVoltar = new Botao("Voltar",410,500,120,30);
-		btnAdicionar = new Botao("Adicionar",553,220,120,30);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaFornecedores");
+		btnAdicionar = new Botao("Adicionar",553,260,120,30);
 		
 		add(btnAdicionar);
 		add(btnConfirmar);
@@ -49,10 +51,10 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 	}
 	
 	public void addRadioButton() {
-		rbFisica.setBounds(120,210,120,30);
+		rbFisica.setBounds(120,250,120,30);
 		add(rbFisica);
 		
-		rbJuridica.setBounds(120,230,120,30);
+		rbJuridica.setBounds(120,270,120,30);
 		add(rbJuridica);
 		
 		ButtonGroup grupo = new ButtonGroup();
@@ -67,7 +69,7 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		tfEmail = new CampoDeTexto("",435,180,240,30);
 		add(tfEmail);
 		
-		tfCpfCnpj = new CampoDeTexto("",250,220,105,30);
+		tfCpfCnpj = new CampoDeTexto("",250,260,105,30);
 		add(tfCpfCnpj);
 	}
 	
@@ -79,7 +81,7 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		
 		add(new Label("Nome:",125,180,50,30));
 		add(new Label("E-mail:",385,180, 50,30));
-		add(new Label("Serviço(s):",365,220,100,30));
+		add(new Label("Serviço(s):",365,260,100,30));
 	}
 	
 	public static void main(String[] args) {

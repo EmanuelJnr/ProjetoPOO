@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
 import Interface.Botao;
 import Interface.Label;
+import Ouvintes.OuvinteNovaTela;
 
 public class TelaFornecedores extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
@@ -58,6 +59,7 @@ public class TelaFornecedores extends TelaPadrao{
 	
 	public void addBotoes() {
 		btnCadastrar = new Botao("Cadastrar",130,500,120,30);
+		OuvinteNovaTela.proximaTela(btnCadastrar, this, "TelaCadastroFornecedor");
 		add(btnCadastrar);
 		
 		btnDetalhar = new Botao("Detalhar",270,500,120,30);
@@ -67,9 +69,11 @@ public class TelaFornecedores extends TelaPadrao{
 		add(btnExcluir);
 		
 		btnVoltar = new Botao("Voltar",550,500,120,30);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
 		add(btnVoltar);
 		
 		btnFiltrar = new Botao("Filtrar",130,60,120,30);
+		OuvinteNovaTela.proximaTela(btnFiltrar, this, "TelaFiltrarFornecedor");
 		add(btnFiltrar);
 	}
 	

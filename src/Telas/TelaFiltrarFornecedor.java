@@ -10,6 +10,7 @@ import Funcionalidades.Fontes;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
+import Ouvintes.OuvinteNovaTela;
 
 public class TelaFiltrarFornecedor extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
@@ -68,6 +69,7 @@ public class TelaFiltrarFornecedor extends TelaPadrao{
 	
 	public void addBotao() {
 		btnVoltar = new Botao("Voltar",640,500,120,30);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaFornecedores");
 		add(btnVoltar);
 		
 		btnFiltrar = new Botao("Filtrar",500,500,120,30);
