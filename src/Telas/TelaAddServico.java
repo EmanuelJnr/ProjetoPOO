@@ -10,17 +10,16 @@ import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
 
-public class TelaServicos extends TelaPadrao{
+public class TelaAddServico extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
-	private Botao btnEditar;
-	private Botao btnExcluir;
+	private Botao btnAdicionar;
 
-	public TelaServicos() {
+	public TelaAddServico() {
 		super("Serviços");
 		addBotoes();
 		addLabels();
 		addTabela();
-		ouvinteBotoes();
+		ouvinteBtnAdicionar();
 		setVisible(true);
 	}
 
@@ -56,34 +55,19 @@ public class TelaServicos extends TelaPadrao{
 	}
 
 	public void addBotoes() {
-		Botao btnCadastrar = new Botao("Cadastrar", 100, 490, 120, 30);
-		OuvinteNovaTela.proximaTela(btnCadastrar, this, "TelaCadastrarServico");
-		add(btnCadastrar);
+		btnAdicionar = new Botao("Adicionar", 200, 490, 120, 30);
+		add(btnAdicionar);
 
-		btnEditar = new Botao("Editar", 265, 490, 120, 30);
-		add(btnEditar);
-
-		btnExcluir = new Botao("Excluir", 415, 490, 120, 30);
-		add(btnExcluir);
-
-		Botao btnVoltar = new Botao("Voltar", 580, 490, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		Botao btnVoltar = new Botao("Voltar", 500, 490, 120, 30);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaCadastroFornecedor");
 		add(btnVoltar);
 	}
-	public void ouvinteBotoes() {
-		btnEditar.addActionListener(new ActionListener() {
+	public void ouvinteBtnAdicionar() {
+		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//pega um objeto da tabela
 				dispose();
-				//new TelaEditarServico();
-			}
-		});
-
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela e exclui
-				dispose();
-				new TelaServicos();
+				new TelaCadastroFornecedor();
 			}
 		});
 	}
