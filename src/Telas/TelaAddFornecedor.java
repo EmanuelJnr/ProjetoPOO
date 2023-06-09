@@ -2,38 +2,40 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import Funcionalidades.Fontes;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
 
-public class TelaReunioes extends TelaPadrao {
+public class TelaAddFornecedor extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
-	private Botao btnATA;
+	private Botao btnAdicionar;
+	private Botao btnVoltar;
 
-	public TelaReunioes() {
-		super("Reuniões");
+	public TelaAddFornecedor() {
+		super("Fornecedores");
 		addBotoes();
 		addLabels();
 		addTabela();
-		ouvinteBtnATA();
+		ouvinteBtnAdicionar();
 		setVisible(true);
 	}
 
 	public void addLabels() {
-		Label titulo = new Label("REUNIÕES", 346, 30, 108, 30);
+		Label titulo = new Label("FORNECEDORES", 318, 30, 164, 30);
 		titulo.setFont(Fontes.titulo());
 		add(titulo);
 	}
 
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("Nome do Cliente");
-		modelo.addColumn("Data e Hora");
+		modelo.addColumn("Nome");
+		modelo.addColumn("Física/Jurídica");
+		modelo.addColumn("Quantidade de contratos");
 
 		// TODO falta fazer a adicão do banco de dados com as informações dos atributos.
 
@@ -41,8 +43,9 @@ public class TelaReunioes extends TelaPadrao {
 		for() {
 			Object[] linha = new Object[3];
 
-			linha[0] = //Nome do Cliente
-			linha[1] = //Data e Hora
+			linha[0] = //Nome
+			linha[1] = //Física/Jurídica
+			linha[2] = //Quantidade
 
 			modelo.addRow(linha);
 		}
@@ -54,23 +57,19 @@ public class TelaReunioes extends TelaPadrao {
 	}
 
 	public void addBotoes() {
-		btnATA = new Botao("ATA", 180, 500, 120, 30);
-		add(btnATA);
-		
-		Botao btnListarClientes = new Botao("Listar Clientes", 340, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnListarClientes, this, "TelaClientes");
-		add(btnListarClientes);
+		btnAdicionar = new Botao("Adicionar",200,500,120,30);
+		add(btnAdicionar);
 
-		Botao btnVoltar = new Botao("Voltar", 500, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		btnVoltar = new Botao("Voltar",480,500,120,30);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaCadastroOrcamento");
 		add(btnVoltar);
 	}
-	public void ouvinteBtnATA() {
-		btnATA.addActionListener(new ActionListener() {
+	public void ouvinteBtnAdicionar() {
+		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela
+				//Adiciona fornecedores no orçamento
 				dispose();
-				//new TelaATAReuniao();
+				new TelaCadastroOrcamento();
 			}
 		});
 	}

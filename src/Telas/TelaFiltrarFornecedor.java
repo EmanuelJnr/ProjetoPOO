@@ -97,11 +97,7 @@ public class TelaFiltrarFornecedor extends TelaPadrao{
 		*/	
 		JTable tabela = new JTable(modelo);
 		JScrollPane painelScrow = new JScrollPane(tabela);
-		painelScrow.setBounds(130,100,540,350);
+		painelScrow.setBounds(20,100,745,350);
 		add(painelScrow);
-	}
-	
-	public static void main(String[] args) {
-		new TelaFiltrarFornecedor();
 	}
 }

@@ -7,4 +7,5 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 		super("Planilha de Finanças");
 		setVisible(true);
 	}
+
 }

@@ -3,7 +3,6 @@ package Telas;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import Funcionalidades.Fontes;
 import Interface.Botao;
 import Interface.Label;
@@ -13,7 +12,6 @@ public class TelaFornecedores extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnCadastrar;
 	private Botao btnDetalhar;
-	private Botao btnExcluir;
 	private Botao btnVoltar;
 	private Botao btnFiltrar;
 	
@@ -53,7 +51,7 @@ public class TelaFornecedores extends TelaPadrao{
 		*/	
 		JTable tabela = new JTable(modelo);
 		JScrollPane painelScrow = new JScrollPane(tabela);
-		painelScrow.setBounds(130,100,540,350);
+		painelScrow.setBounds(20,100,745,350);
 		add(painelScrow);
 	}
 	

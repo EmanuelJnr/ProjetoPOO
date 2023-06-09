@@ -12,7 +12,6 @@ import Ouvintes.OuvinteLabel;
 public class TelaLoginAdmin extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnEntrar;
-	//private Botao btnVoltar;
 	private CampoDeTexto tfEmail;
 	private CampoDeSenha tfSenha;
 	private Label lbEsqueceuSenha;
@@ -28,11 +27,8 @@ public class TelaLoginAdmin extends TelaPadrao{
 	}
 
 	public void addBotoes() {
-		btnEntrar = new Botao("Entrar", 260, 510, 120, 30);
+		btnEntrar = new Botao("Entrar", 340, 510, 120, 30);
 		add(btnEntrar);
-
-		//btnVoltar = new Botao("Voltar", 400, 510, 120, 30);
-		//add(btnVoltar);
 	}
 
 	public void ouvinteEntrar() {

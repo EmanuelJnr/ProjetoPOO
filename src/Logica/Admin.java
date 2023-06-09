@@ -4,7 +4,12 @@ public class Admin {
 	private String nome;
 	private String email;
 	private String senha;
-	
+
+	public Admin(String nome, String email, String senha) {
+		setNome(nome);
+		setEmail(email);
+		setSenha(senha);
+	}
 	public String getNome() {
 		return nome;
 	}
