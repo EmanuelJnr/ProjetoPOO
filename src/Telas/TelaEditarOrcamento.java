@@ -91,7 +91,7 @@ public class TelaEditarOrcamento extends TelaPadrao{
 		add(btnConfirmar);
 
 		Botao btnAddFornecedor = new Botao("Adicionar Fornecedor", 20, 275, 150, 30);
-		OuvinteNovaTela.proximaTela(btnAddFornecedor, this, "TelaAddFornecedor");
+		OuvinteNovaTela.proximaTela(btnAddFornecedor, this, "TelaAddFornecedorOrcamento");
 		add(btnAddFornecedor);
 
 		Botao btnCancelar = new Botao("Cancelar", 440, 520, 120, 30);

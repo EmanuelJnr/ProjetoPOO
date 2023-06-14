@@ -70,7 +70,7 @@ public class TelaReunioes extends TelaPadrao {
 			public void actionPerformed(ActionEvent e) {
 				//pega um objeto da tabela
 				dispose();
-				//new TelaATAReuniao();
+				new TelaATAReuniao();
 			}
 		});
 	}

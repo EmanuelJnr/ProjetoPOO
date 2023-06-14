@@ -11,12 +11,12 @@ import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
 
-public class TelaAddFornecedor extends TelaPadrao{
+public class TelaAddFornecedorOrcamento extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnAdicionar;
 	private Botao btnVoltar;
 
-	public TelaAddFornecedor() {
+	public TelaAddFornecedorOrcamento() {
 		super("Fornecedores");
 		addBotoes();
 		addLabels();

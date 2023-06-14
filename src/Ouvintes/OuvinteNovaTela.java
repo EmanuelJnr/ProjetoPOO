@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import Telas.TelaAddFornecedor;
+import Telas.TelaAddFornecedorOrcamento;
+import Telas.TelaAddFornecedorPacote;
 import Telas.TelaAddServico;
 import Telas.TelaCadastroFornecedor;
 import Telas.TelaCadastroOrcamento;
@@ -15,6 +16,7 @@ import Telas.TelaDetalharFornecedor;
 import Telas.TelaFiltrarFornecedor;
 import Telas.TelaFiltrarOrcamentos;
 import Telas.TelaFornecedores;
+import Telas.TelaFornecedoresFinancas;
 import Telas.TelaLoginAdmin;
 import Telas.TelaOrcamentos;
 import Telas.TelaPacotes;
@@ -45,8 +47,14 @@ public abstract class OuvinteNovaTela implements ActionListener{
 				case "TelaFornecedores":
 					new TelaFornecedores();
 					break;
-				case "TelaAddFornecedor":
-					new TelaAddFornecedor();
+				case "TelaFornecedoresFinancas":
+					new TelaFornecedoresFinancas();
+					break;
+				case "TelaAddFornecedorOrcamento":
+					new TelaAddFornecedorOrcamento();
+					break;
+				case "TelaAddFornecedorPacote":
+					new TelaAddFornecedorPacote();
 					break;
 				case "TelaFiltrarFornecedor":
 					new TelaFiltrarFornecedor();

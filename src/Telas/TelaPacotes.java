@@ -74,7 +74,7 @@ public class TelaPacotes extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 				//pega um objeto da tabela
 				dispose();
-				//new TelaDetalhamentoPacote();
+				new TelaDetalhamentoPacote();
 			}
 		});
 	}
