@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
@@ -28,6 +29,7 @@ public class TelaFiltrarOrcamentos extends TelaPadrao{
 		addBotao();
 		addCampoDeTexto();
 		addRadioButton();
+		ouvinteBtnFiltrar();
 		setVisible(true);
 	}
 
@@ -62,7 +64,7 @@ public class TelaFiltrarOrcamentos extends TelaPadrao{
 
 	public void addBotao() {
 		Botao btnVoltar = new Botao("Voltar", 640, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaOrcamentos");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_ORCAMENTOS);
 		add(btnVoltar);
 
 		btnFiltrar = new Botao("Filtrar", 500, 500, 120, 30);
@@ -72,8 +74,7 @@ public class TelaFiltrarOrcamentos extends TelaPadrao{
 	public void ouvinteBtnFiltrar() {
 		btnFiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Permanece na mesma janela mas filtra os dados,
-				//de acordo com as entradas.
+				//TODO Permanece na mesma janela mas filtra os dados de acordo com as entradas.
 			}
 		});
 	}

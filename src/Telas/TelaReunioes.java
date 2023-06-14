@@ -2,11 +2,14 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -14,13 +17,14 @@ import Ouvintes.OuvinteNovaTela;
 public class TelaReunioes extends TelaPadrao {
 	private static final long serialVersionUID = 1L;
 	private Botao btnATA;
+	private Botao btnReuniao;
 
 	public TelaReunioes() {
 		super("Reuniões");
 		addBotoes();
 		addLabels();
 		addTabela();
-		ouvinteBtnATA();
+		ouvinteBotoes();
 		setVisible(true);
 	}
 
@@ -57,21 +61,30 @@ public class TelaReunioes extends TelaPadrao {
 		btnATA = new Botao("ATA", 180, 500, 120, 30);
 		add(btnATA);
 		
-		Botao btnListarClientes = new Botao("Listar Clientes", 340, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnListarClientes, this, "TelaClientes");
-		add(btnListarClientes);
+		btnReuniao = new Botao("Marcar Reunião", 340, 500, 120, 30);
+		add(btnReuniao);
 
 		Botao btnVoltar = new Botao("Voltar", 500, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_ORCAMENTOS);
 		add(btnVoltar);
 	}
-	public void ouvinteBtnATA() {
+	public void ouvinteBotoes() {
+		btnReuniao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dataHora = JOptionPane.showInputDialog(null,"Data e Horário da reunião", "dd/MM/yyyy HH:mm ");
+				//TODO Guardar dataHora e marcar a reunião.
+			}
+		});
+		
 		btnATA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela
+				//TODO pega um objeto da tabela
 				dispose();
 				new TelaATAReuniao();
 			}
 		});
+	}
+	public static void main(String[] args) {
+		new TelaReunioes();
 	}
 }

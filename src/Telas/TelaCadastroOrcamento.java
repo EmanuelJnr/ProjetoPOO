@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
@@ -92,18 +93,18 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		add(btnCadastrar);
 
 		Botao btnAddFornecedor = new Botao("Adicionar Fornecedor", 20, 275, 150, 30);
-		OuvinteNovaTela.proximaTela(btnAddFornecedor, this, "TelaAddFornecedor");
+		OuvinteNovaTela.proximaTela(btnAddFornecedor, this, NomeTela.TELA_ADD_FORNECEDOR_CAD_ORCAMENTO);
 		add(btnAddFornecedor);
 
 		Botao btnCancelar = new Botao("Cancelar", 440, 520, 120, 30);
-		OuvinteNovaTela.proximaTela(btnCancelar, this, "TelaOrcamentos");
+		OuvinteNovaTela.proximaTela(btnCancelar, this, NomeTela.TELA_ORCAMENTOS);
 		add(btnCancelar);
 	}
 
 	public void ouvinteCadastrar() {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Cria um admin e guarda os valores nele, faz as validações dos campos de texto.
+				//TODO Cadastre um orçamento no banco.
 				dispose();
 				new TelaOrcamentos();
 			}

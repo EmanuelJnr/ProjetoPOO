@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextArea;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -12,6 +13,7 @@ import Ouvintes.OuvinteNovaTela;
 public class TelaATAReuniao extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnConfirmar;
+	private JTextArea taATA;
 
 	public TelaATAReuniao() {
 		super("ATA de Reunião");
@@ -29,9 +31,9 @@ public class TelaATAReuniao extends TelaPadrao{
 	}
 	
 	public void textAta() {
-		JTextArea area= new JTextArea(5,10);
-		area.setBounds(8, 35, 370, 180);
-		add(area);
+		taATA = new JTextArea(5,10);
+		taATA.setBounds(8, 35, 370, 180);
+		add(taATA);
 	}
 	
 	public void addBotoes() {
@@ -39,7 +41,7 @@ public class TelaATAReuniao extends TelaPadrao{
 		add(btnConfirmar);
 		
 		Botao btnVoltar = new Botao("Voltar", 215, 230, 100, 25);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaReunioes");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_REUNIOES);
 		add(btnVoltar);
 	}
 	

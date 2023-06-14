@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
@@ -56,7 +57,7 @@ public class TelaDetalharFornecedor extends TelaPadrao {
 		btnEditar = new Botao("Editar",270,500,120,30);
 		
 		btnVoltar = new Botao("Voltar",410,500,120,30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaFornecedores");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_FORNECEDORES);
 		
 		add(btnEditar);
 		add(btnVoltar);

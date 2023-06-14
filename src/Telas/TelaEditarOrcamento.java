@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
@@ -91,19 +92,19 @@ public class TelaEditarOrcamento extends TelaPadrao{
 		add(btnConfirmar);
 
 		Botao btnAddFornecedor = new Botao("Adicionar Fornecedor", 20, 275, 150, 30);
-		OuvinteNovaTela.proximaTela(btnAddFornecedor, this, "TelaAddFornecedorOrcamento");
+		OuvinteNovaTela.proximaTela(btnAddFornecedor, this, NomeTela.TELA_ADD_FORNECEDOR_EDT_ORCAMENTO);
 		add(btnAddFornecedor);
 
 		Botao btnCancelar = new Botao("Cancelar", 440, 520, 120, 30);
-		OuvinteNovaTela.proximaTela(btnCancelar, this, "TelaOrcamentos");
+		OuvinteNovaTela.proximaTela(btnCancelar, this, NomeTela.TELA_ORCAMENTOS);
 		add(btnCancelar);
 	}
 
 	public void ouvinteBtnConfirmar() {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//compara os dados do orçamento selecionado na tabela,
-				//se algum mudou ele registra.
+				//TODO compara os dados do orçamento selecionado na tabela,
+				//TODO se algum mudou ele registra.
 				dispose();
 				new TelaOrcamentos();
 			}

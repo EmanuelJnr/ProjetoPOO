@@ -1,6 +1,7 @@
 package Telas;
 
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -9,13 +10,17 @@ public class TelaFornecedoresFinancas extends TelaFornecedores{
 	private static final long serialVersionUID = 1L;
 	private Botao btnVoltar;
 	private Label lbValor;
+	private Botao btnPlanilha;
 	
 	public void addBotoes() {		
-		btnVoltar = new Botao("Voltar",480,500,120,30);
+		btnVoltar = new Botao("Voltar",520,500,120,30);
 		add(btnVoltar);
+		
+		btnPlanilha = new Botao("Planilha",370,500,120,30);
+		add(btnPlanilha);
 	}
 	public void ouvintesBotoes() {
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPlanilhaFinancas");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PLANILHA_FINANCAS);
 	}
 	
 	public void addLabels() {
@@ -29,5 +34,8 @@ public class TelaFornecedoresFinancas extends TelaFornecedores{
 		lbValor = new Label("", 210, 500, 120, 30);
 		lbValor.setText("soma dos valores");// fazer a soma dos valores da tabela e colcar o calculo aqui
 		add(lbValor);
+	}
+	public static void main(String[] args) {
+		new TelaFornecedoresFinancas();
 	}
 }

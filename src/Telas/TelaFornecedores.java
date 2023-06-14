@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -59,11 +60,11 @@ public class TelaFornecedores extends TelaPadrao{
 	
 	public void addBotoes() {
 		Botao btnFiltrar = new Botao("Filtrar", 130, 60, 120, 30);
-		OuvinteNovaTela.proximaTela(btnFiltrar, this, "TelaFiltrarFornecedor");
+		OuvinteNovaTela.proximaTela(btnFiltrar, this, NomeTela.TELA_FILTRAR_FORNECEDOR);
 		add(btnFiltrar);
 		
 		Botao btnCadastrar = new Botao("Cadastrar", 140, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnCadastrar, this, "TelaCadastroFornecedor");
+		OuvinteNovaTela.proximaTela(btnCadastrar, this, NomeTela.TELA_CADASTRO_FORNECEDOR);
 		add(btnCadastrar);
 		
 		btnDetalhar = new Botao("Detalhar/Editar", 280, 500, 120, 30);
@@ -73,14 +74,14 @@ public class TelaFornecedores extends TelaPadrao{
 		add(btnExcluir);
 		
 		Botao btnVoltar = new Botao("Voltar", 560, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PRINCIPAL);
 		add(btnVoltar);
 	}
 	
 	public void ouvintesBotoes() {
 		btnDetalhar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela e vai para a próxima tela
+				//TODO pega um objeto da tabela.
 				dispose();
 				new TelaDetalharFornecedor();
 			}
@@ -88,7 +89,7 @@ public class TelaFornecedores extends TelaPadrao{
 		
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//exclui um fornecedor do banco de dados
+				//TODO exclui um fornecedor do banco de dados
 				dispose();
 				new TelaFornecedores();
 			}

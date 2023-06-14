@@ -7,16 +7,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
 
-public class TelaAddFornecedorOrcamento extends TelaPadrao{
+public class TelaAddFornecedorCadOrcamento extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnAdicionar;
 	private Botao btnVoltar;
 
-	public TelaAddFornecedorOrcamento() {
+	public TelaAddFornecedorCadOrcamento() {
 		super("Fornecedores");
 		addBotoes();
 		addLabels();
@@ -61,13 +62,13 @@ public class TelaAddFornecedorOrcamento extends TelaPadrao{
 		add(btnAdicionar);
 
 		btnVoltar = new Botao("Voltar",480,500,120,30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaCadastroOrcamento");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_CADASTRO_ORCAMENTO);
 		add(btnVoltar);
 	}
 	public void ouvinteBtnAdicionar() {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Adiciona fornecedores no orçamento
+				//Adiciona fornecedores no cadastramento do orçamento
 				dispose();
 				new TelaCadastroOrcamento();
 			}

@@ -4,19 +4,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import Telas.TelaAddFornecedorOrcamento;
+import Funcionalidades.NomeTela;
+import Telas.TelaAddFornecedorCadOrcamento;
+import Telas.TelaAddFornecedorEdtOrcamento;
 import Telas.TelaAddFornecedorPacote;
-import Telas.TelaAddServico;
+import Telas.TelaAddServicoFornecedor;
+import Telas.TelaCadastroCliente;
 import Telas.TelaCadastroFornecedor;
 import Telas.TelaCadastroOrcamento;
 import Telas.TelaCadastroPacote;
-import Telas.TelaClientes;
 import Telas.TelaDetalharFornecedor;
+import Telas.TelaEditarOrcamento;
 import Telas.TelaFiltrarFornecedor;
 import Telas.TelaFiltrarOrcamentos;
 import Telas.TelaFornecedores;
 import Telas.TelaFornecedoresFinancas;
+import Telas.TelaListarReunioes;
 import Telas.TelaLoginAdmin;
 import Telas.TelaOrcamentos;
 import Telas.TelaPacotes;
@@ -27,72 +30,81 @@ import Telas.TelaServicos;
 
 public abstract class OuvinteNovaTela implements ActionListener{
 
-	public static void proximaTela(JButton b, JFrame essaTela, String novaTela) {
+	public static void proximaTela(JButton botao, JFrame essaTela, NomeTela nomeTela) {
 
-		b.addActionListener(new ActionListener() {
+		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				essaTela.dispose();
 
-				switch (novaTela) {
-				case "TelaOrcamentos":
+				switch (nomeTela) {
+				case TELA_ORCAMENTOS:
 					new TelaOrcamentos();
 					break;
-				case "TelaFiltrarOrcamentos":
+				case TELA_EDITAR_ORCAMENTO:
+					new TelaEditarOrcamento();
+					break;
+				case TELA_FILTRAR_ORCAMENTOS:
 					new TelaFiltrarOrcamentos();
 					break;
-				case "TelaCadastroOrcamento":
+				case TELA_CADASTRO_ORCAMENTO:
 					new TelaCadastroOrcamento();
 					break;
-				case "TelaFornecedores":
+				case TELA_FORNECEDORES:
 					new TelaFornecedores();
 					break;
-				case "TelaFornecedoresFinancas":
+				case TELA_FORNECEDORES_FINANCAS:
 					new TelaFornecedoresFinancas();
 					break;
-				case "TelaAddFornecedorOrcamento":
-					new TelaAddFornecedorOrcamento();
+				case TELA_ADD_FORNECEDOR_CAD_ORCAMENTO:
+					new TelaAddFornecedorCadOrcamento();
 					break;
-				case "TelaAddFornecedorPacote":
+				case TELA_ADD_FORNECEDOR_EDT_ORCAMENTO:
+					new TelaAddFornecedorEdtOrcamento();
+					break;
+				case TELA_ADD_FORNECEDOR_PACOTE:
 					new TelaAddFornecedorPacote();
 					break;
-				case "TelaFiltrarFornecedor":
+				case TELA_FILTRAR_FORNECEDOR:
 					new TelaFiltrarFornecedor();
 					break;
-				case "TelaCadastroFornecedor":
+				case TELA_CADASTRO_FORNECEDOR:
 					new TelaCadastroFornecedor();
 					break;
-				case "TelaDetalharFornecedor":
+				case TELA_DETALHAR_FORNECEDOR:
 					new TelaDetalharFornecedor();
 					break;
-				case "TelaReunioes":
+				case TELA_REUNIOES:
 					new TelaReunioes();
 					break;
-				case "TelaServicos":
+				case TELA_SERVICOS:
 					new TelaServicos();
 					break;
-				case "TelaAddServico":
-					new TelaAddServico();
+				case TELA_ADD_SERVICO_FORNECEDOR:
+					new TelaAddServicoFornecedor();
 					break;
-				case "TelaPacotes":
+				case TELA_PACOTES:
 					new TelaPacotes();
 					break;
-				case "TelaCadastroPacote":
+				case TELA_CADASTRO_PACOTE:
 					new TelaCadastroPacote();
 					break;
-				case "TelaClientes":
-					new TelaClientes();
+				case TELA_CADASTRO_CLIENTE:
+					new TelaCadastroCliente();
 					break;
-				case "TelaPlanilhaFinancas":
+				case TELA_PLANILHA_FINANCAS:
 					new TelaPlanilhaFinancas();
 					break;
-				case "TelaLoginAdmin":
+				case TELA_LOGIN_ADMIN:
 					new TelaLoginAdmin();
 					break;
-				case "TelaPrincipal":
+				case TELA_PRINCIPAL:
 					new TelaPrincipal();
 					break;
-
+				case TELA_LISTAR_REUNIOES:
+					new TelaListarReunioes();
+					break;
+				
 				} // Fim do switch case
 			}
 		});

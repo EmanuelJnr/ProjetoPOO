@@ -1,5 +1,8 @@
 package Telas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -7,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
@@ -28,6 +32,7 @@ public class TelaFiltrarFornecedor extends TelaPadrao{
 		addBotao();
 		addCampoDeTexto();
 		addRadioButton();
+		ouvinteBtnFiltrar();
 		setVisible(true);
 	}
 	
@@ -69,11 +74,19 @@ public class TelaFiltrarFornecedor extends TelaPadrao{
 	
 	public void addBotao() {
 		btnVoltar = new Botao("Voltar",640,500,120,30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaFornecedores");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_FORNECEDORES);
 		add(btnVoltar);
 		
 		btnFiltrar = new Botao("Filtrar",500,500,120,30);
 		add(btnFiltrar);
+	}
+	
+	public void ouvinteBtnFiltrar() {
+		btnFiltrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO Permanece na mesma janela mas filtra os dados de acordo com as entradas.
+			}
+		});
 	}
 	
 	public void addTabela() {

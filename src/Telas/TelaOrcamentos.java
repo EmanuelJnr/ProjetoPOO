@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -14,7 +15,6 @@ import Ouvintes.OuvinteNovaTela;
 public class TelaOrcamentos extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnReuniao;
-	private Botao btnPlanilha;
 	private Botao btnEditar;
 	private Botao btnFiltrar;
 	private Botao btnRelatorio;
@@ -63,46 +63,37 @@ public class TelaOrcamentos extends TelaPadrao{
 		btnReuniao = new Botao("Reunião", 160, 460, 120, 30);
 		add(btnReuniao);
 
-		btnPlanilha = new Botao("Planilha", 340, 460, 120, 30);
-		add(btnPlanilha);
-
 		Botao btnCadastrar = new Botao("Cadastrar", 520, 460, 120, 30);
-		OuvinteNovaTela.proximaTela(btnCadastrar, this, "TelaCadastroOrcamento");
+		OuvinteNovaTela.proximaTela(btnCadastrar, this, NomeTela.TELA_CADASTRO_ORCAMENTO);
 		add(btnCadastrar);
 
 		btnEditar = new Botao("Editar", 100, 510, 120, 30);
 		add(btnEditar);
 
 		btnFiltrar = new Botao("Filtrar", 265, 510, 120, 30);
-		OuvinteNovaTela.proximaTela(btnFiltrar, this, "TelaFiltrarOrcamentos");
+		OuvinteNovaTela.proximaTela(btnFiltrar, this, NomeTela.TELA_FILTRAR_ORCAMENTOS);
 		add(btnFiltrar);
 
 		btnRelatorio = new Botao("Relatório", 415, 510, 120, 30);
 		add(btnRelatorio);
 
 		Botao btnVoltar = new Botao("Voltar", 580, 510, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PRINCIPAL);
 		add(btnVoltar);
 	}
 
 	public void ouvinteBotoes() {
 		btnReuniao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega o objeto selecionado na tabela
+				//TODO pega o objeto selecionado na tabela
 				dispose();
 				new TelaReunioes();
 			}
 		});
 
-		btnPlanilha.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//pega o objeto selecionado na tabela
-			}
-		});
-
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega o objeto selecionado na tabela
+				//TODO pega o objeto selecionado na tabela
 				dispose();
 				new TelaEditarOrcamento();
 			}
@@ -110,7 +101,7 @@ public class TelaOrcamentos extends TelaPadrao{
 
 		btnRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega o objeto selecionado na tabela
+				//TODO pega o objeto selecionado na tabela
 				dispose();
 				new TelaGerarRelatorio();
 			}

@@ -6,15 +6,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
 
-public class TelaAddServico extends TelaPadrao{
+public class TelaAddServicoFornecedor extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnAdicionar;
 
-	public TelaAddServico() {
+	public TelaAddServicoFornecedor() {
 		super("Serviços");
 		addBotoes();
 		addLabels();
@@ -59,13 +60,14 @@ public class TelaAddServico extends TelaPadrao{
 		add(btnAdicionar);
 
 		Botao btnVoltar = new Botao("Voltar", 500, 490, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaCadastroFornecedor");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_CADASTRO_FORNECEDOR);
 		add(btnVoltar);
 	}
+	
 	public void ouvinteBtnAdicionar() {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela
+				//pega um objeto da tabela e adiciona no fornecedor
 				dispose();
 				new TelaCadastroFornecedor();
 			}
