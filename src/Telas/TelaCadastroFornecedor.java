@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Label;
@@ -33,6 +34,9 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		OuvinteBotoes();
 		addTabela();
 		setVisible(true);
+	}
+	public static void main(String[] args) {
+		new TelaCadastroFornecedor();
 	}
 
 	public void addLabels() {
@@ -77,14 +81,14 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		add(btnExcluir);
 
 		Botao btnAdicionar = new Botao("Adicionar", 480, 445, 120, 30);
-		OuvinteNovaTela.proximaTela(btnAdicionar, this, "TelaAddServico");
+		OuvinteNovaTela.proximaTela(btnAdicionar, this, NomeTela.TELAADDSERVICOFORNECEDOR);
 		add(btnAdicionar);
 
 		btnCadastrar = new Botao("Cadastrar", 250, 515, 120, 30);
 		add(btnCadastrar);
 
 		Botao btnVoltar = new Botao("Voltar", 430, 515, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaFornecedores");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELAFORNECEDORES);
 		add(btnVoltar);
 	}
 

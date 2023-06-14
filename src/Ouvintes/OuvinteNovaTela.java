@@ -4,15 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import Telas.TelaAddFornecedorOrcamento;
+import Funcionalidades.NomeTela;
+import Telas.TelaAddFornecedorCadOrcamento;
 import Telas.TelaAddFornecedorPacote;
-import Telas.TelaAddServico;
+import Telas.TelaAddServicoFornecedor;
+import Telas.TelaCadastroCliente;
 import Telas.TelaCadastroFornecedor;
 import Telas.TelaCadastroOrcamento;
 import Telas.TelaCadastroPacote;
-import Telas.TelaClientes;
 import Telas.TelaDetalharFornecedor;
+import Telas.TelaEditarOrcamento;
 import Telas.TelaFiltrarFornecedor;
 import Telas.TelaFiltrarOrcamentos;
 import Telas.TelaFornecedores;
@@ -27,69 +28,72 @@ import Telas.TelaServicos;
 
 public abstract class OuvinteNovaTela implements ActionListener{
 
-	public static void proximaTela(JButton b, JFrame essaTela, String novaTela) {
+	public static void proximaTela(JButton botao, JFrame essaTela, NomeTela nomeTela) {
 
-		b.addActionListener(new ActionListener() {
+		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				essaTela.dispose();
 
-				switch (novaTela) {
-				case "TelaOrcamentos":
+				switch (nomeTela) {
+				case TELAORCAMENTOS:
 					new TelaOrcamentos();
 					break;
-				case "TelaFiltrarOrcamentos":
+				case TELAEDITARORCAMENTO:
+					new TelaEditarOrcamento();
+					break;
+				case TELAFILTRARORCAMENTOS:
 					new TelaFiltrarOrcamentos();
 					break;
-				case "TelaCadastroOrcamento":
+				case TELACADASTROORCAMENTO:
 					new TelaCadastroOrcamento();
 					break;
-				case "TelaFornecedores":
+				case TELAFORNECEDORES:
 					new TelaFornecedores();
 					break;
-				case "TelaFornecedoresFinancas":
+				case TELAFORNECEDORESFINANCAS:
 					new TelaFornecedoresFinancas();
 					break;
-				case "TelaAddFornecedorOrcamento":
-					new TelaAddFornecedorOrcamento();
+				case TELAADDFORNECEDORORCAMENTO:
+					new TelaAddFornecedorCadOrcamento();
 					break;
-				case "TelaAddFornecedorPacote":
+				case TELAADDFORNECEDORPACOTE:
 					new TelaAddFornecedorPacote();
 					break;
-				case "TelaFiltrarFornecedor":
+				case TELAFILTRARFORNECEDOR:
 					new TelaFiltrarFornecedor();
 					break;
-				case "TelaCadastroFornecedor":
+				case TELACADASTROFORNECEDOR:
 					new TelaCadastroFornecedor();
 					break;
-				case "TelaDetalharFornecedor":
+				case TELADETALHARFORNECEDOR:
 					new TelaDetalharFornecedor();
 					break;
-				case "TelaReunioes":
+				case TELAREUNIOES:
 					new TelaReunioes();
 					break;
-				case "TelaServicos":
+				case TELASERVICOS:
 					new TelaServicos();
 					break;
-				case "TelaAddServico":
-					new TelaAddServico();
+				case TELAADDSERVICOFORNECEDOR:
+					new TelaAddServicoFornecedor();
 					break;
-				case "TelaPacotes":
+				case TELAPACOTES:
 					new TelaPacotes();
 					break;
-				case "TelaCadastroPacote":
+				case TELACADASTROPACOTE:
 					new TelaCadastroPacote();
 					break;
-				case "TelaClientes":
-					new TelaClientes();
+				case TELACADASTROCLIENTE:
+					new TelaCadastroCliente();
 					break;
-				case "TelaPlanilhaFinancas":
+				case TELAPLANILHAFINANCAS:
 					new TelaPlanilhaFinancas();
 					break;
-				case "TelaLoginAdmin":
+				case TELALOGINADMIN:
 					new TelaLoginAdmin();
 					break;
-				case "TelaPrincipal":
+				case TELAPRINCIPAL:
 					new TelaPrincipal();
 					break;
 
