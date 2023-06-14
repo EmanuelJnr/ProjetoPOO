@@ -41,7 +41,7 @@ public class TelaATAReuniao extends TelaPadrao{
 		add(btnConfirmar);
 		
 		Botao btnVoltar = new Botao("Voltar", 215, 230, 100, 25);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELAREUNIOES);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_REUNIOES);
 		add(btnVoltar);
 	}
 	

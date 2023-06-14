@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CheckBox;
 import Interface.Label;
@@ -92,14 +93,14 @@ public class TelaGerarRelatorio extends TelaPadrao{
 		add(btnConfirmar);
 
 		Botao btnVoltar = new Botao("Voltar", 440, 520, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaOrcamentos");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_ORCAMENTOS);
 		add(btnVoltar);
 	}
 
 	public void ouvinteBotoes() {
 		btnAddFoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//busca e adiciona a foto do pc ao contrato selecionado e na tabela.
+				//TODO busca e adiciona a foto do pc ao contrato selecionado e na tabela.
 				dispose();
 				new TelaGerarRelatorio();
 			}
@@ -107,7 +108,7 @@ public class TelaGerarRelatorio extends TelaPadrao{
 
 		btnDelFoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega o objeto selecionado na tabela e remove do contrato e da tabela.
+				//TODO pega o objeto selecionado na tabela e remove do contrato e da tabela.
 				dispose();
 				new TelaGerarRelatorio();
 			}
@@ -137,7 +138,7 @@ public class TelaGerarRelatorio extends TelaPadrao{
 				if(cbFornecedores.isSelected()) {
 					System.out.println("adiciona os fornecedores que participarão do evento no PDF");
 				}
-				//caso o orçamento/contrato não tenha alguma informação, ela aparece no relatório com o texto “não consta
+				//TODO caso o orçamento/contrato não tenha alguma informação, ela aparece no relatório com o texto “não consta
 				JOptionPane.showMessageDialog(null, "Relatório criado!");
 				dispose();
 				new TelaOrcamentos();

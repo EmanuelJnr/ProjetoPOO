@@ -17,7 +17,7 @@ public class TelaAddFornecedorPacote extends TelaAddFornecedorCadOrcamento{
 		add(btnAdicionar);
 
 		btnVoltar = new Botao("Voltar",480,500,120,30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELACADASTROPACOTE);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_CADASTRO_PACOTE);
 		add(btnVoltar);
 	}
 	public void ouvinteBtnAdicionar() {

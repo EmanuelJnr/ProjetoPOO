@@ -55,7 +55,7 @@ public class TelaCadastroCliente extends TelaPadrao{
 	
 	public void addBotoes() {
 		Botao btnVoltar = new Botao("Voltar",410,500,120,30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELAPRINCIPAL);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PRINCIPAL);
 		add(btnVoltar);
 		
 		btnCadastrar = new Botao("Cadastrar",270,500,120,30);

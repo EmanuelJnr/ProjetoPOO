@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -58,21 +59,21 @@ public class TelaPacotes extends TelaPadrao{
 
 	public void addBotoes() {
 		Botao btnCadastrar = new Botao("Cadastrar", 160, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnCadastrar, this, "TelaCadastroPacote");
+		OuvinteNovaTela.proximaTela(btnCadastrar, this, NomeTela.TELA_CADASTRO_PACOTE);
 		add(btnCadastrar);
 
 		btnDetalhar = new Botao("Detalhar/Deletar", 335, 500, 130, 30);
 		add(btnDetalhar);
 
 		Botao btnVoltar = new Botao("Voltar", 520, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PRINCIPAL);
 		add(btnVoltar);
 	}
 
 	public void ouvinteBtnDetalhar() {
 		btnDetalhar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela
+				//TODO pega um objeto da tabela
 				dispose();
 				new TelaDetalhamentoPacote();
 			}

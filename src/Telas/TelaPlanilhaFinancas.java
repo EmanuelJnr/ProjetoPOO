@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -59,14 +60,14 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 		add(btnFornecedores);
 		
 		Botao btnVoltar = new Botao("Voltar", 490, 500, 150, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PRINCIPAL);
 		add(btnVoltar);
 	}
 	
 	public void ouvinteFornecedores() {
 		btnFornecedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela eventos e lista os fornecedores na proxima tela
+				//TODO pega um objeto da tabela eventos.
 				dispose();
 				new TelaFornecedoresFinancas();
 			}

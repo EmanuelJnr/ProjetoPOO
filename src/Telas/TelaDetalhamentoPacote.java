@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextArea;
 import Funcionalidades.Fontes;
+import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
@@ -47,7 +48,7 @@ public class TelaDetalhamentoPacote extends TelaPadrao {
 	
 	public void addBotoes() {
 		Botao btnVoltar = new Botao("Voltar", 450, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPacotes");
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PACOTES);
 		add(btnVoltar);
 		
 		btnExcluir = new Botao("Excluir", 220, 500, 120 ,30);
@@ -56,7 +57,7 @@ public class TelaDetalhamentoPacote extends TelaPadrao {
 	public void ouvinteExcluir() {
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//exclui o pacote selecinado do banco
+				//TODO exclui o pacote selecinado do banco.
 				dispose();
 				new TelaPacotes();
 			}

@@ -81,14 +81,14 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		add(btnExcluir);
 
 		Botao btnAdicionar = new Botao("Adicionar", 480, 445, 120, 30);
-		OuvinteNovaTela.proximaTela(btnAdicionar, this, NomeTela.TELAADDSERVICOFORNECEDOR);
+		OuvinteNovaTela.proximaTela(btnAdicionar, this, NomeTela.TELA_ADD_SERVICO_FORNECEDOR);
 		add(btnAdicionar);
 
 		btnCadastrar = new Botao("Cadastrar", 250, 515, 120, 30);
 		add(btnCadastrar);
 
 		Botao btnVoltar = new Botao("Voltar", 430, 515, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELAFORNECEDORES);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_FORNECEDORES);
 		add(btnVoltar);
 	}
 
