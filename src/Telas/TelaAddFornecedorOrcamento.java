@@ -11,37 +11,37 @@ import Interface.Botao;
 import Interface.Label;
 import Ouvintes.OuvinteNovaTela;
 
-public class TelaPacotes extends TelaPadrao{
+public class TelaAddFornecedorOrcamento extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
-	private Botao btnDetalhar;
+	private Botao btnAdicionar;
+	private Botao btnVoltar;
 
-	public TelaPacotes() {
-		super("Pacotes");
+	public TelaAddFornecedorOrcamento() {
+		super("Fornecedores");
 		addBotoes();
 		addLabels();
 		addTabela();
-		ouvinteBtnDetalhar();
+		ouvinteBtnAdicionar();
 		setVisible(true);
 	}
 
 	public void addLabels() {
-		Label titulo = new Label("Pacotes", 350, 30, 78, 30);
+		Label titulo = new Label("FORNECEDORES", 318, 30, 164, 30);
 		titulo.setFont(Fontes.titulo());
 		add(titulo);
 	}
 
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("Nome do pacote");
-		modelo.addColumn("Valor");
-		modelo.addColumn("Serviços");
-		modelo.addColumn("Disponibilidade");
+		modelo.addColumn("Nome");
+		modelo.addColumn("Física/Jurídica");
+		modelo.addColumn("Quantidade de contratos");
 
 		// TODO falta fazer a adicão do banco de dados com as informações dos atributos.
 
 		/** TODO Adicionar na lista os devidos atributos. 
 		for() {
-			Object[] linha = new Object[4];
+			Object[] linha = new Object[3];
 
 			linha[0] = //Nome
 			linha[1] = //Física/Jurídica
@@ -52,29 +52,24 @@ public class TelaPacotes extends TelaPadrao{
 		 */	
 		JTable tabela = new JTable(modelo);
 		JScrollPane painelScrow = new JScrollPane(tabela);
-		painelScrow.setBounds(20, 100, 745, 350);
+		painelScrow.setBounds(20,100,745,350);
 		add(painelScrow);
 	}
 
 	public void addBotoes() {
-		Botao btnCadastrar = new Botao("Cadastrar", 160, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnCadastrar, this, "TelaCadastroPacote");
-		add(btnCadastrar);
+		btnAdicionar = new Botao("Adicionar",200,500,120,30);
+		add(btnAdicionar);
 
-		btnDetalhar = new Botao("Detalhar/Deletar", 335, 500, 130, 30);
-		add(btnDetalhar);
-
-		Botao btnVoltar = new Botao("Voltar", 520, 500, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaPrincipal");
+		btnVoltar = new Botao("Voltar",480,500,120,30);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, "TelaCadastroOrcamento");
 		add(btnVoltar);
 	}
-
-	public void ouvinteBtnDetalhar() {
-		btnDetalhar.addActionListener(new ActionListener() {
+	public void ouvinteBtnAdicionar() {
+		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela
+				//Adiciona fornecedores no orçamento
 				dispose();
-				new TelaDetalhamentoPacote();
+				new TelaCadastroOrcamento();
 			}
 		});
 	}
