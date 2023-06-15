@@ -1,4 +1,4 @@
-package Testes;
+package Logica;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;

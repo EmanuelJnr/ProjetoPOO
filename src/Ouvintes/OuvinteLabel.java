@@ -12,10 +12,10 @@ import org.apache.commons.mail.EmailException;
 import Interface.Label;
 import Logica.CentralDeInformacoes;
 import Logica.GerarSenha;
+import Logica.Mensageiro;
 import Logica.Persistencia;
 import Logica.VerificaEmail;
 import Telas.TelaLoginAdmin;
-import Testes.Mensageiro;
 
 public abstract class OuvinteLabel {
 	public static void ouvinteLabel(Label l, JFrame tela) {

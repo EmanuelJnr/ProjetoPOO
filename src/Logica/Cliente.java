@@ -1,10 +1,10 @@
 package Logica;
 
 public class Cliente {
-	private String CPF_CNPJ;
 	private String nome;
-	private String telefone;
 	private String email;
+	private String CPF_CNPJ;
+	private String telefone;
 
 	public Cliente(String CPF_CNPJ, String nome, String telefone, String email) {
 		setCPF_CNPJ(CPF_CNPJ);

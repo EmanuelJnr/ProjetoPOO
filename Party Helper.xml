@@ -1,10 +1,36 @@
 <Logica.CentralDeInformacoes>
-  <admin>
-    <nome>Emanuel</nome>
-    <email>junior.ssu@hotmail.com</email>
-    <senha>150150</senha>
-  </admin>
-  <todosOsClientes/>
+  <todosOsClientes>
+    <Logica.Cliente>
+      <nome>jun</nome>
+      <email>junior.ssu@hotmail.com</email>
+      <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
+      <telefone>83998640846</telefone>
+    </Logica.Cliente>
+    <Logica.Cliente>
+      <nome>eman</nome>
+      <email>zezinho@gmail.com</email>
+      <CPF__CNPJ>278.444.273-02</CPF__CNPJ>
+      <telefone>123456</telefone>
+    </Logica.Cliente>
+    <Logica.Cliente>
+      <nome>juni</nome>
+      <email>carlos@hotmail.com</email>
+      <CPF__CNPJ>892.382.799-18</CPF__CNPJ>
+      <telefone>83998640846</telefone>
+    </Logica.Cliente>
+    <Logica.Cliente>
+      <nome>jun</nome>
+      <email>jun@hotmail.com</email>
+      <CPF__CNPJ>77.856.386/0001-62</CPF__CNPJ>
+      <telefone>(83)9.9864-0846</telefone>
+    </Logica.Cliente>
+    <Logica.Cliente>
+      <nome>asdd</nome>
+      <email>sdfsdf@hotmail.com</email>
+      <CPF__CNPJ>236.420.200-03</CPF__CNPJ>
+      <telefone>(93)9.9999-9999</telefone>
+    </Logica.Cliente>
+  </todosOsClientes>
   <todosOsPacotes/>
   <todosOsFornecedores/>
   <todosOsServicos/>
