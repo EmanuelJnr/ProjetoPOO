@@ -1,21 +1,16 @@
 package Logica;
 
-import java.time.LocalDateTime;
-
 public class Cliente {
 	private String CPF_CNPJ;
 	private String nome;
 	private String telefone;
 	private String email;
-	private LocalDateTime dataNascimento;
-	private String endereco;
 
-	public Cliente(String CPF_CNPJ, String nome, String telefone, String email, LocalDateTime dataNascimento, String endereco) {
+	public Cliente(String CPF_CNPJ, String nome, String telefone, String email) {
 		setCPF_CNPJ(CPF_CNPJ);
 		setNome(nome);
 		setTelefone(telefone);
 		setEmail(email);
-		setDataNascimento(dataNascimento);
 	}
 
 	public String toString() {
@@ -49,17 +44,5 @@ public class Cliente {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public LocalDateTime getDataNascimento() {
-		return dataNascimento;
-	}
-	public void setDataNascimento(LocalDateTime dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 }

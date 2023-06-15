@@ -3,6 +3,7 @@ package Telas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -68,10 +69,23 @@ public class TelaAddFornecedorCadOrcamento extends TelaPadrao{
 	public void ouvinteBtnAdicionar() {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Adiciona fornecedores no cadastramento do orçamento
+				int opc = JOptionPane.showConfirmDialog(null, "Deseja adicionar o valor ao fornecedor?", null,  JOptionPane.YES_NO_OPTION);
+				int valor = 0;
+				try {
+					if(opc==JOptionPane.YES_OPTION) {
+						valor = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o valor")); 
+					}
+				} catch(NumberFormatException nfe) { //TODO looping no exception para não digitar string.
+					valor = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o valor válido"));
+				}
+				//TODO O fornecedor em questão recebe o valor.
+				//TODO Adiciona fornecedores no cadastramento do orçamento
 				dispose();
 				new TelaCadastroOrcamento();
 			}
 		});
+	}
+	public static void main(String[] args) {
+		new TelaAddFornecedorCadOrcamento();
 	}
 }

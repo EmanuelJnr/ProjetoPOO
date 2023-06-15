@@ -73,4 +73,7 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 			}
 		});
 	}
+	public static void main(String[] args) {
+		new TelaPlanilhaFinancas();
+	}
 }

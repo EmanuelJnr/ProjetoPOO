@@ -10,6 +10,7 @@ public class Admin {
 		setEmail(email);
 		setSenha(senha);
 	}
+	
 	public String getNome() {
 		return nome;
 	}

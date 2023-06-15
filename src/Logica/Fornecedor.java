@@ -1,0 +1,64 @@
+package Logica;
+
+import java.util.ArrayList;
+
+public class Fornecedor {
+	private String nome;
+	private String email;
+	private String CPF_CNPJ;
+	private String telefone;
+	private ArrayList<Servico> servicos;
+	private int valor = 0;
+	
+	public Fornecedor(String nome, String email, String cPF_CNPJ, String telefone) {
+		this.nome = nome;
+		this.email = email;
+		CPF_CNPJ = cPF_CNPJ;
+		this.telefone = telefone;
+	}
+	
+	public boolean equals(Fornecedor f) {
+		if(f.getCPF_CNPJ().equals(CPF_CNPJ)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public int getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+	public ArrayList<Servico> getServicos() {
+		return servicos;
+	}
+	public void setServicos(ArrayList<Servico> servicos) {
+		this.servicos = servicos;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getCPF_CNPJ() {
+		return CPF_CNPJ;
+	}
+	public void setCPF_CNPJ(String cPF_CNPJ) {
+		CPF_CNPJ = cPF_CNPJ;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+}
