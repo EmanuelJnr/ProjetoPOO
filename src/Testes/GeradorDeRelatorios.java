@@ -1,16 +1,16 @@
-package Logica;
+package Testes;
 
-import java.io.FileOutputStream;
+/*import java.io.FileOutputStream;
 import java.io.IOException;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import Logica.CentralDeInformacoes;*/
 
 public class GeradorDeRelatorios {
-	public static void obterProgramacaoDoMes(CentralDeInformacoes c, Month month) {
+	/*public static void obterProgramacaoDoMes(CentralDeInformacoes c, Month month) {
 		if(c.getTodosOsEventos().size()!=0) {//verifica se há pelo menos um evento cadastrado
 			boolean flag=false;
 			for(Evento ev : c.getTodosOsEventos()) {
@@ -43,7 +43,7 @@ public class GeradorDeRelatorios {
 		else
 			System.out.println("Não há Eventos cadastrados!");
 	}
-	/*public static void gerarRelatorioCompleto(CentralDeInformacoes c) {
+	public static void gerarRelatorioCompleto(CentralDeInformacoes c) {
 		Document documento = new Document(PageSize.A4);
 		try {
 			FileOutputStream os = new FileOutputStream("Relatório Completo.pdf");

@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import Funcionalidades.Fontes;
-import Funcionalidades.NomeTela;
 import Interface.Botao;
+import Interface.Fontes;
 import Interface.Label;
+import Interface.NomeTela;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaFornecedoresFinancas extends TelaFornecedores{

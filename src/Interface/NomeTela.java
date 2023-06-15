@@ -1,4 +1,4 @@
-package Funcionalidades;
+package Interface;
 
 public enum NomeTela {
 	TELA_ORCAMENTOS,

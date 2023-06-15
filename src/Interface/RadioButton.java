@@ -1,7 +1,6 @@
 package Interface;
 
 import javax.swing.JRadioButton;
-import Funcionalidades.Fontes;
 
 public class RadioButton extends JRadioButton{
 	private static final long serialVersionUID = 1L;

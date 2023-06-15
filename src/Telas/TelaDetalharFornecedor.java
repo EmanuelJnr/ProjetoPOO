@@ -7,11 +7,11 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 
-import Funcionalidades.Fontes;
-import Funcionalidades.NomeTela;
 import Interface.Botao;
 import Interface.CampoDeTexto;
+import Interface.Fontes;
 import Interface.Label;
+import Interface.NomeTela;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaDetalharFornecedor extends TelaPadrao {

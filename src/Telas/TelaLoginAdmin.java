@@ -2,15 +2,22 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Funcionalidades.Fontes;
+
+import javax.swing.JOptionPane;
+
 import Interface.Botao;
 import Interface.CampoDeSenha;
 import Interface.CampoDeTexto;
+import Interface.Fontes;
 import Interface.Label;
+import Logica.CentralDeInformacoes;
+import Logica.Persistencia;
 import Ouvintes.OuvinteLabel;
 
 public class TelaLoginAdmin extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
+	Persistencia p = new Persistencia();
+	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnEntrar;
 	private CampoDeTexto tfEmail;
 	private CampoDeSenha tfSenha;
@@ -19,10 +26,9 @@ public class TelaLoginAdmin extends TelaPadrao{
 	public TelaLoginAdmin() {
 		super("Login ADMIN");
 		addBotoes();
-		ouvinteEntrar();
 		addLabels();
 		addCamposTexto();
-		addCTSenha();
+		ouvinteEntrar();
 		setVisible(true);
 	}
 
@@ -34,9 +40,21 @@ public class TelaLoginAdmin extends TelaPadrao{
 	public void ouvinteEntrar() {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Verificar se o e-mail e senha do admin estão corretos.
-				dispose();
-				new TelaPrincipal();
+				String email = tfEmail.getText();
+				String senha = String.valueOf(tfSenha.getPassword());
+
+				if(ci.getAdmin().getEmail().equals(email)) {
+					if(ci.getAdmin().getSenha().equals(senha)) {
+						dispose();
+						new TelaPrincipal();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "A senha está errada!");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "O email está errado!");
+				}
 			}
 		});
 	}
@@ -58,8 +76,7 @@ public class TelaLoginAdmin extends TelaPadrao{
 	public void addCamposTexto() {
 		tfEmail = new CampoDeTexto("", 260, 200, 300, 20);
 		add(tfEmail);
-	}
-	private void addCTSenha() {
+
 		tfSenha = new CampoDeSenha(260, 250, 300, 20);
 		add(tfSenha);
 	}

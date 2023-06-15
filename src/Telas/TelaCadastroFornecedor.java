@@ -6,11 +6,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import Funcionalidades.Fontes;
-import Funcionalidades.NomeTela;
+
 import Interface.Botao;
 import Interface.CampoDeTexto;
+import Interface.Fontes;
 import Interface.Label;
+import Interface.NomeTela;
 import Interface.RadioButton;
 import Ouvintes.OuvinteNovaTela;
 
@@ -95,7 +96,7 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 	public void OuvinteBotoes() {
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//pega um objeto da tabela serviços e exclui.
+				// TODO pega um objeto da tabela serviços e exclui.
 				dispose();
 				new TelaCadastroFornecedor();
 			}
@@ -118,7 +119,7 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 
 		// TODO falta fazer a adicão do banco de dados com as informações dos atributos.
 
-		/** TODO Adicionar na lista os devidos atributos. 
+		/* TODO Adicionar na lista os devidos atributos. 
 		for() {
 			Object[] linha = new Object[3];
 

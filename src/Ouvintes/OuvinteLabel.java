@@ -5,10 +5,22 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import org.apache.commons.mail.EmailException;
+
 import Interface.Label;
+import Logica.CentralDeInformacoes;
+import Logica.GerarSenha;
+import Logica.Persistencia;
+import Logica.VerificaEmail;
+import Telas.TelaLoginAdmin;
+import Testes.Mensageiro;
 
 public abstract class OuvinteLabel {
 	public static void ouvinteLabel(Label l, JFrame tela) {
+		Persistencia p = new Persistencia();
+		CentralDeInformacoes ci = p.recuperarCentral();
 		l.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent arg0) {
 			}
@@ -22,14 +34,38 @@ public abstract class OuvinteLabel {
 				l.setForeground(Color.RED);;
 				l.setCursor(cursor);
 			}
+
+			Mensageiro msg;
 			public void mouseClicked(MouseEvent arg0) {
-				//Deve mandar um e-mail para recuperar a senha do Admin,
-				//se conseguir enviar o email, ele setSenha() - nova senha enviada,
-				//(showMessageDialog "Foi enviado um e-mail para recuperar a senha").
-				
-				//se não conseguir (showInputDialog "Não foi possível enviar uma nova senha, cadastre um novo e-mail"),
-				//validação para ser e-mail válido e não ser o mesmo antigo,
-				//setEmail() = showInputDialog.
+				try {
+					msg = new Mensageiro();
+				} catch (EmailException e1) {
+					JOptionPane.showMessageDialog(null, "O e-mail do programa não está mais válido!");
+				}
+				String novaSenha = GerarSenha.senhaAletoria(6);
+
+				try {
+					msg.enviarEmail(ci.getAdmin().getEmail(), "Recuperação de senha do Admin", "Sue nova senha é: "+novaSenha);
+					ci.getAdmin().setSenha(novaSenha);
+					p.salvarCentral(ci);
+					JOptionPane.showMessageDialog(null, "Um e-mail foi enviado com a nova senha!");
+					tela.dispose();
+					new TelaLoginAdmin();
+				} catch (EmailException e) {
+					String novoEmail;
+					novoEmail = JOptionPane.showInputDialog(null, "Não foi possível enviar uma nova senha, cadastre um novo e-mail");
+					if(novoEmail != null) {
+						if(VerificaEmail.isValid(novoEmail)) {
+							ci.getAdmin().setEmail(novoEmail);
+							p.salvarCentral(ci);
+							tela.dispose();
+							new TelaLoginAdmin();
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "E-mail inválido!");
+						}
+					}
+				}
 			}
 		});
 	}

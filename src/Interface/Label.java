@@ -1,7 +1,6 @@
 package Interface;
 
 import javax.swing.JLabel;
-import Funcionalidades.Fontes;
 
 public class Label extends JLabel{
 	private static final long serialVersionUID = 1L;

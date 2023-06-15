@@ -2,8 +2,9 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Funcionalidades.NomeTela;
+
 import Interface.Botao;
+import Interface.NomeTela;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaAddFornecedorEdtOrcamento extends TelaAddFornecedorCadOrcamento{

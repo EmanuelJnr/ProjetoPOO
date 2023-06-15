@@ -1,4 +1,4 @@
-package Funcionalidades;
+package Logica;
 
 import java.util.InputMismatchException;
 

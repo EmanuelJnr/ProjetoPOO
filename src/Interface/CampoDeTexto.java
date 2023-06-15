@@ -1,7 +1,6 @@
 package Interface;
 
 import javax.swing.JTextField;
-import Funcionalidades.Fontes;
 
 public class CampoDeTexto extends JTextField{
 	private static final long serialVersionUID = 1L;

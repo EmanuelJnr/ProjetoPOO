@@ -7,10 +7,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import Funcionalidades.Fontes;
-import Funcionalidades.NomeTela;
+
 import Interface.Botao;
+import Interface.Fontes;
 import Interface.Label;
+import Interface.NomeTela;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaAddFornecedorCadOrcamento extends TelaPadrao{

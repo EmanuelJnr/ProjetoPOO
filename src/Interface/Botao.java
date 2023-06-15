@@ -1,7 +1,6 @@
 package Interface;
 
 import javax.swing.JButton;
-import Funcionalidades.Fontes;
 
 public class Botao extends JButton{
 	private static final long serialVersionUID = 1L;

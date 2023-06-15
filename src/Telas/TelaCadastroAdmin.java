@@ -3,12 +3,17 @@ package Telas;
 import Interface.Botao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Funcionalidades.Fontes;
+
+import javax.swing.JOptionPane;
+
 import Interface.CampoDeSenha;
 import Interface.CampoDeTexto;
+import Interface.Fontes;
 import Interface.Label;
+import Logica.Admin;
 import Logica.CentralDeInformacoes;
 import Logica.Persistencia;
+import Logica.VerificaEmail;
 
 public class TelaCadastroAdmin extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
@@ -18,7 +23,7 @@ public class TelaCadastroAdmin extends TelaPadrao{
 	private CampoDeSenha tfConfirmarSenha;
 	private Botao btnCadastrar;
 	Persistencia p = new Persistencia();
-	CentralDeInformacoes central = p.recuperarCentral("central.xml");
+	CentralDeInformacoes ci = p.recuperarCentral();
 
 	public TelaCadastroAdmin () {
 		super("Cadastro ADMIN");
@@ -65,9 +70,31 @@ public class TelaCadastroAdmin extends TelaPadrao{
 	public void ouvinteCadastrar() {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Cria um admin e guarda os valores nele, faz as validações dos campos de texto.
-				dispose();
-				new TelaLoginAdmin();
+				String nome = tfNome.getText();
+				String email = tfEmail.getText();
+				String senha = String.valueOf(tfSenha.getPassword());
+				String confSenha = String.valueOf(tfConfirmarSenha.getPassword());
+				if(!nome.equals("") && !email.equals("") && !senha.equals("") && !confSenha.equals("")) {
+					if(senha.equals(confSenha)) {
+						if(email != null) {
+							if(VerificaEmail.isValid(email)) {
+								ci.setAdmin(new Admin(nome, email, senha));
+								p.salvarCentral(ci);
+								dispose();
+								new TelaLoginAdmin();
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "E-mail inválido!");
+							}
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "As senhas não coincidem!");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Os campos de textos devem ser preenchidos!");
+				}
 			}
 		});
 	}

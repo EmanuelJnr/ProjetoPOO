@@ -1,7 +1,6 @@
 package Interface;
 
 import javax.swing.JPasswordField;
-import Funcionalidades.Fontes;
 
 public class CampoDeSenha extends JPasswordField{
 	private static final long serialVersionUID = 1L;

@@ -1,7 +1,6 @@
 package Interface;
 
 import javax.swing.JCheckBox;
-import Funcionalidades.Fontes;
 
 public class CheckBox extends JCheckBox{
 	private static final long serialVersionUID = 1L;

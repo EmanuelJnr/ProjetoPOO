@@ -1,0 +1,13 @@
+<Logica.CentralDeInformacoes>
+  <admin>
+    <nome>Emanuel</nome>
+    <email>junior.ssu@hotmail.com</email>
+    <senha>150150</senha>
+  </admin>
+  <todosOsClientes/>
+  <todosOsPacotes/>
+  <todosOsFornecedores/>
+  <todosOsServicos/>
+  <todasAsReunioes/>
+  <todosOsOrcamentos/>
+</Logica.CentralDeInformacoes>

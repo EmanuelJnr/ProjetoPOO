@@ -4,10 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextArea;
-import Funcionalidades.Fontes;
-import Funcionalidades.NomeTela;
+
 import Interface.Botao;
+import Interface.Fontes;
 import Interface.Label;
+import Interface.NomeTela;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaATAReuniao extends TelaPadrao{

@@ -1,7 +1,7 @@
 package Telas;
 
-import Funcionalidades.NomeTela;
 import Interface.Botao;
+import Interface.NomeTela;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaListarReunioes extends TelaReunioes{

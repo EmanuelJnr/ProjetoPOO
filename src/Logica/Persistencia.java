@@ -16,9 +16,9 @@ public class Persistencia {
 	public Persistencia() {
 		xstream.addPermission(AnyTypePermission.ANY);
 	}
-	public void salvarCentral(CentralDeInformacoes ci, String arq) {
+	public void salvarCentral(CentralDeInformacoes ci) {
 		String xml = xstream.toXML(ci);
-		File arquivo = new File(arq);
+		File arquivo = new File("Party Helper.xml");
 
 		try {
 			arquivo.createNewFile();
@@ -30,8 +30,8 @@ public class Persistencia {
 			e.printStackTrace();
 		}
 	}
-	public CentralDeInformacoes recuperarCentral(String nome) {
-		File arquivo = new File(nome);
+	public CentralDeInformacoes recuperarCentral() {
+		File arquivo = new File("Party Helper.xml");
 		try {
 			if (arquivo.exists()) {
 				FileInputStream file = new FileInputStream(arquivo);
