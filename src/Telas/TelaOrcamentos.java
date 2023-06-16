@@ -11,10 +11,15 @@ import Interface.Botao;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.NomeTela;
+import Logica.CentralDeInformacoes;
+import Logica.Orcamento;
+import Logica.Persistencia;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaOrcamentos extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
+	Persistencia p = new Persistencia();
+	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnReuniao;
 	private Botao btnEditar;
 	private Botao btnFiltrar;
@@ -28,6 +33,9 @@ public class TelaOrcamentos extends TelaPadrao{
 		ouvinteBotoes();
 		setVisible(true);
 	}
+	public static void main(String[] args) {///////////////////////////////////////////////////
+		new TelaOrcamentos();
+	}
 
 	public void addLabels() {
 		Label titulo = new Label("ORÇAMENTOS", 329, 30, 142, 30);
@@ -38,22 +46,24 @@ public class TelaOrcamentos extends TelaPadrao{
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Nome");
-		modelo.addColumn("Data e Hora");
-		modelo.addColumn("Contrato/Orçamento");
+		modelo.addColumn("Data");
+		modelo.addColumn("Local ");
+		modelo.addColumn("quant convidados");
+		modelo.addColumn("Fornecedores");
+		modelo.addColumn("Fotos");
 
-		// TODO falta fazer a adicão do banco de dados com as informações dos atributos.
+		for(Orcamento m: ci.getTodosOsOrcamentos()) {
+			Object[] linha = new Object[6];
 
-		/** TODO Adicionar na lista os devidos atributos. 
-		for() {
-			Object[] linha = new Object[3];
-
-			linha[0] = //Nome
-			linha[1] = //Física/Jurídica
-			linha[2] = //Quantidade
+			linha[0] = m.getNomeEvento();
+			linha[1] = String.valueOf(m.getData());
+			linha[2] = m.getLocalEvento();
+			linha[3] = m.getQtdConvidados();
+			linha[4] = m.getFornecedores();
+			linha[5] = m.getFotos();
 
 			modelo.addRow(linha);
 		}
-		 */	
 		JTable tabela = new JTable(modelo);
 		JScrollPane painelScrow = new JScrollPane(tabela);
 		painelScrow.setBounds(20, 70, 745, 380);

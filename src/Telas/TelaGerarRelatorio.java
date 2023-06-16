@@ -12,10 +12,15 @@ import Interface.CheckBox;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.NomeTela;
+import Logica.CentralDeInformacoes;
+import Logica.Orcamento;
+import Logica.Persistencia;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaGerarRelatorio extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
+	Persistencia p = new Persistencia();
+	CentralDeInformacoes ci = p.recuperarCentral();
 	private CheckBox cbNomeEvento;
 	private CheckBox cbDataHorario;
 	private CheckBox cbLocal;
@@ -34,6 +39,9 @@ public class TelaGerarRelatorio extends TelaPadrao{
 		addBotoes();
 		ouvinteBotoes();
 		setVisible(true);
+	}
+	public static void main(String[] args) {/////////////////////////////////////////////////////////////
+		new TelaGerarRelatorio();
 	}
 
 	public void addLabels() {
@@ -64,19 +72,27 @@ public class TelaGerarRelatorio extends TelaPadrao{
 
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("Nome do arquivo");
+		modelo.addColumn("Nome");
+		modelo.addColumn("Data");
+		modelo.addColumn("Local do evento");
+		modelo.addColumn("quant convidados");
+		modelo.addColumn("Fornecedores");
+		modelo.addColumn("Fotos");
 
-		// TODO falta fazer a adicão do banco de dados com as informações dos atributos.
+		
+		for(Orcamento o : ci.getTodosOsOrcamentos()) {
+			Object[] linha = new Object[6];
 
-		/** TODO Adicionar na lista os devidos atributos. 
-		for() {
-			Object[] linha = new Object[3];
-
-			linha[0] = //Nome do arquivo
+			linha[0] = o.getNomeEvento();
+			linha[1] = String.valueOf(o.getData());
+			linha[2] = o.getLocalEvento();
+			linha[3] = o.getQtdConvidados();
+			linha[4] = o.getFornecedores();
+			linha[5] = o.getFotos();
 
 			modelo.addRow(linha);
 		}
-		 */	
+		 	
 		JTable tabela = new JTable(modelo);
 		JScrollPane painelScrow = new JScrollPane(tabela);
 		painelScrow.setBounds(20, 310, 745, 200);

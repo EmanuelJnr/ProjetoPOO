@@ -12,10 +12,15 @@ import Interface.Botao;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.NomeTela;
+import Logica.CentralDeInformacoes;
+import Logica.Persistencia;
+import Logica.Reuniao;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaReunioes extends TelaPadrao {
 	private static final long serialVersionUID = 1L;
+	Persistencia p = new Persistencia();
+	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnATA;
 	private Botao btnReuniao;
 
@@ -27,6 +32,9 @@ public class TelaReunioes extends TelaPadrao {
 		ouvinteBotoes();
 		setVisible(true);
 	}
+	public static void main(String[] args) {////////////////////////////////////////////
+		new TelaReunioes();
+	}
 
 	public void addLabels() {
 		Label titulo = new Label("REUNIÕES", 346, 30, 108, 30);
@@ -36,21 +44,18 @@ public class TelaReunioes extends TelaPadrao {
 
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("Nome do Cliente");
-		modelo.addColumn("Data e Hora");
+		modelo.addColumn("Data e hora");
+		modelo.addColumn("ATA");
 
-		// TODO falta fazer a adicão do banco de dados com as informações dos atributos.
+		for(Reuniao r: ci.getTodasAsReunioes()) {
+			Object[] linha = new Object[2];
 
-		/** TODO Adicionar na lista os devidos atributos. 
-		for() {
-			Object[] linha = new Object[3];
-
-			linha[0] = //Nome do Cliente
-			linha[1] = //Data e Hora
+			linha[0] = String.valueOf(r.getDataHora());
+			linha[1] = r.getAta();
 
 			modelo.addRow(linha);
 		}
-		 */	
+
 		JTable tabela = new JTable(modelo);
 		JScrollPane painelScrow = new JScrollPane(tabela);
 		painelScrow.setBounds(20,100,745,350);
@@ -60,7 +65,7 @@ public class TelaReunioes extends TelaPadrao {
 	public void addBotoes() {
 		btnATA = new Botao("ATA", 180, 500, 120, 30);
 		add(btnATA);
-		
+
 		btnReuniao = new Botao("Marcar Reunião", 340, 500, 120, 30);
 		add(btnReuniao);
 
@@ -75,7 +80,7 @@ public class TelaReunioes extends TelaPadrao {
 				//TODO Guardar dataHora e marcar a reunião.
 			}
 		});
-		
+
 		btnATA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO pega um objeto da tabela
@@ -83,8 +88,5 @@ public class TelaReunioes extends TelaPadrao {
 				new TelaATAReuniao();
 			}
 		});
-	}
-	public static void main(String[] args) {
-		new TelaReunioes();
 	}
 }
