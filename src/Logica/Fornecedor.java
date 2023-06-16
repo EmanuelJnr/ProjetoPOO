@@ -9,25 +9,31 @@ public class Fornecedor {
 	private String telefone;
 	private ArrayList<Servico> servicos;
 	private int valor = 0;
-	
-	public Fornecedor(String nome, String email, String cPF_CNPJ, String telefone) {
+	private String diponivel;
+	private int qtdContratos;
+	private String comentarios;
+
+	public Fornecedor(String nome, String email, String cPF_CNPJ, String telefone, ArrayList<Servico> servicos) {
+		diponivel = "";
 		this.nome = nome;
 		this.email = email;
-		CPF_CNPJ = cPF_CNPJ;
+		this.CPF_CNPJ = cPF_CNPJ;
 		this.telefone = telefone;
+		this.servicos = servicos;
 	}
-	
+	public Fornecedor() {
+	}
+
 	public boolean equals(Fornecedor f) {
 		if(f.getCPF_CNPJ().equals(CPF_CNPJ)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public int getValor() {
 		return valor;
 	}
-
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
@@ -60,5 +66,23 @@ public class Fornecedor {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	public String getDiponivel() {
+		return diponivel;
+	}
+	public void setDiponivel(String diponivel) {
+		this.diponivel = diponivel;
+	}
+	public int getQtdContratos() {
+		return qtdContratos;
+	}
+	public void setQtdContratos(int qtdContratos) {
+		this.qtdContratos = qtdContratos;
+	}
+	public String getComentarios() {
+		return comentarios;
+	}
+	public void setComentarios(String comentarios) {
+		this.comentarios = comentarios;
 	}
 }

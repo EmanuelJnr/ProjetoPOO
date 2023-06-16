@@ -2,29 +2,53 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.text.ParseException;
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.text.MaskFormatter;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Fontes;
 import Interface.Label;
-import Interface.NomeTela;
 import Interface.RadioButton;
-import Ouvintes.OuvinteNovaTela;
+import Logica.CentralDeInformacoes;
+import Logica.Fornecedor;
+import Logica.Persistencia;
+import Logica.Servico;
+import Logica.ValidaCNPJ;
+import Logica.ValidaCPF;
+import Logica.VerificaEmail;
+import Ouvintes.OuvinteDeFoco;
+import Ouvintes.OuvinteFocoFormatted;
 
 public class TelaCadastroFornecedor extends TelaPadrao {
 	private static final long serialVersionUID = 1L;
-	private CampoDeTexto tfNome;
-	private CampoDeTexto tfEmail;
-	private CampoDeTexto tfCpfCnpj;
-	private CampoDeTexto tfTelefone;
+	Persistencia p = new Persistencia();
+	CentralDeInformacoes ci = p.recuperarCentral();
 	private RadioButton rbCPF;
 	private RadioButton rbCNPJ;
 	private Botao btnExcluir;
 	private Botao btnCadastrar;
+	private Botao btnAdicionar;
+	private Botao btnVoltar;
+	private CampoDeTexto tfNome;
+	private CampoDeTexto tfEmail;
+	private JFormattedTextField tfTelefone;
+	private JFormattedTextField tfCPF;
+	private JFormattedTextField tfCNPJ;
+	public JTable tabelaTodos;
+	private JTable tabelaAdd;
+	private DefaultTableModel modeloAdd;
 
 	public TelaCadastroFornecedor() {
 		super("Cadastrar Fornecedor");
@@ -33,11 +57,10 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		addRadioButton();
 		addBotoes();
 		OuvinteBotoes();
-		addTabela();
+		TabelaTodosServicos();
+		TabelaAddServicos();
+		ouvinteJanela();
 		setVisible(true);
-	}
-	public static void main(String[] args) {
-		new TelaCadastroFornecedor();
 	}
 
 	public void addLabels() {
@@ -45,94 +68,227 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		titulo.setFont(Fontes.titulo());
 		add(titulo);
 
-		add(new Label("Nome:", 125, 90, 50, 30));
-		add(new Label("E-mail:",380, 90, 50, 30));
-		add(new Label("Telefone:", 380, 140, 53, 30));
-		add(new Label("Serviços", 375, 200, 50, 30));
+		add(new Label("Nome:", 125, 70, 50, 30));
+		add(new Label("E-mail:",380, 70, 50, 30));
+		add(new Label("Telefone:", 380, 120, 53, 30));
+		add(new Label("Serviços deste fornecedor", 121, 205, 150, 30));
+		add(new Label("Todos os Serviços", 530, 205, 100, 30));
 	}
 
 	public void addCamposDeTexto() {
-		tfNome = new CampoDeTexto("", 173, 90, 180, 30);
+		tfNome = new CampoDeTexto("", 173, 70, 180, 30);
+		tfNome.addFocusListener(new OuvinteDeFoco(tfNome));
 		add(tfNome);
 
-		tfEmail = new CampoDeTexto("", 440, 90, 240, 30);
+		tfEmail = new CampoDeTexto("", 440, 70, 240, 30);
+		tfEmail.addFocusListener(new OuvinteDeFoco(tfEmail));
 		add(tfEmail);
 
-		tfCpfCnpj = new CampoDeTexto("", 178, 142, 175, 30);
-		add(tfCpfCnpj);
+		try {
+			MaskFormatter maskTel = new MaskFormatter("(##)#.####-####");
+			tfTelefone = new JFormattedTextField(maskTel);
+			tfTelefone.addFocusListener(new OuvinteFocoFormatted(tfTelefone));
+			tfTelefone.setBounds(440, 122, 240, 30);
+			add(tfTelefone);
 
-		tfTelefone = new CampoDeTexto("", 440, 142, 240, 30);
-		add(tfTelefone);
+			MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
+			tfCPF = new JFormattedTextField(maskCPF);
+			tfCPF.addFocusListener(new OuvinteFocoFormatted(tfCPF));
+			tfCPF.setBounds(178, 122, 175, 30);
+			add(tfCPF);
+
+			MaskFormatter maskCNPJ = new MaskFormatter("##.###.###/####-##");
+			tfCNPJ = new JFormattedTextField(maskCNPJ);
+			tfCNPJ.addFocusListener(new OuvinteFocoFormatted(tfCNPJ));
+			tfCNPJ.setBounds(178, 162, 175, 30);
+			add(tfCNPJ);
+			tfCNPJ.setEditable(false);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	public void addRadioButton() {
-		rbCPF = new RadioButton("CPF", 120, 140, 50, 15);
+		rbCPF = new RadioButton("CPF", 120, 130, 50, 15);
 		add(rbCPF);
 
-		rbCNPJ = new RadioButton("CNPJ", 120, 160, 56, 15);
+		rbCNPJ = new RadioButton("CNPJ", 120, 170, 56, 15);
 		add(rbCNPJ);
 
 		ButtonGroup grupo = new ButtonGroup();
 		grupo.add(rbCPF);
 		grupo.add(rbCNPJ);
+		rbCPF.setSelected(true);
+
+		rbCPF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tfCPF.setEditable(true);
+				tfCPF.setText("");
+				tfCNPJ.setEditable(false);
+			}
+		});
+
+		rbCNPJ.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tfCNPJ.setEditable(true);
+				tfCNPJ.setText("");
+				tfCPF.setEditable(false);
+			}
+		});
 	}
 
 	public void addBotoes() {
-		btnExcluir = new Botao("Excluir", 200, 445, 120, 30);
+		btnExcluir = new Botao("Excluir", 155, 445, 120, 30);
 		add(btnExcluir);
 
-		Botao btnAdicionar = new Botao("Adicionar", 480, 445, 120, 30);
-		OuvinteNovaTela.proximaTela(btnAdicionar, this, NomeTela.TELA_ADD_SERVICO_FORNECEDOR);
+		btnAdicionar = new Botao("Adicionar", 520, 445, 120, 30);
 		add(btnAdicionar);
 
 		btnCadastrar = new Botao("Cadastrar", 250, 515, 120, 30);
 		add(btnCadastrar);
 
-		Botao btnVoltar = new Botao("Voltar", 430, 515, 120, 30);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_FORNECEDORES);
+		btnVoltar = new Botao("Voltar", 430, 515, 120, 30);
 		add(btnVoltar);
+	}
+
+	public void TabelaTodosServicos() {
+		DefaultTableModel modelo = new DefaultTableModel();
+		modelo.addColumn("Nome");
+
+		for(Servico s: ci.getTodosOsServicos()) {
+			Object[] linha = new Object[1];
+			linha[0] = s.getServico();
+			modelo.addRow(linha);
+		}
+
+		tabelaTodos = new JTable(modelo);
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
+		tabelaTodos.setRowSorter(sorter);
+		JScrollPane painelScrow = new JScrollPane(tabelaTodos);
+		painelScrow.setBounds(393, 230, 372, 205);
+		add(painelScrow);
+	}
+
+	public void TabelaAddServicos() {
+		modeloAdd = new DefaultTableModel();
+		modeloAdd.addColumn("Nome");
+
+		for(Servico s: ci.getServicosTemp()) {
+			Object[] linha = new Object[1];
+			linha[0] = s.getServico();
+			modeloAdd.addRow(linha);
+		}
+
+		tabelaAdd = new JTable(modeloAdd);
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modeloAdd);
+		tabelaAdd.setRowSorter(sorter);
+		JScrollPane painelScrow = new JScrollPane(tabelaAdd);
+		painelScrow.setBounds(20, 230, 372, 205);
+		add(painelScrow);
+	}
+
+	public void ouvinteJanela() {
+		this.addWindowListener(new WindowListener() {
+			public void windowOpened(WindowEvent e) {}
+			public void windowIconified(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
+			public void windowClosing(WindowEvent e) {
+				ci.setServicosTemp(new ArrayList<>());
+				p.salvarCentral(ci);
+				dispose();
+				new TelaFornecedores();
+			}
+			public void windowClosed(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+		});
 	}
 
 	public void OuvinteBotoes() {
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO pega um objeto da tabela serviços e exclui.
+				if(tabelaAdd.getSelectedRow() != -1) {
+					String servico = tabelaAdd.getValueAt(tabelaAdd.getSelectedRow(), 0).toString();
+					modeloAdd.removeRow(tabelaAdd.getSelectedRow());
+					ci.getServicosTemp().remove(ci.buscaServico(servico));
+					p.salvarCentral(ci);
+				}
+			}
+		});
+
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tabelaTodos.getSelectedRow() != -1) {
+					String servico = tabelaTodos.getValueAt(tabelaTodos.getSelectedRow(), 0).toString();
+					if(ci.adicionarServicoTemp(ci.buscaServico(servico))) {
+						Object[] row = new Object[1];
+						row[0] = ci.buscaServico(servico);
+						modeloAdd.addRow(row);
+						p.salvarCentral(ci);
+					}
+				}
+			}
+		});
+
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ci.setServicosTemp(new ArrayList<>());
+				p.salvarCentral(ci);
 				dispose();
-				new TelaCadastroFornecedor();
+				new TelaFornecedores();
 			}
 		});
 
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Fazer a confirmação e verificação dos campos de texto.
-				dispose();
-				new TelaFornecedores();
+				String nome = tfNome.getText();
+				String email = tfEmail.getText();
+				String telefone = tfTelefone.getText();
+				String cpf_cnpj = "";
+
+				if(rbCPF.isSelected() && ValidaCPF.isCPF(tfCPF.getText())) {
+					cpf_cnpj = tfCPF.getText();
+				}
+				else if (rbCPF.isSelected() && ValidaCPF.isCPF(tfCPF.getText()) == false){
+					JOptionPane.showMessageDialog(null, "CPF vazio ou inválido!");
+					return;
+				}
+				else if(rbCNPJ.isSelected() && ValidaCNPJ.isCNPJ(tfCNPJ.getText())) {
+					cpf_cnpj = tfCNPJ.getText();
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "CNPJ vazio ou inválido!");
+					return;
+				}
+
+				if(!nome.equals("") && !email.equals("") && !telefone.equals("")) {
+					if(email != null) {
+						if(VerificaEmail.isValid(email)) {
+							if(ci.adicionarFornecedor(new Fornecedor(nome, email, cpf_cnpj, telefone, ci.getServicosTemp()))) {
+								ci.setServicosTemp(new ArrayList<>());
+								p.salvarCentral(ci);
+								dispose();
+								new TelaFornecedores();
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Esse CPF ou CNPJ já existe no banco de dados!");
+								tfCPF.setText("");
+								tfCNPJ.setText("");
+								return;
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "E-mail inválido!");
+							return;
+						}
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Os campos de textos devem ser preenchidos!");
+					return;
+				}
+
 			}
 		});
-	}
-
-	public void addTabela() {
-		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("Nome");
-		modelo.addColumn("Preço");
-		modelo.addColumn("Fornecedor");
-
-		// TODO falta fazer a adicão do banco de dados com as informações dos atributos.
-
-		/* TODO Adicionar na lista os devidos atributos. 
-		for() {
-			Object[] linha = new Object[3];
-
-			linha[0] = //Nome
-			linha[1] = //Preço
-			linha[2] = //Fornecedor
-
-			modelo.addRow(linha);
-		}
-		 */	
-		JTable tabela = new JTable(modelo);
-		JScrollPane painelScrow = new JScrollPane(tabela);
-		painelScrow.setBounds(20, 230, 745, 205);
-		add(painelScrow);
 	}
 }

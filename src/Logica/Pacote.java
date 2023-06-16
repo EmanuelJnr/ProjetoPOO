@@ -6,6 +6,7 @@ public class Pacote {
 	private String nomePacote;
 	private float valor;
 	private ArrayList<Fornecedor> fornecedores;
+	private String caracteristicas;
 	
 	public Pacote(String nomePacote, float valor) {
 		this.nomePacote = nomePacote;
@@ -29,5 +30,13 @@ public class Pacote {
 	}
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+
+	public String getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public void setCaracteristicas(String caracteristicas) {
+		this.caracteristicas = caracteristicas;
 	}
 }

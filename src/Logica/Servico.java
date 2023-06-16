@@ -6,11 +6,21 @@ public class Servico {
 	public Servico(String servico) {
 		this.servico = servico;
 	}
-
+	public Servico() {
+	}
+	
+	public boolean equals(Servico s) {
+		if(s.getServico().equals(this.servico)) {
+			return true;
+		}
+		return false;
+	}
+	public String toString() {
+		return servico;
+	}
 	public String getServico() {
 		return servico;
 	}
-
 	public void setServico(String servico) {
 		this.servico = servico;
 	}

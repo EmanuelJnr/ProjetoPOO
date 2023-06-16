@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class CentralDeInformacoes {
 	private Admin admin;
+	private ArrayList<Servico> servicosTemp = new ArrayList<>();
+	private Fornecedor fornecedorTemp = new Fornecedor();
+	private ArrayList<Fornecedor> fornecedoresTemp = new ArrayList<>();
 	
 	private ArrayList<Cliente> todosOsClientes = new ArrayList<>();
 	private ArrayList<Pacote> todosOsPacotes = new ArrayList<>();
@@ -12,6 +15,24 @@ public class CentralDeInformacoes {
 	private ArrayList<Reuniao> todasAsReunioes = new ArrayList<>();
 	private ArrayList<Orcamento> todosOsOrcamentos = new ArrayList<>();
 	
+	public boolean adicionarFornecedorTemp(Fornecedor fAdd) {
+		for (Fornecedor f : fornecedoresTemp) {
+			if(f.equals(fAdd)) {
+				return false;
+			}
+		}
+		fornecedoresTemp.add(fAdd);
+		return true;
+	}
+	public boolean adicionarServicoTemp(Servico sAdd) {
+		for (Servico s : servicosTemp) {
+			if(s.equals(sAdd)) {
+				return false;
+			}
+		}
+		servicosTemp.add(sAdd);
+		return true;
+	}
 	public boolean adicionarCliente(Cliente cAdd) {
 		for (Cliente cliente : todosOsClientes) {
 			if(cAdd.equals(cliente))
@@ -131,5 +152,23 @@ public class CentralDeInformacoes {
 	}
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
+	}
+	public ArrayList<Servico> getServicosTemp() {
+		return servicosTemp;
+	}
+	public void setServicosTemp(ArrayList<Servico> servicosTemp) {
+		this.servicosTemp = servicosTemp;
+	}
+	public Fornecedor getFornecedorTemp() {
+		return fornecedorTemp;
+	}
+	public void setFornecedorTemp(Fornecedor fornecedorTemp) {
+		this.fornecedorTemp = fornecedorTemp;
+	}
+	public ArrayList<Fornecedor> getFornecedoresTemp() {
+		return fornecedoresTemp;
+	}
+	public void setFornecedoresTemp(ArrayList<Fornecedor> fornecedoresTemp) {
+		this.fornecedoresTemp = fornecedoresTemp;
 	}
 }

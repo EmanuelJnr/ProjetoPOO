@@ -1,39 +1,59 @@
 <Logica.CentralDeInformacoes>
-  <todosOsClientes>
-    <Logica.Cliente>
-      <nome>jun</nome>
-      <email>junior.ssu@hotmail.com</email>
-      <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
-      <telefone>83998640846</telefone>
-    </Logica.Cliente>
-    <Logica.Cliente>
-      <nome>eman</nome>
-      <email>zezinho@gmail.com</email>
-      <CPF__CNPJ>278.444.273-02</CPF__CNPJ>
-      <telefone>123456</telefone>
-    </Logica.Cliente>
-    <Logica.Cliente>
-      <nome>juni</nome>
-      <email>carlos@hotmail.com</email>
-      <CPF__CNPJ>892.382.799-18</CPF__CNPJ>
-      <telefone>83998640846</telefone>
-    </Logica.Cliente>
-    <Logica.Cliente>
-      <nome>jun</nome>
-      <email>jun@hotmail.com</email>
-      <CPF__CNPJ>77.856.386/0001-62</CPF__CNPJ>
-      <telefone>(83)9.9864-0846</telefone>
-    </Logica.Cliente>
-    <Logica.Cliente>
-      <nome>asdd</nome>
-      <email>sdfsdf@hotmail.com</email>
-      <CPF__CNPJ>236.420.200-03</CPF__CNPJ>
-      <telefone>(93)9.9999-9999</telefone>
-    </Logica.Cliente>
-  </todosOsClientes>
+  <admin>
+    <nome>jun</nome>
+    <email>jun@a</email>
+    <senha>150</senha>
+  </admin>
+  <servicosTemp/>
+  <fornecedorTemp>
+    <valor>0</valor>
+    <qtdContratos>0</qtdContratos>
+  </fornecedorTemp>
+  <fornecedoresTemp/>
+  <todosOsClientes/>
   <todosOsPacotes/>
-  <todosOsFornecedores/>
-  <todosOsServicos/>
+  <todosOsFornecedores>
+    <Logica.Fornecedor>
+      <nome>asnmdona</nome>
+      <email>asndna@asdad</email>
+      <CPF__CNPJ>13.164.870/0001-48</CPF__CNPJ>
+      <telefone>(11)1.1111-1111</telefone>
+      <servicos>
+        <Logica.Servico>
+          <servico>sssssssssssssssssssss</servico>
+        </Logica.Servico>
+        <Logica.Servico>
+          <servico>sdfsdf</servico>
+        </Logica.Servico>
+        <Logica.Servico>
+          <servico>ddddddddd</servico>
+        </Logica.Servico>
+      </servicos>
+      <valor>0</valor>
+      <diponivel></diponivel>
+      <qtdContratos>0</qtdContratos>
+    </Logica.Fornecedor>
+    <Logica.Fornecedor>
+      <nome>adasdasdasdasdasdasd</nome>
+      <email>juni@aasdasd</email>
+      <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
+      <telefone>(11)1.1111-1111</telefone>
+      <servicos>
+        <Logica.Servico reference="../../../Logica.Fornecedor/servicos/Logica.Servico[3]"/>
+        <Logica.Servico reference="../../../Logica.Fornecedor/servicos/Logica.Servico"/>
+        <Logica.Servico reference="../../../Logica.Fornecedor/servicos/Logica.Servico[2]"/>
+      </servicos>
+      <valor>0</valor>
+      <diponivel></diponivel>
+      <qtdContratos>0</qtdContratos>
+      <comentarios></comentarios>
+    </Logica.Fornecedor>
+  </todosOsFornecedores>
+  <todosOsServicos>
+    <Logica.Servico reference="../../todosOsFornecedores/Logica.Fornecedor/servicos/Logica.Servico[2]"/>
+    <Logica.Servico reference="../../todosOsFornecedores/Logica.Fornecedor/servicos/Logica.Servico"/>
+    <Logica.Servico reference="../../todosOsFornecedores/Logica.Fornecedor/servicos/Logica.Servico[3]"/>
+  </todosOsServicos>
   <todasAsReunioes/>
   <todosOsOrcamentos/>
 </Logica.CentralDeInformacoes>
