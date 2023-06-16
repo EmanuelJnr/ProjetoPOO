@@ -58,8 +58,8 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		addRadioButton();
 		addBotoes();
 		OuvinteBotoes();
-		TabelaTodosServicos();
-		TabelaAddServicos();
+		tabelaTodosServicos();
+		tabelaAddServicos();
 		ouvinteJanela();
 		setVisible(true);
 	}
@@ -152,7 +152,7 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		add(btnVoltar);
 	}
 
-	public void TabelaTodosServicos() {
+	public void tabelaTodosServicos() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Nome");
 
@@ -173,7 +173,7 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		add(painelScrow);
 	}
 
-	public void TabelaAddServicos() {
+	public void tabelaAddServicos() {
 		modeloAdd = new DefaultTableModel();
 		modeloAdd.addColumn("Nome");
 
