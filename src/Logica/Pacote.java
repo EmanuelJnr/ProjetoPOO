@@ -7,12 +7,25 @@ public class Pacote {
 	private float valor;
 	private ArrayList<Fornecedor> fornecedores;
 	private String caracteristicas;
-	
-	public Pacote(String nomePacote, float valor) {
+
+	public Pacote(String nomePacote, float valor, ArrayList<Fornecedor> fornecedores, String caracteristicas) {
 		this.nomePacote = nomePacote;
 		this.valor = valor;
+		this.fornecedores = fornecedores;
+		this.caracteristicas = caracteristicas;
 	}
-	
+	public Pacote() {
+
+	}
+	public boolean equals(Pacote p) {
+		if(p.getNomePacote().equals(this.nomePacote)) {
+			return true;
+		}
+		return false;
+	}
+	public String toString() {
+		return nomePacote;
+	}
 	public ArrayList<Fornecedor> getFornecedores() {
 		return fornecedores;
 	}

@@ -7,15 +7,16 @@ public class CentralDeInformacoes {
 	private ArrayList<Servico> servicosTemp = new ArrayList<>();
 	private Fornecedor fornecedorTemp = new Fornecedor();
 	private ArrayList<Fornecedor> fornecedoresTemp = new ArrayList<>();
-	
+	private Pacote pacoteRef = new Pacote();
+
 	private ArrayList<Cliente> todosOsClientes = new ArrayList<>();
 	private ArrayList<Pacote> todosOsPacotes = new ArrayList<>();
 	private ArrayList<Fornecedor> todosOsFornecedores = new ArrayList<>();
 	private ArrayList<Servico> todosOsServicos = new ArrayList<>();
 	private ArrayList<Reuniao> todasAsReunioes = new ArrayList<>();
 	private ArrayList<Orcamento> todosOsOrcamentos = new ArrayList<>();
-	
-	public boolean adicionarFornecedorTemp(Fornecedor fAdd) {
+
+	public boolean adicionarFornecedoresTemp(Fornecedor fAdd) {
 		for (Fornecedor f : fornecedoresTemp) {
 			if(f.equals(fAdd)) {
 				return false;
@@ -24,7 +25,7 @@ public class CentralDeInformacoes {
 		fornecedoresTemp.add(fAdd);
 		return true;
 	}
-	public boolean adicionarServicoTemp(Servico sAdd) {
+	public boolean adicionarServicosTemp(Servico sAdd) {
 		for (Servico s : servicosTemp) {
 			if(s.equals(sAdd)) {
 				return false;
@@ -50,13 +51,25 @@ public class CentralDeInformacoes {
 		todosOsFornecedores.add(fAdd);
 		return true;
 	}
-	public void adicionarPacote(Pacote p) {
-		todosOsPacotes.add(p);
+	public boolean adicionarPacote(Pacote pAdd) {
+		for (Pacote p : todosOsPacotes) {
+			if(p.equals(pAdd)) {
+				return false;
+			}
+		}
+		todosOsPacotes.add(pAdd);
+		return true;
 	}
-	public void adicionarServico(Servico s) {
-		todosOsServicos.add(s);
+	public boolean adicionarServico(Servico sAdd) {
+		for (Servico s : todosOsServicos) {
+			if(s.equals(sAdd)) {
+				return false;
+			}
+		}
+		todosOsServicos.add(sAdd);
+		return true;
 	}
-	
+
 	public Cliente recuperarClientePeloCPF_CNPJ(String CPF_CNPJ) {
 		for (Cliente c : todosOsClientes) {
 			if(CPF_CNPJ.equals(c.getCPF_CNPJ()))
@@ -64,7 +77,7 @@ public class CentralDeInformacoes {
 		}
 		return null;
 	}
-	
+
 	public Fornecedor buscaFornecedor(String cpf_cnpj) {
 		for(Fornecedor f : todosOsFornecedores) {
 			if(cpf_cnpj.equals(f.getCPF_CNPJ())) {
@@ -109,8 +122,8 @@ public class CentralDeInformacoes {
 		}
 		return null;
 	}
-	
-	
+
+
 	public ArrayList<Reuniao> getTodasAsReunioes() {
 		return todasAsReunioes;
 	}
@@ -170,5 +183,11 @@ public class CentralDeInformacoes {
 	}
 	public void setFornecedoresTemp(ArrayList<Fornecedor> fornecedoresTemp) {
 		this.fornecedoresTemp = fornecedoresTemp;
+	}
+	public Pacote getPacoteRef() {
+		return pacoteRef;
+	}
+	public void setPacoteRef(Pacote pacoteRef) {
+		this.pacoteRef = pacoteRef;
 	}
 }

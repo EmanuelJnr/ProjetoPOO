@@ -8,7 +8,6 @@ public class Fornecedor {
 	private String CPF_CNPJ;
 	private String telefone;
 	private ArrayList<Servico> servicos;
-	private int valor = 0;
 	private String diponivel;
 	private int qtdContratos;
 	private String comentarios;
@@ -23,19 +22,11 @@ public class Fornecedor {
 	}
 	public Fornecedor() {
 	}
-
 	public boolean equals(Fornecedor f) {
 		if(f.getCPF_CNPJ().equals(CPF_CNPJ)) {
 			return true;
 		}
 		return false;
-	}
-
-	public int getValor() {
-		return valor;
-	}
-	public void setValor(int valor) {
-		this.valor = valor;
 	}
 	public ArrayList<Servico> getServicos() {
 		return servicos;

@@ -56,9 +56,9 @@ public class TelaFornecedores extends TelaPadrao{
 			modelo.addRow(linha);
 		}
 		tabela = new JTable(modelo);
-		tabela.getColumnModel().getColumn(0).setCellRenderer(AlinhaCelulas.alinhar());
-		tabela.getColumnModel().getColumn(1).setCellRenderer(AlinhaCelulas.alinhar());
-		tabela.getColumnModel().getColumn(2).setCellRenderer(AlinhaCelulas.alinhar());
+		for(int i=0;i<tabela.getColumnCount();i++) {
+			tabela.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
+		}
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
 		tabela.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabela);
@@ -89,9 +89,8 @@ public class TelaFornecedores extends TelaPadrao{
 	public void ouvintesBotoes() {
 		btnDetalhar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selectedRow = tabela.getSelectedRow();
-				if(selectedRow != -1) {
-					ci.setFornecedorTemp(ci.getTodosOsFornecedores().get(selectedRow));
+				if(tabela.getSelectedRow() != -1) {
+					ci.setFornecedorTemp(ci.getTodosOsFornecedores().get(tabela.getSelectedRow()));
 					p.salvarCentral(ci);
 					dispose();
 					new TelaDetalharFornecedor();
@@ -101,9 +100,8 @@ public class TelaFornecedores extends TelaPadrao{
 
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selectedRow = tabela.getSelectedRow();
-				if(selectedRow != -1) {
-					ci.getTodosOsFornecedores().remove(selectedRow);
+				if(tabela.getSelectedRow() != -1) {
+					ci.getTodosOsFornecedores().remove(tabela.getSelectedRow());
 					p.salvarCentral(ci);
 					dispose();
 					new TelaFornecedores();

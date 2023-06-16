@@ -21,6 +21,7 @@ import Interface.CampoDeTexto;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.RadioButton;
+import Logica.AlinhaCelulas;
 import Logica.CentralDeInformacoes;
 import Logica.Fornecedor;
 import Logica.Persistencia;
@@ -162,6 +163,9 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		}
 
 		tabelaTodos = new JTable(modelo);
+		for(int i=0;i<tabelaTodos.getColumnCount();i++) {
+			tabelaTodos.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
+		}
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
 		tabelaTodos.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaTodos);
@@ -180,6 +184,9 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 		}
 
 		tabelaAdd = new JTable(modeloAdd);
+		for(int i=0;i<tabelaAdd.getColumnCount();i++) {
+			tabelaAdd.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
+		}
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modeloAdd);
 		tabelaAdd.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaAdd);
@@ -196,8 +203,6 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 			public void windowClosing(WindowEvent e) {
 				ci.setServicosTemp(new ArrayList<>());
 				p.salvarCentral(ci);
-				dispose();
-				new TelaFornecedores();
 			}
 			public void windowClosed(WindowEvent e) {}
 			public void windowActivated(WindowEvent e) {}
@@ -220,7 +225,7 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 			public void actionPerformed(ActionEvent e) {
 				if(tabelaTodos.getSelectedRow() != -1) {
 					String servico = tabelaTodos.getValueAt(tabelaTodos.getSelectedRow(), 0).toString();
-					if(ci.adicionarServicoTemp(ci.buscaServico(servico))) {
+					if(ci.adicionarServicosTemp(ci.buscaServico(servico))) {
 						Object[] row = new Object[1];
 						row[0] = ci.buscaServico(servico);
 						modeloAdd.addRow(row);
@@ -287,7 +292,6 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 					JOptionPane.showMessageDialog(null, "Os campos de textos devem ser preenchidos!");
 					return;
 				}
-
 			}
 		});
 	}

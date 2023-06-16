@@ -1,58 +1,54 @@
 <Logica.CentralDeInformacoes>
-  <admin>
-    <nome>jun</nome>
-    <email>jun@a</email>
-    <senha>150</senha>
-  </admin>
   <servicosTemp/>
   <fornecedorTemp>
-    <valor>0</valor>
     <qtdContratos>0</qtdContratos>
   </fornecedorTemp>
   <fornecedoresTemp/>
+  <pacoteRef>
+    <valor>0.0</valor>
+  </pacoteRef>
   <todosOsClientes/>
-  <todosOsPacotes/>
+  <todosOsPacotes>
+    <Logica.Pacote>
+      <nomePacote>Pacotão</nomePacote>
+      <valor>100.0</valor>
+      <fornecedores>
+        <Logica.Fornecedor>
+          <nome>Emanuel</nome>
+          <email>junior.ssu@hotmail.com</email>
+          <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
+          <telefone>(83)9.9864-0846</telefone>
+          <servicos>
+            <Logica.Servico>
+              <servico>Balões</servico>
+            </Logica.Servico>
+            <Logica.Servico>
+              <servico>Bolinhos</servico>
+            </Logica.Servico>
+          </servicos>
+          <diponivel></diponivel>
+          <qtdContratos>0</qtdContratos>
+          <comentarios>Ele entrega muito bem o
+pedido.
+
+O bicho é brabo, confia.</comentarios>
+        </Logica.Fornecedor>
+      </fornecedores>
+      <caracteristicas>crianças e adultos</caracteristicas>
+    </Logica.Pacote>
+  </todosOsPacotes>
   <todosOsFornecedores>
-    <Logica.Fornecedor>
-      <nome>asnmdona</nome>
-      <email>asndna@asdad</email>
-      <CPF__CNPJ>13.164.870/0001-48</CPF__CNPJ>
-      <telefone>(11)1.1111-1111</telefone>
-      <servicos>
-        <Logica.Servico>
-          <servico>sssssssssssssssssssss</servico>
-        </Logica.Servico>
-        <Logica.Servico>
-          <servico>sdfsdf</servico>
-        </Logica.Servico>
-        <Logica.Servico>
-          <servico>ddddddddd</servico>
-        </Logica.Servico>
-      </servicos>
-      <valor>0</valor>
-      <diponivel></diponivel>
-      <qtdContratos>0</qtdContratos>
-    </Logica.Fornecedor>
-    <Logica.Fornecedor>
-      <nome>adasdasdasdasdasdasd</nome>
-      <email>juni@aasdasd</email>
-      <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
-      <telefone>(11)1.1111-1111</telefone>
-      <servicos>
-        <Logica.Servico reference="../../../Logica.Fornecedor/servicos/Logica.Servico[3]"/>
-        <Logica.Servico reference="../../../Logica.Fornecedor/servicos/Logica.Servico"/>
-        <Logica.Servico reference="../../../Logica.Fornecedor/servicos/Logica.Servico[2]"/>
-      </servicos>
-      <valor>0</valor>
-      <diponivel></diponivel>
-      <qtdContratos>0</qtdContratos>
-      <comentarios></comentarios>
-    </Logica.Fornecedor>
+    <Logica.Fornecedor reference="../../todosOsPacotes/Logica.Pacote/fornecedores/Logica.Fornecedor"/>
   </todosOsFornecedores>
   <todosOsServicos>
-    <Logica.Servico reference="../../todosOsFornecedores/Logica.Fornecedor/servicos/Logica.Servico[2]"/>
-    <Logica.Servico reference="../../todosOsFornecedores/Logica.Fornecedor/servicos/Logica.Servico"/>
-    <Logica.Servico reference="../../todosOsFornecedores/Logica.Fornecedor/servicos/Logica.Servico[3]"/>
+    <Logica.Servico reference="../../todosOsPacotes/Logica.Pacote/fornecedores/Logica.Fornecedor/servicos/Logica.Servico"/>
+    <Logica.Servico>
+      <servico>Decoração</servico>
+    </Logica.Servico>
+    <Logica.Servico reference="../../todosOsPacotes/Logica.Pacote/fornecedores/Logica.Fornecedor/servicos/Logica.Servico[2]"/>
+    <Logica.Servico>
+      <servico>Banda</servico>
+    </Logica.Servico>
   </todosOsServicos>
   <todasAsReunioes/>
   <todosOsOrcamentos/>
