@@ -9,7 +9,6 @@ import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.CheckBox;
@@ -94,6 +93,7 @@ public class TelaFiltrarFornecedor extends TelaPadrao{
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
 		tabela.setRowSorter(sorter);
 	}
+
 	private void addTabela() {
 		ArrayList<Fornecedor> todosOsFornecedores = ci.getTodosOsFornecedores();
 		fornecedoresASeremExibidos = todosOsFornecedores;
