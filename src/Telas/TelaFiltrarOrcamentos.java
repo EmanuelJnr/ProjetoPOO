@@ -101,7 +101,7 @@ public class TelaFiltrarOrcamentos extends TelaPadrao{
 			Object[] linha = new Object[6];
 
 			linha[0] = o.getNomeEvento();
-			linha[1] = String.valueOf(o.getData());
+			linha[1] = String.valueOf(o.getDataHora());
 			linha[2] = o.getLocalEvento();
 			linha[3]= o.getQtdConvidados();
 			linha[4]= o.getFornecedores();

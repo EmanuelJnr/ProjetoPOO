@@ -25,6 +25,7 @@ public class TelaEditarOrcamento extends TelaPadrao{
 	private CampoDeTexto tfLocalEvento;
 	private CampoDeTexto tfQtdConvidados;
 	private Botao btnConfirmar;
+	private Botao btnAddFornecedor;
 
 	public TelaEditarOrcamento () {
 		super("Edição de Orçamento");
@@ -32,7 +33,7 @@ public class TelaEditarOrcamento extends TelaPadrao{
 		addLabels();
 		addTabela();
 		addBotoes();
-		ouvinteBtnConfirmar();
+		ouvinteBotoes();
 		setVisible(true);
 	}
 	public static void main(String[] args) {///////////////////////////////////////////////////
@@ -99,8 +100,7 @@ public class TelaEditarOrcamento extends TelaPadrao{
 		btnConfirmar = new Botao("Confirmar", 240, 520, 120, 30);
 		add(btnConfirmar);
 
-		Botao btnAddFornecedor = new Botao("Adicionar Fornecedor", 20, 275, 150, 30);
-		OuvinteNovaTela.proximaTela(btnAddFornecedor, this, NomeTela.TELA_ADD_FORNECEDOR_EDT_ORCAMENTO);
+		btnAddFornecedor = new Botao("Adicionar Fornecedor", 20, 275, 150, 30);
 		add(btnAddFornecedor);
 
 		Botao btnCancelar = new Botao("Cancelar", 440, 520, 120, 30);
@@ -108,13 +108,19 @@ public class TelaEditarOrcamento extends TelaPadrao{
 		add(btnCancelar);
 	}
 
-	public void ouvinteBtnConfirmar() {
+	public void ouvinteBotoes() {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO compara os dados do orçamento selecionado na tabela,
 				//TODO se algum mudou ele registra.
 				dispose();
 				new TelaOrcamentos();
+			}
+		});
+
+		btnAddFornecedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO adicionar fornecedor
 			}
 		});
 	}

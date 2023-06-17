@@ -39,10 +39,10 @@ public class TelaCadastroPacote extends TelaPadrao{
 		addCamposDeTexto();
 		addBotoes();
 		addTextArea();
-		tabelaTodosFornecedores();
-		tabelaAddFornecedores();
 		ouvinteBotoes();
 		ouvinteJanela();
+		tabelaTodosFornecedores();
+		tabelaAddFornecedores();
 		setVisible(true);
 	}
 
@@ -73,12 +73,12 @@ public class TelaCadastroPacote extends TelaPadrao{
 		add(tfNomePacote);
 
 		tfValor = new CampoDeTexto("", 220, 150, 350, 25);
-		tfValor.setDocument(new LimitaCaracteres(LimitaCaracteres.TipoEntrada.NUMEROSALDO));
+		tfValor.setDocument(new LimitaCaracteres(LimitaCaracteres.TipoEntrada.NUMEROPONTO));
 		tfValor.addFocusListener(new OuvinteFocoValor(tfValor));
 		add(tfValor);
 	}
 
-	public void addBotoes() {		
+	public void addBotoes() {	
 		btnExcluir = new Botao("Excluir", 155, 445, 120, 30);
 		add(btnExcluir);
 

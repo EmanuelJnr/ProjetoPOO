@@ -2,6 +2,8 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -46,17 +48,18 @@ public class TelaOrcamentos extends TelaPadrao{
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Nome");
-		modelo.addColumn("Data");
-		modelo.addColumn("Local ");
+		modelo.addColumn("Data e Hora");
+		modelo.addColumn("Local");
 		modelo.addColumn("quant convidados");
 		modelo.addColumn("Fornecedores");
 		modelo.addColumn("Fotos");
 
+		DateTimeFormatter parser = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm").toFormatter();
 		for(Orcamento m: ci.getTodosOsOrcamentos()) {
 			Object[] linha = new Object[6];
 
 			linha[0] = m.getNomeEvento();
-			linha[1] = String.valueOf(m.getData());
+			linha[1] = m.getDataHora().format(parser);
 			linha[2] = m.getLocalEvento();
 			linha[3] = m.getQtdConvidados();
 			linha[4] = m.getFornecedores();

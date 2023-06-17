@@ -11,6 +11,7 @@ public class Fornecedor {
 	private String diponivel;
 	private int qtdContratos;
 	private String comentarios;
+	private float valor;
 
 	public Fornecedor(String nome, String email, String cPF_CNPJ, String telefone, ArrayList<Servico> servicos) {
 		diponivel = "";
@@ -21,6 +22,9 @@ public class Fornecedor {
 		this.servicos = servicos;
 	}
 	public Fornecedor() {
+	}
+	public String toString() {
+		return nome;
 	}
 	public boolean equals(Fornecedor f) {
 		if(f.getCPF_CNPJ().equals(CPF_CNPJ)) {
@@ -75,5 +79,11 @@ public class Fornecedor {
 	}
 	public void setComentarios(String comentarios) {
 		this.comentarios = comentarios;
+	}
+	public float getValor() {
+		return valor;
+	}
+	public void setValor(float valor) {
+		this.valor = valor;
 	}
 }

@@ -42,6 +42,17 @@ public class CentralDeInformacoes {
 		todosOsClientes.add(cAdd);
 		return true;
 	}
+	public boolean adicionarOrcamento(Orcamento oAdd) {
+		for (Orcamento o : todosOsOrcamentos) {
+			if(oAdd.equals(o))
+				return false;			
+		}
+		if(oAdd.jaOcorreu()) {
+			return false;
+		}
+		todosOsOrcamentos.add(oAdd);
+		return true;
+	}
 	public boolean adicionarFornecedor(Fornecedor fAdd) {
 		for (Fornecedor f : todosOsFornecedores) {
 			if(f.equals(fAdd)) {
@@ -122,7 +133,6 @@ public class CentralDeInformacoes {
 		}
 		return null;
 	}
-
 
 	public ArrayList<Reuniao> getTodasAsReunioes() {
 		return todasAsReunioes;

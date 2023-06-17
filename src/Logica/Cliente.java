@@ -5,6 +5,7 @@ public class Cliente {
 	private String email;
 	private String CPF_CNPJ;
 	private String telefone;
+	private Orcamento orcamento;
 
 	public Cliente(String CPF_CNPJ, String nome, String telefone, String email) {
 		setCPF_CNPJ(CPF_CNPJ);
@@ -44,5 +45,11 @@ public class Cliente {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Orcamento getOrcamento() {
+		return orcamento;
+	}
+	public void setOrcamento(Orcamento orcamento) {
+		this.orcamento = orcamento;
 	}
 }
