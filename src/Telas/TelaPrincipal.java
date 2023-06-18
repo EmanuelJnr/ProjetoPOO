@@ -59,7 +59,7 @@ public class TelaPrincipal extends TelaPadrao{
 		OuvinteNovaTela.proximaTela(btnCadCliente, this, NomeTela.TELA_CADASTRO_CLIENTE);
 		add(btnCadCliente);
 
-		Botao btnPlanilha = new Botao("Gerar Planilha", 313, 449, 160, 36);
+		Botao btnPlanilha = new Botao("Gerar Planilha", 230, 338, 160, 36);
 		OuvinteNovaTela.proximaTela(btnPlanilha, this, NomeTela.TELA_PLANILHA_FINANCAS);
 		add(btnPlanilha);
 
