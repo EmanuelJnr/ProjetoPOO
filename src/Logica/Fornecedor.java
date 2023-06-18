@@ -22,15 +22,24 @@ public class Fornecedor {
 		this.servicos = servicos;
 	}
 	public Fornecedor() {
+		diponivel = "Sim";
+		servicos = new ArrayList<>();
 	}
 	public String toString() {
 		return nome;
 	}
 	public boolean equals(Fornecedor f) {
-		if(f.getCPF_CNPJ().equals(CPF_CNPJ)) {
+		if(f.getCPF_CNPJ().equals(CPF_CNPJ))
 			return true;
-		}
 		return false;
+	}
+	public boolean adicionarServico(Servico sAdd) {
+		for (Servico s : servicos) {
+			if(s.equals(sAdd))
+				return false;
+		}
+		servicos.add(sAdd);
+		return true;
 	}
 	public ArrayList<Servico> getServicos() {
 		return servicos;

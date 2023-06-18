@@ -2,11 +2,7 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.text.ParseException;
-import java.util.ArrayList;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -67,7 +63,6 @@ public class TelaDetalharFornecedor extends TelaPadrao {
 		ouvinteBotoes();
 		tabelaTodosServicos();
 		tabelaAddServicos();
-		ouvinteJanela();
 		setVisible(true);
 	}
 
@@ -77,11 +72,13 @@ public class TelaDetalharFornecedor extends TelaPadrao {
 		add(titulo);
 
 		add(new Label("Nome:", 20, 70, 50, 30));
+		add(new Label("Comentários", 640, 45, 68, 30));
 		add(new Label("E-mail:",275, 70, 50, 30));
 		add(new Label("Telefone:", 275, 120, 53, 30));
-		add(new Label("Serviços deste fornecedor", 121, 205, 150, 30));
-		add(new Label("Todos os Serviços", 530, 205, 100, 30));
+		add(new Label("Serviços deste fornecedor", 131, 205, 150, 30));
+		add(new Label("Todos os Serviços", 527, 205, 100, 30));
 	}
+
 	public void textAta() {
 		taATA = new JTextArea(8,15);
 		taATA.setText(fornecedorTemp.getComentarios());
@@ -235,28 +232,9 @@ public class TelaDetalharFornecedor extends TelaPadrao {
 		add(painelScrow);
 	}
 
-	public void ouvinteJanela() {
-		this.addWindowListener(new WindowListener() {
-			public void windowOpened(WindowEvent e) {}
-			public void windowIconified(WindowEvent e) {}
-			public void windowDeiconified(WindowEvent e) {}
-			public void windowDeactivated(WindowEvent e) {}
-			public void windowClosing(WindowEvent e) {
-				ci.setFornecedorTemp(new Fornecedor());
-				ci.setServicosTemp(new ArrayList<>());
-				p.salvarCentral(ci);
-			}
-			public void windowClosed(WindowEvent e) {}
-			public void windowActivated(WindowEvent e) {}
-		});
-	}
-
 	public void ouvinteBotoes() {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ci.setFornecedorTemp(new Fornecedor());
-				ci.setServicosTemp(new ArrayList<>());
-				p.salvarCentral(ci);
 				dispose();
 				new TelaFornecedores();
 			}
@@ -276,11 +254,10 @@ public class TelaDetalharFornecedor extends TelaPadrao {
 			public void actionPerformed(ActionEvent e) {
 				if(tabelaTodos.getSelectedRow() != -1) {
 					String servico = tabelaTodos.getValueAt(tabelaTodos.getSelectedRow(), 0).toString();
-					if(ci.adicionarServicosTemp(ci.buscaServico(servico))) {
+					if(fornecedorTemp.adicionarServico(ci.buscaServico(servico))) {
 						Object[] row = new Object[1];
 						row[0] = ci.buscaServico(servico);
 						modeloAdd.addRow(row);
-						fornecedorTemp.setServicos(ci.getServicosTemp());
 					}
 				}
 			}
@@ -313,18 +290,22 @@ public class TelaDetalharFornecedor extends TelaPadrao {
 				if(!nome.equals("") && !email.equals("") && !telefone.equals("")) {
 					if(email != null) {
 						if(VerificaEmail.isValid(email)) {
-							Fornecedor fornecedor;
+
+							Fornecedor novofornecedor;
 							if(mudou) {
-								fornecedor = ci.buscaFornecedor(antigo_cpf_cnpj);
-								fornecedor.setCPF_CNPJ(novo_cpf_cnpj);
+								novofornecedor = ci.buscaFornecedor(antigo_cpf_cnpj);
+								novofornecedor.setCPF_CNPJ(novo_cpf_cnpj);
 							}
 							else {
-								fornecedor = ci.buscaFornecedor(fornecedorTemp.getCPF_CNPJ());
+								novofornecedor = ci.buscaFornecedor(fornecedorTemp.getCPF_CNPJ());
 							}
-							fornecedor.setEmail(email);
-							fornecedor.setNome(nome);
-							fornecedor.setTelefone(telefone);
-							fornecedor.setComentarios(taATA.getText());
+							novofornecedor.setEmail(email);
+							novofornecedor.setNome(nome);
+							novofornecedor.setTelefone(telefone);
+							novofornecedor.setComentarios(taATA.getText());
+							novofornecedor.setQtdContratos(fornecedorTemp.getQtdContratos());
+							novofornecedor.setValor(fornecedorTemp.getValor());
+							novofornecedor.setServicos(fornecedorTemp.getServicos());
 							p.salvarCentral(ci);
 							dispose();
 							new TelaFornecedores();

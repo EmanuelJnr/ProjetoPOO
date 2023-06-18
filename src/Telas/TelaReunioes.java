@@ -44,7 +44,7 @@ public class TelaReunioes extends TelaPadrao {
 	private JFormattedTextField tfDataHora;
 	private Mensageiro msg;
 	private DefaultTableModel modelo;
-	private DateTimeFormatter parser;
+	private DateTimeFormatter parser = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm").toFormatter();
 	private JTable tabela;
 
 	public TelaReunioes() {
@@ -56,6 +56,9 @@ public class TelaReunioes extends TelaPadrao {
 		ouvinteBotoes();
 		setVisible(true);
 	}
+	public static void main(String[] args) {
+		new TelaReunioes();
+	}
 
 	public void addLabels() {
 		Label titulo = new Label("REUNIÕES", 346, 30, 108, 30);
@@ -63,21 +66,22 @@ public class TelaReunioes extends TelaPadrao {
 		add(titulo);
 
 		add(new Label("Data e hora:", 180, 450, 68, 20));
+		add(new Label("Data e hora do Evento:", 500, 450, 150, 20));
+
+		Label lbDataEvento = new Label(cliente.getOrcamento().getDataHora().format(parser), 635, 450, 105, 20);
+		add(lbDataEvento);
 	}
 
 	public void addTabela() {
 		modelo = new DefaultTableModel();
 		modelo.addColumn("Data e Hora da Reunião");
 		modelo.addColumn("ATA");
-		modelo.addColumn("Data e Hora do Evento");
 
-		parser = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm").toFormatter();
 		for(Reuniao r: cliente.getOrcamento().getReunioes()) {
-			Object[] linha = new Object[3];
+			Object[] linha = new Object[2];
 
 			linha[0] = r.getDataHora().format(parser);
 			linha[1] = r.getAta();
-			linha[2] = cliente.getOrcamento().getDataHora().format(parser);
 
 			modelo.addRow(linha);
 		}
@@ -131,8 +135,7 @@ public class TelaReunioes extends TelaPadrao {
 				try {
 					if(tfDataHora.getText().length()==16) {
 						String tempoI1 = tfDataHora.getText();
-						DateTimeFormatter dataIf = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm").toFormatter();
-						LocalDateTime dataHora = LocalDateTime.parse(tempoI1, dataIf);
+						LocalDateTime dataHora = LocalDateTime.parse(tempoI1, parser);
 
 						if(dataHora.isBefore(LocalDateTime.now())) {
 							JOptionPane.showMessageDialog(null, "Essa data já ocorreu!");
@@ -164,10 +167,9 @@ public class TelaReunioes extends TelaPadrao {
 							cliente.getOrcamento().getReunioes().add(reuniao);
 							p.salvarCentral(ci);
 
-							Object[] linha = new Object[3];
+							Object[] linha = new Object[2];
 							linha[0] = reuniao.getDataHora().format(parser);
 							linha[1] = reuniao.getAta();
-							linha[2] = cliente.getOrcamento().getDataHora().format(parser);
 							modelo.addRow(linha);
 							btnATA.setEnabled(true);
 							JOptionPane.showMessageDialog(null, "Reunião marcada, um e-mail para o cliente foi enviado!");
@@ -203,8 +205,7 @@ public class TelaReunioes extends TelaPadrao {
 				if(tabela.getSelectedRow() != -1) {
 
 					String dataSelecionada = tabela.getValueAt(tabela.getSelectedRow(), 0).toString();
-					DateTimeFormatter dataIf = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm").toFormatter();
-					LocalDateTime dataHora = LocalDateTime.parse(dataSelecionada, dataIf);
+					LocalDateTime dataHora = LocalDateTime.parse(dataSelecionada, parser);
 
 					for (Reuniao r : cliente.getOrcamento().getReunioes()) {
 						if(r.getDataHora().equals(dataHora)) {

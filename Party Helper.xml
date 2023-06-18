@@ -8,88 +8,158 @@
   <fornecedoresTemp/>
   <pacotesTemp/>
   <fornecedorTemp>
-    <qtdContratos>0</qtdContratos>
-    <valor>0.0</valor>
-  </fornecedorTemp>
-  <pacoteRef>
-    <valor>0.0</valor>
-  </pacoteRef>
-  <clienteTemp>
     <nome>emanuel</nome>
     <email>junior.ssu@hotmail.com</email>
     <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
-    <telefone>(83)9.9864-0846</telefone>
-    <orcamento>
-      <nomeEvento>Aniversário</nomeEvento>
-      <dataHora>2023-06-20T14:00:00</dataHora>
-      <dataModificacao>2023-06-18T14:03:52.5105927</dataModificacao>
-      <localEvento>Casa do cliente</localEvento>
-      <qtdConvidados>23</qtdConvidados>
-      <fornecedores/>
-      <pacotes>
-        <Logica.Pacote>
-          <nomePacote>Pacote Completo</nomePacote>
-          <valor>250.0</valor>
-          <fornecedores>
-            <Logica.Fornecedor>
-              <nome>Júnior Gmail</nome>
-              <email>junior.ssu57@gmail.com</email>
-              <CPF__CNPJ>76.840.749/0001-09</CPF__CNPJ>
-              <telefone>(83)9.9864-0840</telefone>
-              <servicos>
-                <Logica.Servico>
-                  <servico>Balões</servico>
-                </Logica.Servico>
-              </servicos>
-              <diponivel>Sim</diponivel>
-              <qtdContratos>0</qtdContratos>
-              <valor>0.0</valor>
-            </Logica.Fornecedor>
-          </fornecedores>
-          <caracteristicas>Público em geral</caracteristicas>
-        </Logica.Pacote>
-      </pacotes>
-      <reunioes>
-        <Logica.Reuniao>
-          <dataHora>2023-06-19T14:00:00</dataHora>
-          <ata>gjhjghjghjhjghj</ata>
-        </Logica.Reuniao>
-        <Logica.Reuniao>
-          <dataHora>2023-06-19T15:00:00</dataHora>
-          <ata>tfgddfgfd</ata>
-        </Logica.Reuniao>
-        <Logica.Reuniao>
-          <dataHora>2023-06-19T15:00:00</dataHora>
-          <ata>sfsdfdf</ata>
-        </Logica.Reuniao>
-        <Logica.Reuniao>
-          <dataHora>2023-06-18T16:00:00</dataHora>
-          <ata>Participantes da reunião</ata>
-        </Logica.Reuniao>
-      </reunioes>
-      <fotos/>
-      <valor>250.0</valor>
-      <responsavelPagamento>Cliente</responsavelPagamento>
-      <tipo>Contrato</tipo>
-    </orcamento>
-  </clienteTemp>
-  <reuniaoTemp reference="../clienteTemp/orcamento/reunioes/Logica.Reuniao[4]"/>
+    <telefone>(33)3.3333-3333</telefone>
+    <servicos/>
+    <diponivel>Sim</diponivel>
+    <qtdContratos>0</qtdContratos>
+    <comentarios></comentarios>
+    <valor>50.0</valor>
+  </fornecedorTemp>
+  <pacoteRef>
+    <valor>0.0</valor>
+    <fornecedores/>
+  </pacoteRef>
+  <clienteTemp/>
+  <reuniaoTemp>
+    <dataHora>2023-06-18T16:00:00</dataHora>
+    <ata>Participantes da reunião</ata>
+  </reuniaoTemp>
   <todosOsClientes>
-    <Logica.Cliente reference="../../clienteTemp"/>
+    <Logica.Cliente>
+      <nome>emanuel</nome>
+      <email>junior.ssu@hotmail.com</email>
+      <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
+      <telefone>(83)9.9864-0846</telefone>
+      <orcamento>
+        <nomeEvento>Aniversário</nomeEvento>
+        <dataHora>2023-06-20T14:00:00</dataHora>
+        <dataModificacao>2023-06-18T14:03:52.5105927</dataModificacao>
+        <localEvento>Casa do cliente</localEvento>
+        <qtdConvidados>23</qtdConvidados>
+        <fornecedores/>
+        <pacotes>
+          <Logica.Pacote>
+            <nomePacote>Pacote Completo</nomePacote>
+            <valor>250.0</valor>
+            <fornecedores>
+              <Logica.Fornecedor>
+                <nome>Júnior Gmail</nome>
+                <email>junior.ssu57@gmail.com</email>
+                <CPF__CNPJ>76.840.749/0001-09</CPF__CNPJ>
+                <telefone>(83)9.9864-0840</telefone>
+                <servicos>
+                  <Logica.Servico>
+                    <servico>Balões</servico>
+                  </Logica.Servico>
+                </servicos>
+                <diponivel>Sim</diponivel>
+                <qtdContratos>0</qtdContratos>
+                <comentarios></comentarios>
+                <valor>0.0</valor>
+              </Logica.Fornecedor>
+            </fornecedores>
+            <caracteristicas>Público em geral</caracteristicas>
+          </Logica.Pacote>
+        </pacotes>
+        <reunioes>
+          <Logica.Reuniao>
+            <dataHora>2023-06-19T14:00:00</dataHora>
+            <ata>gjhjghjghjhjghj</ata>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-19T15:00:00</dataHora>
+            <ata>tfgddfgfd</ata>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-19T15:00:00</dataHora>
+            <ata>sfsdfdf</ata>
+          </Logica.Reuniao>
+          <Logica.Reuniao reference="../../../../../reuniaoTemp"/>
+        </reunioes>
+        <fotos/>
+        <valor>250.0</valor>
+        <responsavelPagamento>Cliente</responsavelPagamento>
+        <tipo>Contrato</tipo>
+      </orcamento>
+    </Logica.Cliente>
+    <Logica.Cliente>
+      <nome>jun</nome>
+      <email>junior.ssu@hotmail.com</email>
+      <CPF__CNPJ>39.981.755/0001-50</CPF__CNPJ>
+      <telefone>(33)3.3333-3333</telefone>
+      <orcamento>
+        <nomeEvento>festinha</nomeEvento>
+        <dataHora>2222-12-22T22:22:00</dataHora>
+        <dataModificacao>2023-06-18T19:05:31.3716248</dataModificacao>
+        <localEvento>praça</localEvento>
+        <qtdConvidados>34</qtdConvidados>
+        <fornecedores>
+          <Logica.Fornecedor>
+            <nome>manu</nome>
+            <email>junior.ssu57@gmail.com</email>
+            <CPF__CNPJ>46.583.749/0001-00</CPF__CNPJ>
+            <telefone>(22)2.2222-2222</telefone>
+            <servicos>
+              <Logica.Servico>
+                <servico>Churrasco</servico>
+              </Logica.Servico>
+              <Logica.Servico>
+                <servico>Banda</servico>
+              </Logica.Servico>
+            </servicos>
+            <diponivel>Sim</diponivel>
+            <qtdContratos>0</qtdContratos>
+            <valor>100.0</valor>
+          </Logica.Fornecedor>
+          <Logica.Fornecedor reference="../../../../../fornecedorTemp"/>
+        </fornecedores>
+        <pacotes/>
+        <reunioes/>
+        <fotos/>
+        <valor>150.0</valor>
+        <responsavelPagamento>Cliente</responsavelPagamento>
+        <tipo>Contrato</tipo>
+      </orcamento>
+    </Logica.Cliente>
   </todosOsClientes>
   <todosOsServicos>
-    <Logica.Servico reference="../../clienteTemp/orcamento/pacotes/Logica.Pacote/fornecedores/Logica.Fornecedor/servicos/Logica.Servico"/>
+    <Logica.Servico reference="../../todosOsClientes/Logica.Cliente[2]/orcamento/fornecedores/Logica.Fornecedor/servicos/Logica.Servico[2]"/>
+    <Logica.Servico reference="../../todosOsClientes/Logica.Cliente[2]/orcamento/fornecedores/Logica.Fornecedor/servicos/Logica.Servico"/>
   </todosOsServicos>
   <todosOsFornecedores>
-    <Logica.Fornecedor reference="../../clienteTemp/orcamento/pacotes/Logica.Pacote/fornecedores/Logica.Fornecedor"/>
+    <Logica.Fornecedor reference="../../todosOsClientes/Logica.Cliente[2]/orcamento/fornecedores/Logica.Fornecedor"/>
+    <Logica.Fornecedor reference="../../fornecedorTemp"/>
   </todosOsFornecedores>
   <todosOsPacotes>
-    <Logica.Pacote reference="../../clienteTemp/orcamento/pacotes/Logica.Pacote"/>
+    <Logica.Pacote>
+      <nomePacote>festa da igreja</nomePacote>
+      <valor>132.0</valor>
+      <fornecedores>
+        <Logica.Fornecedor>
+          <nome>Junior</nome>
+          <email>junior.ssu57@gmail.com</email>
+          <CPF__CNPJ>76.840.749/0001-09</CPF__CNPJ>
+          <telefone>(88)8.8888-8888</telefone>
+          <servicos>
+            <Logica.Servico reference="../../../../../../todosOsClientes/Logica.Cliente[2]/orcamento/fornecedores/Logica.Fornecedor/servicos/Logica.Servico[2]"/>
+            <Logica.Servico reference="../../../../../../todosOsClientes/Logica.Cliente[2]/orcamento/fornecedores/Logica.Fornecedor/servicos/Logica.Servico"/>
+          </servicos>
+          <diponivel>Sim</diponivel>
+          <qtdContratos>0</qtdContratos>
+          <comentarios>O bicho é brabo</comentarios>
+          <valor>0.0</valor>
+        </Logica.Fornecedor>
+      </fornecedores>
+      <caracteristicas>todos os públicos</caracteristicas>
+    </Logica.Pacote>
   </todosOsPacotes>
   <todasAsReunioes>
-    <Logica.Reuniao reference="../../clienteTemp/orcamento/reunioes/Logica.Reuniao"/>
-    <Logica.Reuniao reference="../../clienteTemp/orcamento/reunioes/Logica.Reuniao[2]"/>
-    <Logica.Reuniao reference="../../clienteTemp/orcamento/reunioes/Logica.Reuniao[3]"/>
-    <Logica.Reuniao reference="../../clienteTemp/orcamento/reunioes/Logica.Reuniao[4]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente/orcamento/reunioes/Logica.Reuniao"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente/orcamento/reunioes/Logica.Reuniao[2]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente/orcamento/reunioes/Logica.Reuniao[3]"/>
+    <Logica.Reuniao reference="../../reuniaoTemp"/>
   </todasAsReunioes>
 </Logica.CentralDeInformacoes>

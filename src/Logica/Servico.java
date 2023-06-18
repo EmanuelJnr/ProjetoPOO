@@ -10,9 +10,8 @@ public class Servico {
 	}
 	
 	public boolean equals(Servico s) {
-		if(s.getServico().equals(this.servico)) {
+		if(s.getServico().equals(servico))
 			return true;
-		}
 		return false;
 	}
 	public String toString() {

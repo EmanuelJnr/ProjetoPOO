@@ -15,13 +15,21 @@ public class Pacote {
 		this.caracteristicas = caracteristicas;
 	}
 	public Pacote() {
-
+		fornecedores = new ArrayList<>();
 	}
 	public boolean equals(Pacote p) {
 		if(p.getNomePacote().equals(this.nomePacote)) {
 			return true;
 		}
 		return false;
+	}
+	public boolean adicionarFornecedor(Fornecedor fAdd) {
+		for (Fornecedor f : fornecedores) {
+			if(f.equals(fAdd))
+				return false;
+		}
+		fornecedores.add(fAdd);
+		return true;
 	}
 	public String toString() {
 		return nomePacote;

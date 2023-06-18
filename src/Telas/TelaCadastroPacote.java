@@ -2,15 +2,15 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import Interface.*;
 import Logica.*;
 import Ouvintes.OuvinteFocoValor;
@@ -29,6 +29,7 @@ public class TelaCadastroPacote extends TelaPadrao{
 	private JTable tabelaTodos;
 	private JTable tabelaAdd;
 	private DefaultTableModel modelo;
+	private Pacote novoPacote = new Pacote();
 
 	public TelaCadastroPacote() {
 		super("Cadastrar Pacote");
@@ -37,7 +38,6 @@ public class TelaCadastroPacote extends TelaPadrao{
 		addBotoes();
 		addTextArea();
 		ouvinteBotoes();
-		ouvinteJanela();
 		tabelaTodosFornecedores();
 		tabelaAddFornecedores();
 		setVisible(true);
@@ -95,8 +95,7 @@ public class TelaCadastroPacote extends TelaPadrao{
 				if(tabelaAdd.getSelectedRow() != -1) {
 					String cpf_cnpj = tabelaAdd.getValueAt(tabelaAdd.getSelectedRow(), 1).toString();
 					modelo.removeRow(tabelaAdd.getSelectedRow());
-					ci.getFornecedoresTemp().remove(ci.buscaFornecedor(cpf_cnpj));
-					p.salvarCentral(ci);
+					novoPacote.getFornecedores().remove(ci.buscaFornecedor(cpf_cnpj));
 				}
 			}
 		});
@@ -105,14 +104,13 @@ public class TelaCadastroPacote extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 				if(tabelaTodos.getSelectedRow() != -1) {
 					String cpf_cnpj = tabelaTodos.getValueAt(tabelaTodos.getSelectedRow(), 1).toString();
-					if(ci.adicionarFornecedoresTemp(ci.buscaFornecedor(cpf_cnpj))) {
+					if(novoPacote.adicionarFornecedor(ci.buscaFornecedor(cpf_cnpj))) {
 						Fornecedor f = ci.buscaFornecedor(cpf_cnpj);
 						Object[] row = new Object[3];
 						row[0] = f.getNome();
 						row[1] = f.getCPF_CNPJ();
 						row[2] = f.getQtdContratos();
 						modelo.addRow(row);
-						p.salvarCentral(ci);
 					}
 				}
 			}
@@ -123,12 +121,14 @@ public class TelaCadastroPacote extends TelaPadrao{
 				try {
 					String nomePacote = tfNomePacote.getText();
 					float valor = Float.parseFloat(tfValor.getText());
-					ArrayList<Fornecedor> fornecedores = ci.getFornecedoresTemp();
 					String caracteristicas = taCaracteristicas.getText();
 
 					if(!nomePacote.equals("") && !caracteristicas.equals("")) {
-						if(ci.adicionarPacote(new Pacote(nomePacote, valor, fornecedores, caracteristicas))) {
-							ci.setFornecedoresTemp(new ArrayList<>());
+						novoPacote.setNomePacote(nomePacote);
+						novoPacote.setCaracteristicas(caracteristicas);
+						novoPacote.setValor(valor);
+
+						if(ci.adicionarPacote(novoPacote)) {
 							p.salvarCentral(ci);
 							dispose();
 							new TelaPacotes();
@@ -151,25 +151,9 @@ public class TelaCadastroPacote extends TelaPadrao{
 
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ci.setFornecedoresTemp(new ArrayList<>());
-				p.salvarCentral(ci);
 				dispose();
 				new TelaPacotes();
 			}
-		});
-	}
-	public void ouvinteJanela() {
-		this.addWindowListener(new WindowListener() {
-			public void windowOpened(WindowEvent e) {}
-			public void windowIconified(WindowEvent e) {}
-			public void windowDeiconified(WindowEvent e) {}
-			public void windowDeactivated(WindowEvent e) {}
-			public void windowClosing(WindowEvent e) {
-				ci.setFornecedoresTemp(new ArrayList<>());
-				p.salvarCentral(ci);
-			}
-			public void windowClosed(WindowEvent e) {}
-			public void windowActivated(WindowEvent e) {}
 		});
 	}
 
@@ -190,7 +174,8 @@ public class TelaCadastroPacote extends TelaPadrao{
 		for(int i=0;i<tabelaTodos.getColumnCount();i++) {
 			tabelaTodos.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
 		}
-		tabelaTodos.setAutoCreateRowSorter(true);
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
+		tabelaTodos.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaTodos);
 		painelScrow.setBounds(393, 230, 372, 205);
 		add(painelScrow);
@@ -202,7 +187,7 @@ public class TelaCadastroPacote extends TelaPadrao{
 		modelo.addColumn("Física/Jurídica");
 		modelo.addColumn("Contratos");
 
-		for(Fornecedor f : ci.getFornecedoresTemp()) {
+		for(Fornecedor f : novoPacote.getFornecedores()) {
 			Object[] linha = new Object[3];
 			linha[0] = f.getNome();
 			linha[1] = f.getCPF_CNPJ();
@@ -210,10 +195,11 @@ public class TelaCadastroPacote extends TelaPadrao{
 			modelo.addRow(linha);
 		}
 		tabelaAdd = new JTable(modelo);
-		for(int i=0;i<tabelaTodos.getColumnCount();i++) {
-			tabelaTodos.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
+		for(int i=0;i<tabelaAdd.getColumnCount();i++) {
+			tabelaAdd.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
 		}
-		tabelaAdd.setAutoCreateRowSorter(true);
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
+		tabelaAdd.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaAdd);
 		painelScrow.setBounds(20, 230, 372, 205);
 		add(painelScrow);

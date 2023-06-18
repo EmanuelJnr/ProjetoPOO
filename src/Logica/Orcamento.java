@@ -19,29 +19,74 @@ public class Orcamento {
 	private String responsavelPagamento;
 	private String tipo;
 
-	public Orcamento(String nomeEvento, LocalDateTime dataHora, String localEvento,
-			String qtdConvidados, ArrayList<Fornecedor> fornecedores, ArrayList<Pacote> pacotes,
-			float valor, String responsavelPagamento) {
-		dataModificacao = LocalDateTime.now();
-		fotos = new ArrayList<>();
-		reunioes = new ArrayList<>();
+	public Orcamento(String nomeEvento, LocalDateTime dataHora, String localEvento, String qtdConvidados, ArrayList<Fornecedor> fornecedores, ArrayList<Pacote> pacotes, float valor, String responsavelPagamento) {
 		this.nomeEvento = nomeEvento;
 		this.dataHora = dataHora;
+		dataModificacao = LocalDateTime.now();
 		this.localEvento = localEvento;
 		this.qtdConvidados = qtdConvidados;
 		this.fornecedores = fornecedores;
 		this.pacotes = pacotes;
+		reunioes = new ArrayList<>();
+		fotos = new ArrayList<>();
 		this.valor = valor;
 		this.responsavelPagamento = responsavelPagamento;
 		this.tipo = "Orçamento";
 	}
-	
+	public Orcamento() {
+		dataModificacao = LocalDateTime.now();
+		fotos = new ArrayList<>();
+		reunioes = new ArrayList<>();
+		fornecedores = new ArrayList<>();
+		pacotes = new ArrayList<>();
+		this.tipo = "Orçamento";
+	}
+
+	public Fornecedor buscaFornecedor(String cpf_cnpj) {
+		for(Fornecedor f : fornecedores) {
+			if(cpf_cnpj.equals(f.getCPF_CNPJ())) {
+				return f;
+			}
+		}
+		return null;
+	}
+	public Pacote buscaPacote(String nome) {
+		for(Pacote p : pacotes) {
+			if(nome.equals(p.getNomePacote()))
+				return p;
+		}
+		return null;
+	}
+	public boolean adicionarFornecedor(Fornecedor fAdd) {
+		for (Fornecedor f : fornecedores) {
+			if(f.equals(fAdd))
+				return false;
+		}
+		fornecedores.add(fAdd);
+		return true;
+	}
+	public boolean adicionarPacote(Pacote pAdd) {
+		for (Pacote p : pacotes) {
+			if(p.equals(pAdd))
+				return false;
+		}
+		pacotes.add(pAdd);
+		return true;
+	}
 	public boolean adicionarReuniao(Reuniao rAdd) {
 		for (Reuniao r : reunioes) {
 			if(r.equals(rAdd))
 				return false;
 		}
 		reunioes.add(rAdd);
+		return true;
+	}
+	public boolean adicionarFoto(ImageIcon fAdd) {
+		for (ImageIcon f : fotos) {
+			if(f.equals(fAdd))
+				return false;
+		}
+		fotos.add(fAdd);
 		return true;
 	}
 	public boolean equals(Orcamento o) {

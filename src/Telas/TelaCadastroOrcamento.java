@@ -2,14 +2,11 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -59,6 +56,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 	private RadioButton rbCerimonialista;
 	private RadioButton rbCliente;
 	private Label lbSoma;
+	private Orcamento novoOrcamento = new Orcamento();
 
 	public TelaCadastroOrcamento () {
 		super("Cadastro Orçamento");
@@ -70,7 +68,6 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		addCamposDeTexto();
 		addBotoes();
 		ouvinteBotoes();
-		ouvinteJanela();
 		tabelaTodosFornecedores();
 		tabelaAddFornecedores();
 		tabelaTodosPacotes();
@@ -169,12 +166,10 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		if (s == null || s.equals("")) {
 			return false;
 		}
-		for (int i = 0; i < s.length(); i++)
-		{
+		for (int i=0;i<s.length();i++) {
 			char c = s.charAt(i);
-			if (c < '0' || c > '9') {
+			if (c < '0' || c > '9')
 				return false;
-			}
 		}
 		return true;
 	}
@@ -182,9 +177,6 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 	public void ouvinteBotoes() {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ci.setFornecedoresTemp(new ArrayList<>());
-				ci.setPacotesTemp(new ArrayList<>());
-				p.salvarCentral(ci);
 				dispose();
 				new TelaOrcamentos();
 			}
@@ -195,13 +187,10 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 				if(tabelaAddFornecedores.getSelectedRow() != -1) {
 					String cpf_cnpj = tabelaAddFornecedores.getValueAt(tabelaAddFornecedores.getSelectedRow(), 1).toString();
 					modeloFornecedores.removeRow(tabelaAddFornecedores.getSelectedRow());
-
 					float soma = Float.parseFloat(lbSoma.getText());
-					soma -= ci.buscaFornecedor(cpf_cnpj).getValor();
+					soma -= novoOrcamento.buscaFornecedor(cpf_cnpj).getValor();
 					lbSoma.setText(""+soma);
-
-					ci.getFornecedoresTemp().remove(ci.buscaFornecedor(cpf_cnpj));
-					p.salvarCentral(ci);
+					novoOrcamento.getFornecedores().remove(novoOrcamento.buscaFornecedor(cpf_cnpj));
 				}
 			}
 		});
@@ -214,7 +203,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 						Fornecedor fornecedorTemp = ci.buscaFornecedor(cpf_cnpj);
 						String resultado = JOptionPane.showInputDialog(null, "Digite o valor para esse fornecedor:");
 						if(resultado != null) {
-							if(ci.adicionarFornecedoresTemp(fornecedorTemp)) {
+							if(novoOrcamento.adicionarFornecedor(fornecedorTemp)) {
 								if(resultado.equals("")) {
 									resultado = "0";
 								}
@@ -230,7 +219,6 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 									row[1] = fornecedorTemp.getCPF_CNPJ();
 									row[2] = fornecedorTemp.getValor();
 									modeloFornecedores.addRow(row);
-									p.salvarCentral(ci);
 								}
 							}
 						}
@@ -246,11 +234,10 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 					modeloPacotes.removeRow(tabelaAddPacotes.getSelectedRow());
 
 					float soma = Float.parseFloat(lbSoma.getText());
-					soma -= ci.buscaPacote(nomePacote).getValor();
+					soma -= novoOrcamento.buscaPacote(nomePacote).getValor();
 					lbSoma.setText(""+soma);
 
-					ci.getPacotesTemp().remove(ci.buscaPacote(nomePacote));
-					p.salvarCentral(ci);
+					novoOrcamento.getPacotes().remove(novoOrcamento.buscaPacote(nomePacote));
 				}
 			}
 		});
@@ -259,24 +246,23 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 				if(tabelaTodosPacotes.getSelectedRow() != -1) {
 					String nomePacote = tabelaTodosPacotes.getValueAt(tabelaTodosPacotes.getSelectedRow(), 0).toString();
-					if(ci.adicionarPacotesTemp(ci.buscaPacote(nomePacote))) {
-						Pacote pacote = ci.buscaPacote(nomePacote);
-						String fornecedores = "";
-						for (Fornecedor f : pacote.getFornecedores())
-							fornecedores += f.getNome();
+					Pacote pacoteTemp = ci.buscaPacote(nomePacote);
+					if(novoOrcamento.adicionarPacote(pacoteTemp)) {
+						String nomeFornecedores = "";
+						for (Fornecedor f : novoOrcamento.getFornecedores())
+							nomeFornecedores += f.getNome();
 
 						float soma = Float.parseFloat(lbSoma.getText());
-						soma += pacote.getValor();
+						soma += pacoteTemp.getValor();
 						lbSoma.setText(""+soma);
 
 						Object[] linha = new Object[3];
 
-						linha[0] = pacote.getNomePacote();
-						linha[1] = pacote.getValor();
-						linha[2] = fornecedores;
+						linha[0] = pacoteTemp.getNomePacote();
+						linha[1] = pacoteTemp.getValor();
+						linha[2] = nomeFornecedores;
 
 						modeloPacotes.addRow(linha);
-						p.salvarCentral(ci);
 					}
 				}
 			}
@@ -307,10 +293,16 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 							return;
 						}
 
+
 						if(cliente.getOrcamento() == null) {
-							cliente.setOrcamento(new Orcamento(nomeEvento, dataHora, localEvento, qtdConvidados, ci.getFornecedoresTemp(), ci.getPacotesTemp(), somaTotal, responsavelPagamento));
-							ci.setFornecedoresTemp(new ArrayList<>());
-							ci.setPacotesTemp(new ArrayList<>());
+							novoOrcamento.setNomeEvento(nomeEvento);
+							novoOrcamento.setDataHora(dataHora);
+							novoOrcamento.setLocalEvento(localEvento);
+							novoOrcamento.setQtdConvidados(qtdConvidados);
+							novoOrcamento.setValor(somaTotal);
+							novoOrcamento.setResponsavelPagamento(responsavelPagamento);
+
+							cliente.setOrcamento(novoOrcamento);
 							p.salvarCentral(ci);
 							dispose();
 							new TelaOrcamentos();
@@ -328,22 +320,6 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 					JOptionPane.showMessageDialog(null, "Data e hora inválida!");
 				}
 			}
-		});
-	}
-
-	public void ouvinteJanela() {
-		this.addWindowListener(new WindowListener() {
-			public void windowOpened(WindowEvent e) {}
-			public void windowIconified(WindowEvent e) {}
-			public void windowDeiconified(WindowEvent e) {}
-			public void windowDeactivated(WindowEvent e) {}
-			public void windowClosing(WindowEvent e) {
-				ci.setFornecedoresTemp(new ArrayList<>());
-				ci.setPacotesTemp(new ArrayList<>());
-				p.salvarCentral(ci);
-			}
-			public void windowClosed(WindowEvent e) {}
-			public void windowActivated(WindowEvent e) {}
 		});
 	}
 
@@ -377,7 +353,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		modeloFornecedores.addColumn("Física/Jurídica");
 		modeloFornecedores.addColumn("Valor");
 
-		for(Fornecedor f : ci.getFornecedoresTemp()) {
+		for(Fornecedor f : novoOrcamento.getFornecedores()) {
 			Object[] linha = new Object[3];
 			linha[0] = f.getNome();
 			linha[1] = f.getCPF_CNPJ();
@@ -431,7 +407,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		modeloPacotes.addColumn("Valor");
 		modeloPacotes.addColumn("Fonecedores");
 
-		for (Pacote pacote : ci.getPacotesTemp()) {
+		for (Pacote pacote : novoOrcamento.getPacotes()) {
 			String fornecedores = "";
 			for (Fornecedor f : pacote.getFornecedores()) {
 				fornecedores += f.getNome();
