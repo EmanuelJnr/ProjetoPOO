@@ -29,6 +29,7 @@ public class TelaGerarRelatorio extends TelaPadrao{
 	private Botao btnAddFoto;
 	private Botao btnDelFoto;
 	private Botao btnConfirmar;
+	private String faltaCoisas;
 
 	public TelaGerarRelatorio() {
 		super("Gerar Relatório");
@@ -39,7 +40,7 @@ public class TelaGerarRelatorio extends TelaPadrao{
 		ouvinteBotoes();
 		setVisible(true);
 	}
-	public static void main(String[] args) {/////////////////////////////////////////////////////////////
+	public static void main(String[] args) {/////////////////////////////////////////////////////////
 		new TelaGerarRelatorio();
 	}
 

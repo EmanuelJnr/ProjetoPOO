@@ -16,6 +16,11 @@ public class TelaFornecedoresFinancas extends TelaFornecedores{
 	private Botao btnVoltar;
 	private Label lbValor;
 	private Botao btnPlanilha;
+	private String faltaCoisas;
+	
+	public static void main(String[] args) {///////////////////////////////////////////////////
+		new TelaFornecedoresFinancas();
+	}
 
 	public void addBotoes() {		
 		btnVoltar = new Botao("Voltar",520,500,120,30);
@@ -45,7 +50,7 @@ public class TelaFornecedoresFinancas extends TelaFornecedores{
 		add(new Label("Valor Total: ", 140, 500, 67, 30));
 
 		lbValor = new Label("", 210, 500, 120, 30);
-		lbValor.setText("0");// fazer a soma dos valores da tabela e colcar o calculo aqui
+		lbValor.setText("0");//TODO fazer a soma dos valores da tabela e colcar o calculo aqui
 		add(lbValor);
 	}
 }

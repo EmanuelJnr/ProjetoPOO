@@ -66,9 +66,6 @@ public class TelaServicos extends TelaPadrao{
 		painelScrow.setBounds(20, 100, 745, 350);
 		add(painelScrow);
 	}
-	public static void main(String[] args) {
-		new TelaServicos();
-	}
 
 	public void addBotoes() {
 		btnCadastrar = new Botao("Cadastrar", 100, 490, 120, 30);

@@ -15,6 +15,7 @@ import Ouvintes.OuvinteNovaTela;
 public class TelaPlanilhaFinancas extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnFornecedores;
+	private String faltaCoisas;
 
 	public TelaPlanilhaFinancas() {
 		super("Planilha de Finanças");
@@ -23,6 +24,9 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 		addBotoes();
 		ouvinteFornecedores();
 		setVisible(true);
+	}
+	public static void main(String[] args) {////////////////////////////////////////////////////////////
+		new TelaPlanilhaFinancas();
 	}
 	
 	public void addLabels() {
@@ -73,8 +77,5 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 				new TelaFornecedoresFinancas();
 			}
 		});
-	}
-	public static void main(String[] args) {
-		new TelaPlanilhaFinancas();
 	}
 }

@@ -15,6 +15,7 @@ public class TelaATAReuniao extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	private Botao btnConfirmar;
 	private JTextArea taATA;
+	private String faltaCoisas;
 
 	public TelaATAReuniao() {
 		super("ATA de Reunião");
@@ -23,6 +24,9 @@ public class TelaATAReuniao extends TelaPadrao{
 		textAta();
 		addBotoes();
 		setVisible(true);
+	}
+	public static void main(String[] args) {///////////////////////////////////////////////////////
+		new TelaATAReuniao();
 	}
 
 	public void addLabels() {
@@ -49,7 +53,7 @@ public class TelaATAReuniao extends TelaPadrao{
 	public void ouvinteConfirmar() {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//adiciona o texto da ATA dentro da reunião
+				//TODO adiciona o texto da ATA dentro da reunião
 				dispose();
 				new TelaReunioes();
 			}

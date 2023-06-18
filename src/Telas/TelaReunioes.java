@@ -23,6 +23,7 @@ public class TelaReunioes extends TelaPadrao {
 	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnATA;
 	private Botao btnReuniao;
+	private String faltaCoisas;
 
 	public TelaReunioes() {
 		super("Reuniões");
@@ -32,7 +33,7 @@ public class TelaReunioes extends TelaPadrao {
 		ouvinteBotoes();
 		setVisible(true);
 	}
-	public static void main(String[] args) {////////////////////////////////////////////
+	public static void main(String[] args) {////////////////////////////////////
 		new TelaReunioes();
 	}
 
