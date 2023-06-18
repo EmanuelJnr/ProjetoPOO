@@ -10,10 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import Interface.*;
 import Logica.*;
 import Ouvintes.OuvinteFocoValor;
@@ -193,8 +190,7 @@ public class TelaCadastroPacote extends TelaPadrao{
 		for(int i=0;i<tabelaTodos.getColumnCount();i++) {
 			tabelaTodos.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
 		}
-		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
-		tabelaTodos.setRowSorter(sorter);
+		tabelaTodos.setAutoCreateRowSorter(true);
 		JScrollPane painelScrow = new JScrollPane(tabelaTodos);
 		painelScrow.setBounds(393, 230, 372, 205);
 		add(painelScrow);
@@ -217,8 +213,7 @@ public class TelaCadastroPacote extends TelaPadrao{
 		for(int i=0;i<tabelaTodos.getColumnCount();i++) {
 			tabelaTodos.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
 		}
-		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
-		tabelaAdd.setRowSorter(sorter);
+		tabelaAdd.setAutoCreateRowSorter(true);
 		JScrollPane painelScrow = new JScrollPane(tabelaAdd);
 		painelScrow.setBounds(20, 230, 372, 205);
 		add(painelScrow);

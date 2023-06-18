@@ -5,11 +5,10 @@ import java.time.LocalDateTime;
 public class Reuniao {
 	private LocalDateTime dataHora;
 	private String ata;
-	
+
 	public Reuniao(LocalDateTime dataHora) {
 		this.dataHora = dataHora;
 	}
-	
 	public LocalDateTime getDataHora() {
 		return dataHora;
 	}

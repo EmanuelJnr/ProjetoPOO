@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 public class Orcamento {
 	private String nomeEvento;
 	private LocalDateTime dataHora;
+	private LocalDateTime dataModificacao;
 	private String localEvento;
 	private String qtdConvidados;
 	private ArrayList<Fornecedor> fornecedores;
@@ -16,19 +17,25 @@ public class Orcamento {
 	private ArrayList<ImageIcon> fotos;
 	private float valor;
 	private String responsavelPagamento;
+	private String tipo;
 
 	public Orcamento(String nomeEvento, LocalDateTime dataHora, String localEvento,
-			String qtdConvidados, ArrayList<Fornecedor> fornecedores, ArrayList<Pacote> pacotes) {
+			String qtdConvidados, ArrayList<Fornecedor> fornecedores, ArrayList<Pacote> pacotes,
+			float valor, String responsavelPagamento) {
+		dataModificacao = LocalDateTime.now();
+		fotos = new ArrayList<>();
+		reunioes = new ArrayList<>();
 		this.nomeEvento = nomeEvento;
 		this.dataHora = dataHora;
 		this.localEvento = localEvento;
 		this.qtdConvidados = qtdConvidados;
 		this.fornecedores = fornecedores;
 		this.pacotes = pacotes;
+		this.valor = valor;
+		this.responsavelPagamento = responsavelPagamento;
+		this.tipo = "Orçamento";
 	}
-	public Orcamento() {
-
-	}
+	
 	public boolean equals(Orcamento o) {
 		if(o.getNomeEvento().equals(nomeEvento))
 			return true;
@@ -37,12 +44,6 @@ public class Orcamento {
 	public String toString() {
 		return nomeEvento;
 	}
-	public boolean jaOcorreu() {
-		if(dataHora.isBefore(LocalDateTime.now()))
-			return true;
-		return false;
-	}
-
 	public ArrayList<ImageIcon> getFotos() {
 		return fotos;
 	}
@@ -102,5 +103,17 @@ public class Orcamento {
 	}
 	public void setReunioes(ArrayList<Reuniao> reunioes) {
 		this.reunioes = reunioes;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public LocalDateTime getDataModificacao() {
+		return dataModificacao;
+	}
+	public void setDataModificacao(LocalDateTime dataModificacao) {
+		this.dataModificacao = dataModificacao;
 	}
 }

@@ -24,28 +24,28 @@ public class TelaATAReuniao extends TelaPadrao{
 		addBotoes();
 		setVisible(true);
 	}
-	
+
 	public void addLabels() {
 		Label titulo = new Label("Digite a ATA de reunião", 81, 5, 238, 30);
 		titulo.setFont(Fontes.titulo());
 		add(titulo);
 	}
-	
+
 	public void textAta() {
 		taATA = new JTextArea(5,10);
 		taATA.setBounds(8, 35, 370, 180);
 		add(taATA);
 	}
-	
+
 	public void addBotoes() {
 		btnConfirmar = new Botao("Confirmar", 60, 230, 100, 25);
 		add(btnConfirmar);
-		
+
 		Botao btnVoltar = new Botao("Voltar", 215, 230, 100, 25);
 		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_REUNIOES);
 		add(btnVoltar);
 	}
-	
+
 	public void ouvinteConfirmar() {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

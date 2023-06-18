@@ -44,11 +44,9 @@ public class Pacote {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-
 	public String getCaracteristicas() {
 		return caracteristicas;
 	}
-
 	public void setCaracteristicas(String caracteristicas) {
 		this.caracteristicas = caracteristicas;
 	}

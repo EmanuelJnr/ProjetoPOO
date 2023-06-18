@@ -25,6 +25,7 @@ public class TelaFornecedores extends TelaPadrao{
 	private Botao btnExcluir;
 	private Botao btnDetalhar;
 	private JTable tabela;
+	private DefaultTableModel modelo;
 
 	public TelaFornecedores() {
 		super("Fornecedores");
@@ -43,7 +44,7 @@ public class TelaFornecedores extends TelaPadrao{
 	}
 
 	public void addTabela() {
-		DefaultTableModel modelo = new DefaultTableModel();
+		modelo = new DefaultTableModel();
 		modelo.addColumn("Nome");
 		modelo.addColumn("Física/Jurídica");
 		modelo.addColumn("Quantidade de contratos");
@@ -102,9 +103,8 @@ public class TelaFornecedores extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 				if(tabela.getSelectedRow() != -1) {
 					ci.getTodosOsFornecedores().remove(tabela.getSelectedRow());
+					modelo.removeRow(tabela.getSelectedRow());
 					p.salvarCentral(ci);
-					dispose();
-					new TelaFornecedores();
 				}
 			}
 		});

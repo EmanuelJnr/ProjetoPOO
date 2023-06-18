@@ -15,6 +15,7 @@ import Interface.Botao;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.NomeTela;
+import Logica.AlinhaCelulas;
 import Logica.CentralDeInformacoes;
 import Logica.Persistencia;
 import Logica.Servico;
@@ -56,11 +57,17 @@ public class TelaServicos extends TelaPadrao{
 		}
 
 		tabela = new JTable(modelo);
+		for(int i=0;i<tabela.getColumnCount();i++) {
+			tabela.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
+		}
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
 		tabela.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabela);
 		painelScrow.setBounds(20, 100, 745, 350);
 		add(painelScrow);
+	}
+	public static void main(String[] args) {
+		new TelaServicos();
 	}
 
 	public void addBotoes() {

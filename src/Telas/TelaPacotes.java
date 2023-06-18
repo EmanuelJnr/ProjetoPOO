@@ -50,7 +50,7 @@ public class TelaPacotes extends TelaPadrao{
 
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("Nome do pacote");
+		modelo.addColumn("Nome");
 		modelo.addColumn("Valor");
 		modelo.addColumn("Serviços");
 		modelo.addColumn("Disponíveis");
@@ -61,7 +61,7 @@ public class TelaPacotes extends TelaPadrao{
 			String indisponiveis = "";
 			String servicos = "";
 			for (Fornecedor f : p.getFornecedores()) {
-				if (f.getDiponivel().equals(""))
+				if (f.getDiponivel().equals("Sim"))
 					disponiveis += f.getNome()+" ";
 				else
 					indisponiveis += f.getNome()+" ";
@@ -78,7 +78,6 @@ public class TelaPacotes extends TelaPadrao{
 			linha[4] = indisponiveis;
 
 			modelo.addRow(linha);
-			p.getCaracteristicas();
 		}
 
 		tabela = new JTable(modelo){

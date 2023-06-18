@@ -12,6 +12,7 @@ import Interface.Fontes;
 import Interface.Label;
 import Logica.Admin;
 import Logica.CentralDeInformacoes;
+import Logica.LimitaCaracteres;
 import Logica.Persistencia;
 import Logica.VerificaEmail;
 
@@ -50,6 +51,7 @@ public class TelaCadastroAdmin extends TelaPadrao{
 
 	public void addCamposDeTexto() {
 		tfNome = new CampoDeTexto("", 350, 145, 200, 30);
+		tfNome.setDocument(new LimitaCaracteres(LimitaCaracteres.TipoEntrada.NOME));
 		add(tfNome);
 
 		tfEmail = new CampoDeTexto("",350, 195, 200, 30);

@@ -2,18 +2,17 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import Interface.Botao;
 import Interface.CheckBox;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.NomeTela;
 import Logica.CentralDeInformacoes;
-import Logica.Orcamento;
 import Logica.Persistencia;
 import Ouvintes.OuvinteNovaTela;
 
@@ -72,27 +71,17 @@ public class TelaGerarRelatorio extends TelaPadrao{
 
 	public void addTabela() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("Nome");
-		modelo.addColumn("Data");
-		modelo.addColumn("Local do evento");
-		modelo.addColumn("quant convidados");
-		modelo.addColumn("Fornecedores");
-		modelo.addColumn("Fotos");
+		modelo.addColumn("Nome da Foto");
 
-		
-		for(Orcamento o : ci.getTodosOsOrcamentos()) {
-			Object[] linha = new Object[6];
+		for(ImageIcon i : ci.getClienteTemp().getOrcamento().getFotos()) {
+			Object[] linha = new Object[1];
 
-			linha[0] = o.getNomeEvento();
-			linha[1] = String.valueOf(o.getDataHora());
-			linha[2] = o.getLocalEvento();
-			linha[3] = o.getQtdConvidados();
-			linha[4] = o.getFornecedores();
-			linha[5] = o.getFotos();
+			String[] nomeFoto = i.getDescription().split("/");
+			linha[0] = nomeFoto[nomeFoto.length-1];
 
 			modelo.addRow(linha);
 		}
-		 	
+
 		JTable tabela = new JTable(modelo);
 		JScrollPane painelScrow = new JScrollPane(tabela);
 		painelScrow.setBounds(20, 310, 745, 200);

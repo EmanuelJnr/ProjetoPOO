@@ -5,16 +5,18 @@ import java.util.ArrayList;
 public class CentralDeInformacoes {
 	private Admin admin;
 	private ArrayList<Servico> servicosTemp = new ArrayList<>();
-	private Fornecedor fornecedorTemp = new Fornecedor();
 	private ArrayList<Fornecedor> fornecedoresTemp = new ArrayList<>();
+	private ArrayList<Pacote> pacotesTemp = new ArrayList<>();
+
+	private Fornecedor fornecedorTemp = new Fornecedor();
 	private Pacote pacoteRef = new Pacote();
+	private Cliente clienteTemp = new Cliente();
 
 	private ArrayList<Cliente> todosOsClientes = new ArrayList<>();
-	private ArrayList<Pacote> todosOsPacotes = new ArrayList<>();
-	private ArrayList<Fornecedor> todosOsFornecedores = new ArrayList<>();
 	private ArrayList<Servico> todosOsServicos = new ArrayList<>();
+	private ArrayList<Fornecedor> todosOsFornecedores = new ArrayList<>();
+	private ArrayList<Pacote> todosOsPacotes = new ArrayList<>();
 	private ArrayList<Reuniao> todasAsReunioes = new ArrayList<>();
-	private ArrayList<Orcamento> todosOsOrcamentos = new ArrayList<>();
 
 	public boolean adicionarFornecedoresTemp(Fornecedor fAdd) {
 		for (Fornecedor f : fornecedoresTemp) {
@@ -23,6 +25,15 @@ public class CentralDeInformacoes {
 			}
 		}
 		fornecedoresTemp.add(fAdd);
+		return true;
+	}
+	public boolean adicionarPacotesTemp(Pacote pAdd) {
+		for (Pacote p : pacotesTemp) {
+			if(p.equals(pAdd)) {
+				return false;
+			}
+		}
+		pacotesTemp.add(pAdd);
 		return true;
 	}
 	public boolean adicionarServicosTemp(Servico sAdd) {
@@ -40,17 +51,6 @@ public class CentralDeInformacoes {
 				return false;			
 		}
 		todosOsClientes.add(cAdd);
-		return true;
-	}
-	public boolean adicionarOrcamento(Orcamento oAdd) {
-		for (Orcamento o : todosOsOrcamentos) {
-			if(oAdd.equals(o))
-				return false;			
-		}
-		if(oAdd.jaOcorreu()) {
-			return false;
-		}
-		todosOsOrcamentos.add(oAdd);
 		return true;
 	}
 	public boolean adicionarFornecedor(Fornecedor fAdd) {
@@ -81,7 +81,7 @@ public class CentralDeInformacoes {
 		return true;
 	}
 
-	public Cliente recuperarClientePeloCPF_CNPJ(String CPF_CNPJ) {
+	public Cliente buscaCliente(String CPF_CNPJ) {
 		for (Cliente c : todosOsClientes) {
 			if(CPF_CNPJ.equals(c.getCPF_CNPJ()))
 				return c;
@@ -140,12 +140,6 @@ public class CentralDeInformacoes {
 	public void setTodasAsReunioes(ArrayList<Reuniao> todasAsReunioes) {
 		this.todasAsReunioes = todasAsReunioes;
 	}
-	public ArrayList<Orcamento> getTodosOsOrcamentos() {
-		return todosOsOrcamentos;
-	}
-	public void setTodosOsOrcamentos(ArrayList<Orcamento> todosOsOrcamentos) {
-		this.todosOsOrcamentos = todosOsOrcamentos;
-	}
 	public ArrayList<Pacote> getTodosOsPacotes() {
 		return todosOsPacotes;
 	}
@@ -199,5 +193,17 @@ public class CentralDeInformacoes {
 	}
 	public void setPacoteRef(Pacote pacoteRef) {
 		this.pacoteRef = pacoteRef;
+	}
+	public ArrayList<Pacote> getPacotesTemp() {
+		return pacotesTemp;
+	}
+	public void setPacotesTemp(ArrayList<Pacote> pacotesTemp) {
+		this.pacotesTemp = pacotesTemp;
+	}
+	public Cliente getClienteTemp() {
+		return clienteTemp;
+	}
+	public void setClienteTemp(Cliente clienteTemp) {
+		this.clienteTemp = clienteTemp;
 	}
 }

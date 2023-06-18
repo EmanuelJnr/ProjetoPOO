@@ -6,13 +6,13 @@ import java.text.ParseException;
 import javax.swing.ButtonGroup;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.text.MaskFormatter;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.NomeTela;
+import Interface.RadioButton;
 import Logica.CentralDeInformacoes;
 import Logica.Cliente;
 import Logica.Persistencia;
@@ -27,8 +27,8 @@ public class TelaCadastroCliente extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	Persistencia p = new Persistencia();
 	CentralDeInformacoes ci = p.recuperarCentral();
-	private JRadioButton rbCPF;
-	private JRadioButton rbCNPJ;
+	private RadioButton rbCPF;
+	private RadioButton rbCNPJ;
 	private Botao btnCadastrar;
 	private CampoDeTexto tfNome;
 	private CampoDeTexto tfEmail;
@@ -61,13 +61,13 @@ public class TelaCadastroCliente extends TelaPadrao{
 			tfTelefone.addFocusListener(new OuvinteFocoFormatted(tfTelefone));
 			tfTelefone.setBounds(485,280,150,30);
 			add(tfTelefone);
-			
+
 			MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
 			tfCPF = new JFormattedTextField(maskCPF);
 			tfCPF.addFocusListener(new OuvinteFocoFormatted(tfCPF));
 			tfCPF.setBounds(242,280,143,30);
 			add(tfCPF);
-			
+
 			MaskFormatter maskCNPJ = new MaskFormatter("##.###.###/####-##");
 			tfCNPJ = new JFormattedTextField(maskCNPJ);
 			tfCNPJ.addFocusListener(new OuvinteFocoFormatted(tfCNPJ));
@@ -89,23 +89,19 @@ public class TelaCadastroCliente extends TelaPadrao{
 		add(new Label("Email:", 415,230,80,30));
 		add(new Label("Telefone:", 415,280,80,30));
 	}
-	
+
 	public void addRadioButtons() {
-		rbCPF = new JRadioButton("Pessoa Física");
-		rbCPF.setBounds(130,285,110,20);
-		rbCPF.setFont(Fontes.padrao());
+		rbCPF = new RadioButton("Pessoa Física", 130,285,110,20);
 		add(rbCPF);
 
-		rbCNPJ = new JRadioButton("Pessoa Jurídica");
-		rbCNPJ.setBounds(130,320,110,20);
-		rbCNPJ.setFont(Fontes.padrao());
+		rbCNPJ = new RadioButton("Pessoa Jurídica", 130,320,110,20);
 		add(rbCNPJ);
 
 		ButtonGroup grupo = new ButtonGroup();
 		grupo.add(rbCPF);
 		grupo.add(rbCNPJ);
 		rbCPF.setSelected(true);
-		
+
 		rbCPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tfCPF.setEditable(true);
@@ -138,7 +134,7 @@ public class TelaCadastroCliente extends TelaPadrao{
 				String email = tfEmail.getText();
 				String telefone = tfTelefone.getText();
 				String cpf_cnpj = "";
-				
+
 				if(rbCPF.isSelected() && ValidaCPF.isCPF(tfCPF.getText())) {
 					cpf_cnpj = tfCPF.getText();
 				}

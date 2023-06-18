@@ -12,7 +12,6 @@ import Telas.TelaCadastroPacote;
 import Telas.TelaDetalharFornecedor;
 import Telas.TelaEditarOrcamento;
 import Telas.TelaFiltrarFornecedor;
-import Telas.TelaFiltrarOrcamentos;
 import Telas.TelaFornecedores;
 import Telas.TelaFornecedoresFinancas;
 import Telas.TelaListarReunioes;
@@ -39,9 +38,6 @@ public abstract class OuvinteNovaTela implements ActionListener{
 					break;
 				case TELA_EDITAR_ORCAMENTO:
 					new TelaEditarOrcamento();
-					break;
-				case TELA_FILTRAR_ORCAMENTOS:
-					new TelaFiltrarOrcamentos();
 					break;
 				case TELA_CADASTRO_ORCAMENTO:
 					new TelaCadastroOrcamento();

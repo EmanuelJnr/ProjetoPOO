@@ -14,7 +14,7 @@ public class Fornecedor {
 	private float valor;
 
 	public Fornecedor(String nome, String email, String cPF_CNPJ, String telefone, ArrayList<Servico> servicos) {
-		diponivel = "";
+		diponivel = "Sim";
 		this.nome = nome;
 		this.email = email;
 		this.CPF_CNPJ = cPF_CNPJ;

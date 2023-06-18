@@ -5,10 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import Interface.Botao;
 import Interface.CampoDeTexto;
 import Interface.CheckBox;
@@ -90,8 +87,7 @@ public class TelaFiltrarFornecedor extends TelaPadrao{
 		for(int i=0;i<tabela.getColumnCount();i++) {
 			tabela.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
 		}
-		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
-		tabela.setRowSorter(sorter);
+		tabela.setAutoCreateRowSorter(true);
 	}
 
 	private void addTabela() {

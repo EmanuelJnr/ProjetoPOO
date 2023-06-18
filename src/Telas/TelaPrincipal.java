@@ -4,10 +4,15 @@ import Interface.Botao;
 import Interface.CriarImagem;
 import Interface.Label;
 import Interface.NomeTela;
+import Logica.CentralDeInformacoes;
+import Logica.Cliente;
+import Logica.Persistencia;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaPrincipal extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
+	Persistencia p = new Persistencia();
+	CentralDeInformacoes ci = p.recuperarCentral();
 
 	public TelaPrincipal() {
 		super("Tela Principal");
@@ -17,9 +22,28 @@ public class TelaPrincipal extends TelaPadrao{
 	}
 
 	public void addBotoes() {
+		boolean orcamento = true;
+		if(ci.getTodosOsClientes().size() == 0) {
+			orcamento = false;
+		}
+		
 		Botao btnOrcamentos = new Botao("Orçamentos/Contratos", 230, 281, 160, 36);
-		OuvinteNovaTela.proximaTela(btnOrcamentos, this, NomeTela.TELA_ORCAMENTOS);
+		btnOrcamentos.setEnabled(orcamento);
 		add(btnOrcamentos);
+		
+		boolean temOrcamento = false;
+		for (Cliente c : ci.getTodosOsClientes()) {
+			if(c.getOrcamento() != null) {
+				temOrcamento = true;
+				break;
+			}
+		}
+		if(temOrcamento) {
+			OuvinteNovaTela.proximaTela(btnOrcamentos, this, NomeTela.TELA_ORCAMENTOS);
+		}
+		else {
+			OuvinteNovaTela.proximaTela(btnOrcamentos, this, NomeTela.TELA_CADASTRO_ORCAMENTO);
+		}
 
 		Botao btnFornecedores = new Botao("Fornecedores", 410, 281, 160, 36);
 		OuvinteNovaTela.proximaTela(btnFornecedores, this, NomeTela.TELA_FORNECEDORES);
