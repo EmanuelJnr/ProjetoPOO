@@ -26,11 +26,11 @@ public class TelaPrincipal extends TelaPadrao{
 		if(ci.getTodosOsClientes().size() == 0) {
 			orcamento = false;
 		}
-		
+
 		Botao btnOrcamentos = new Botao("Orçamentos/Contratos", 230, 281, 160, 36);
 		btnOrcamentos.setEnabled(orcamento);
 		add(btnOrcamentos);
-		
+
 		boolean temOrcamento = false;
 		for (Cliente c : ci.getTodosOsClientes()) {
 			if(c.getOrcamento() != null) {
@@ -38,20 +38,14 @@ public class TelaPrincipal extends TelaPadrao{
 				break;
 			}
 		}
-		if(temOrcamento) {
+		if(temOrcamento)
 			OuvinteNovaTela.proximaTela(btnOrcamentos, this, NomeTela.TELA_ORCAMENTOS);
-		}
-		else {
+		else
 			OuvinteNovaTela.proximaTela(btnOrcamentos, this, NomeTela.TELA_CADASTRO_ORCAMENTO);
-		}
 
 		Botao btnFornecedores = new Botao("Fornecedores", 410, 281, 160, 36);
 		OuvinteNovaTela.proximaTela(btnFornecedores, this, NomeTela.TELA_FORNECEDORES);
 		add(btnFornecedores);
-
-		Botao btnReunioes = new Botao("Reuniões", 230, 338, 160, 36);
-		OuvinteNovaTela.proximaTela(btnReunioes, this, NomeTela.TELA_LISTAR_REUNIOES);
-		add(btnReunioes);
 
 		Botao btnServicos = new Botao("Serviços", 410, 338, 160, 36);
 		OuvinteNovaTela.proximaTela(btnServicos, this, NomeTela.TELA_SERVICOS);

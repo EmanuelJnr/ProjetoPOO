@@ -11,6 +11,7 @@ public class CentralDeInformacoes {
 	private Fornecedor fornecedorTemp = new Fornecedor();
 	private Pacote pacoteRef = new Pacote();
 	private Cliente clienteTemp = new Cliente();
+	private Reuniao reuniaoTemp = new Reuniao(null);
 
 	private ArrayList<Cliente> todosOsClientes = new ArrayList<>();
 	private ArrayList<Servico> todosOsServicos = new ArrayList<>();
@@ -205,5 +206,11 @@ public class CentralDeInformacoes {
 	}
 	public void setClienteTemp(Cliente clienteTemp) {
 		this.clienteTemp = clienteTemp;
+	}
+	public Reuniao getReuniaoTemp() {
+		return reuniaoTemp;
+	}
+	public void setReuniaoTemp(Reuniao reuniaoTemp) {
+		this.reuniaoTemp = reuniaoTemp;
 	}
 }

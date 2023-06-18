@@ -14,7 +14,6 @@ import Telas.TelaEditarOrcamento;
 import Telas.TelaFiltrarFornecedor;
 import Telas.TelaFornecedores;
 import Telas.TelaFornecedoresFinancas;
-import Telas.TelaListarReunioes;
 import Telas.TelaLoginAdmin;
 import Telas.TelaOrcamentos;
 import Telas.TelaPacotes;
@@ -80,9 +79,6 @@ public abstract class OuvinteNovaTela implements ActionListener{
 					break;
 				case TELA_PRINCIPAL:
 					new TelaPrincipal();
-					break;
-				case TELA_LISTAR_REUNIOES:
-					new TelaListarReunioes();
 					break;
 
 				} // Fim do switch case

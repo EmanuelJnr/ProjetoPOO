@@ -2,31 +2,31 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JTextArea;
-
 import Interface.Botao;
 import Interface.Fontes;
 import Interface.Label;
-import Interface.NomeTela;
-import Ouvintes.OuvinteNovaTela;
+import Logica.CentralDeInformacoes;
+import Logica.Persistencia;
+import Logica.Reuniao;
 
 public class TelaATAReuniao extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
+	Persistencia p = new Persistencia();
+	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnConfirmar;
 	private JTextArea taATA;
-	private String faltaCoisas;
+	private Botao btnVoltar;
 
 	public TelaATAReuniao() {
 		super("ATA de Reunião");
 		setSize(400,300);
+		setLocationRelativeTo(null);
 		addLabels();
 		textAta();
 		addBotoes();
+		ouvinteBotoes();
 		setVisible(true);
-	}
-	public static void main(String[] args) {///////////////////////////////////////////////////////
-		new TelaATAReuniao();
 	}
 
 	public void addLabels() {
@@ -45,15 +45,23 @@ public class TelaATAReuniao extends TelaPadrao{
 		btnConfirmar = new Botao("Confirmar", 60, 230, 100, 25);
 		add(btnConfirmar);
 
-		Botao btnVoltar = new Botao("Voltar", 215, 230, 100, 25);
-		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_REUNIOES);
+		btnVoltar = new Botao("Voltar", 215, 230, 100, 25);
 		add(btnVoltar);
 	}
 
-	public void ouvinteConfirmar() {
+	public void ouvinteBotoes() {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO adiciona o texto da ATA dentro da reunião
+				ci.getReuniaoTemp().setAta(taATA.getText());
+				p.salvarCentral(ci);
+				dispose();
+				new TelaReunioes();
+			}
+		});
+
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ci.setReuniaoTemp(new Reuniao(null));
 				dispose();
 				new TelaReunioes();
 			}

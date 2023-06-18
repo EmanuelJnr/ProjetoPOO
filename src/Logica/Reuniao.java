@@ -9,6 +9,11 @@ public class Reuniao {
 	public Reuniao(LocalDateTime dataHora) {
 		this.dataHora = dataHora;
 	}
+	public boolean equals(Reuniao r) {
+		if(r.getDataHora().equals(dataHora))
+			return true;
+		return false;
+	}
 	public LocalDateTime getDataHora() {
 		return dataHora;
 	}

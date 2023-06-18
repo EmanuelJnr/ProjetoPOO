@@ -36,6 +36,14 @@ public class Orcamento {
 		this.tipo = "Orçamento";
 	}
 	
+	public boolean adicionarReuniao(Reuniao rAdd) {
+		for (Reuniao r : reunioes) {
+			if(r.equals(rAdd))
+				return false;
+		}
+		reunioes.add(rAdd);
+		return true;
+	}
 	public boolean equals(Orcamento o) {
 		if(o.getNomeEvento().equals(nomeEvento))
 			return true;
