@@ -114,17 +114,17 @@ public class TelaOrcamentos extends TelaPadrao{
 		OuvinteNovaTela.proximaTela(btnCadastrar, this, NomeTela.TELA_CADASTRO_ORCAMENTO);
 		add(btnCadastrar);
 
-		btnEditarOcamento = new Botao("Editar Oçamento", 415, 460, 120, 30);//100, 510
+		btnEditarOcamento = new Botao("Editar Oçamento", 415, 460, 120, 30);
 		btnEditarOcamento.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(btnEditarOcamento);
 
 		btnFiltrar = new Botao("Filtrar", 265, 510, 120, 30);
 		add(btnFiltrar);
 
-		btnEditarContrato = new Botao("Editar Contrato", 415, 510, 120, 30);//415, 460
+		btnEditarContrato = new Botao("Editar Contrato", 415, 510, 120, 30);
 		add(btnEditarContrato);
 
-		btnRelatorio = new Botao("Relatório", 100, 510, 120, 30);//415, 510
+		btnRelatorio = new Botao("Relatório", 100, 510, 120, 30);
 		add(btnRelatorio);
 
 		Botao btnVoltar = new Botao("Voltar", 580, 510, 120, 30);

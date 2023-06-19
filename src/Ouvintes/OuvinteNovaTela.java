@@ -13,7 +13,6 @@ import Telas.TelaDetalharFornecedor;
 import Telas.TelaEditarOrcamento;
 import Telas.TelaFiltrarFornecedor;
 import Telas.TelaFornecedores;
-import Telas.TelaFornecedoresFinancas;
 import Telas.TelaLoginAdmin;
 import Telas.TelaOrcamentos;
 import Telas.TelaPacotes;
@@ -43,9 +42,6 @@ public abstract class OuvinteNovaTela implements ActionListener{
 					break;
 				case TELA_FORNECEDORES:
 					new TelaFornecedores();
-					break;
-				case TELA_FORNECEDORES_FINANCAS:
-					new TelaFornecedoresFinancas();
 					break;
 				case TELA_FILTRAR_FORNECEDOR:
 					new TelaFiltrarFornecedor();
