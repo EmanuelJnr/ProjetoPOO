@@ -60,7 +60,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 
 	public TelaCadastroOrcamento () {
 		super("Cadastro Orçamento");
-		setSize(800, 900);
+		setSize(800, 720);
 		setLocationRelativeTo(null);
 		addRadioButtons();
 		addLabels();
@@ -103,12 +103,12 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		add(new Label("Fornecedores deste orçamento", 120, 235, 200, 30));
 		add(new Label("Todos os fornecedores", 513, 235, 150, 30));
 
-		add(new Label("Soma dos montantes:", 280, 505, 120, 30));
-		lbSoma = new Label("0.0", 405, 505, 200, 30);
+		add(new Label("Soma dos montantes:", 280, 405, 120, 30));
+		lbSoma = new Label("0.0", 405, 405, 200, 30);
 		add(lbSoma);
 
-		add(new Label("Pacotes deste orçamento", 132, 535, 200, 30));
-		add(new Label("Todos os pacotes", 528, 535, 150, 30));
+		add(new Label("Pacotes deste orçamento", 132, 435, 200, 30));
+		add(new Label("Todos os pacotes", 528, 435, 150, 30));
 	}
 
 	public void addComboBox() {
@@ -143,22 +143,22 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 	}
 
 	public void addBotoes() {	
-		btnCadastrar = new Botao("Cadastrar", 250, 825, 120, 30);
+		btnCadastrar = new Botao("Cadastrar", 250, 625, 120, 30);
 		add(btnCadastrar);
 
-		btnExcluirFornecedor = new Botao("Excluir", 145, 470, 120, 30);
+		btnExcluirFornecedor = new Botao("Excluir", 145, 370, 120, 30);
 		add(btnExcluirFornecedor);
 
-		btnAdicionarFornecedor = new Botao("Adicionar", 515, 470, 120, 30);
+		btnAdicionarFornecedor = new Botao("Adicionar", 515, 370, 120, 30);
 		add(btnAdicionarFornecedor);
 
-		btnExcluirPacote = new Botao("Excluir", 145, 770, 120, 30);
+		btnExcluirPacote = new Botao("Excluir", 145, 570, 120, 30);
 		add(btnExcluirPacote);
 
-		btnAdicionarPacote = new Botao("Adicionar", 515, 770, 120, 30);
+		btnAdicionarPacote = new Botao("Adicionar", 515, 570, 120, 30);
 		add(btnAdicionarPacote);
 
-		btnVoltar = new Botao("Voltar", 430, 825, 120, 30);
+		btnVoltar = new Botao("Voltar", 430, 625, 120, 30);
 		add(btnVoltar);
 	}
 
@@ -343,7 +343,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
 		tabelaTodosFornecedores.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaTodosFornecedores);
-		painelScrow.setBounds(393, 262, 372, 205);
+		painelScrow.setBounds(393, 262, 372, 105);
 		add(painelScrow);
 	}
 
@@ -367,7 +367,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modeloFornecedores);
 		tabelaAddFornecedores.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaAddFornecedores);
-		painelScrow.setBounds(20, 262, 372, 205);
+		painelScrow.setBounds(20, 262, 372, 105);
 		add(painelScrow);
 	}
 
@@ -397,7 +397,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
 		tabelaTodosPacotes.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaTodosPacotes);
-		painelScrow.setBounds(393, 562, 372, 205);
+		painelScrow.setBounds(393, 462, 372, 105);
 		add(painelScrow);
 	}
 
@@ -427,7 +427,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modeloPacotes);
 		tabelaAddPacotes.setRowSorter(sorter);
 		JScrollPane painelScrow = new JScrollPane(tabelaAddPacotes);
-		painelScrow.setBounds(20, 562, 372, 205);
+		painelScrow.setBounds(20, 462, 372, 105);
 		add(painelScrow);
 	}
 }
