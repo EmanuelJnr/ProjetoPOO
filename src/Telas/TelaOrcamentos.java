@@ -48,6 +48,10 @@ public class TelaOrcamentos extends TelaPadrao{
 		ouvinteBotoes();
 		setVisible(true);
 	}
+	
+	public static void main(String[] args) {
+		new TelaOrcamentos();
+	}
 
 	public void addLabels() {
 		Label titulo = new Label("ORÇAMENTOS/CONTRATOS", 250, 30, 280, 30);

@@ -14,6 +14,9 @@ import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import Interface.Botao;
 import Interface.Fontes;
 import Interface.Label;
@@ -21,15 +24,15 @@ import Interface.NomeTela;
 import Logica.AlinhaCelulas;
 import Logica.CentralDeInformacoes;
 import Logica.Cliente;
+import Logica.GerarPlanilhaExcel;
 import Logica.Persistencia;
 import Ouvintes.OuvinteNovaTela;
 
 public class TelaPlanilhaFinancas extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	Persistencia p = new Persistencia();
-	CentralDeInformacoes ci = new CentralDeInformacoes();
+	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnVoltar;
-	private Label lbValor;
 	private Botao btnPlanilha;
 	private JTable tabela;
 	private ArrayList<Cliente> clientesASeremExibidos;
@@ -59,23 +62,24 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 
 		btnPlanilha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Gerar planilha a partir desta tabela.
+				if(tabela.getSelectedRow() != -1) {
+					String cpf_cnpj = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
+					ci.setClienteTemp(ci.buscaCliente(cpf_cnpj));
+					p.salvarCentral(ci);
+					GerarPlanilhaExcel gpe = new GerarPlanilhaExcel();
+					gpe.gerarPlanilhaExcel();
+				}
+				
 				JOptionPane.showMessageDialog(null, "Planilha criada");
 			}
 		});
 	}
 
 	public void addLabels() {
-		Label titulo = new Label("Fornecedores",0,30,800,30);
+		Label titulo = new Label("Orçamentos",0,30,800,30);
 		titulo.setHorizontalAlignment(Label.CENTER);
 		titulo.setFont(Fontes.titulo());
 		add(titulo);
-
-		add(new Label("Valor Total: ", 140, 500, 67, 30));
-
-		lbValor = new Label("", 210, 500, 120, 30);
-		lbValor.setText("0");//TODO fazer a soma dos valores da tabela e colcar o calculo aqui
-		add(lbValor);
 	}
 	
 	public void centralizarOrdenar(DefaultTableModel modelo) {

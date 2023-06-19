@@ -8,9 +8,9 @@ public class Mensageiro extends SimpleEmail{
 	public Mensageiro() throws EmailException {
 		setHostName("smtp.gmail.com");
 		setSmtpPort(587);
-		setAuthenticator(new DefaultAuthenticator("gerenciador.festas54325@gmail.com", "wsmjbljpfbenawys"));
+		setAuthenticator(new DefaultAuthenticator("partyhelper49@gmail.com", "yqwhcxtabgodzebb"));
 		setSSLOnConnect(true);
-		setFrom("gerenciador.festas54325@gmail.com");
+		setFrom("partyhelper49@gmail.com");
 	}
 
 	public boolean enviarEmail(String destinatario, String titulo, String mensagem) throws EmailException {
