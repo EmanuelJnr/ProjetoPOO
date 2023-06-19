@@ -3,8 +3,6 @@ package Logica;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-
 public class Orcamento {
 	private String nomeEvento;
 	private LocalDateTime dataHora;
@@ -14,7 +12,7 @@ public class Orcamento {
 	private ArrayList<Fornecedor> fornecedores;
 	private ArrayList<Pacote> pacotes;
 	private ArrayList<Reuniao> reunioes;
-	private ArrayList<ImageIcon> fotos;
+	private ArrayList<Foto> fotos;
 	private float valor;
 	private String responsavelPagamento;
 	private String tipo;
@@ -28,14 +26,14 @@ public class Orcamento {
 		this.fornecedores = fornecedores;
 		this.pacotes = pacotes;
 		reunioes = new ArrayList<>();
-		fotos = new ArrayList<>();
+		setFotos(new ArrayList<>());
 		this.valor = valor;
 		this.responsavelPagamento = responsavelPagamento;
 		this.tipo = "Orçamento";
 	}
 	public Orcamento() {
 		dataModificacao = LocalDateTime.now();
-		fotos = new ArrayList<>();
+		setFotos(new ArrayList<>());
 		reunioes = new ArrayList<>();
 		fornecedores = new ArrayList<>();
 		pacotes = new ArrayList<>();
@@ -81,13 +79,20 @@ public class Orcamento {
 		reunioes.add(rAdd);
 		return true;
 	}
-	public boolean adicionarFoto(ImageIcon fAdd) {
-		for (ImageIcon f : fotos) {
+	public boolean adicionarFoto(Foto fAdd) {
+		for (Foto f : fotos) {
 			if(f.equals(fAdd))
 				return false;
 		}
 		fotos.add(fAdd);
 		return true;
+	}
+	public Foto buscaFoto(String caminhoDaFoto) {
+		for(Foto f : fotos) {
+			if(caminhoDaFoto.contains(f.getCaminhoDaFoto()))
+				return f;
+		}
+		return null;
 	}
 	public boolean equals(Orcamento o) {
 		if(o.getNomeEvento().equals(nomeEvento))
@@ -96,12 +101,6 @@ public class Orcamento {
 	}
 	public String toString() {
 		return nomeEvento;
-	}
-	public ArrayList<ImageIcon> getFotos() {
-		return fotos;
-	}
-	public void setFotos(ArrayList<ImageIcon> fotos) {
-		this.fotos = fotos;
 	}
 	public ArrayList<Fornecedor> getFornecedores() {
 		return fornecedores;
@@ -168,5 +167,11 @@ public class Orcamento {
 	}
 	public void setDataModificacao(LocalDateTime dataModificacao) {
 		this.dataModificacao = dataModificacao;
+	}
+	public ArrayList<Foto> getFotos() {
+		return fotos;
+	}
+	public void setFotos(ArrayList<Foto> fotos) {
+		this.fotos = fotos;
 	}
 }

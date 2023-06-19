@@ -12,17 +12,7 @@ public class Mensageiro extends SimpleEmail{
 		setSSLOnConnect(true);
 		setFrom("gerenciador.festas54325@gmail.com");
 	}
-	
-	/*public void enviarEmailParaCliente(Evento evento, String mensagem) {
-		setSubject("Contrato");
-		try {
-			addTo(evento.getCliente().getEmail());
-			setMsg(evento.toString()+"\n"+mensagem);
-			send();
-		} catch (EmailException e) {
-			System.out.println(e);;
-		}
-	}*/
+
 	public boolean enviarEmail(String destinatario, String titulo, String mensagem) throws EmailException {
 		setSubject(titulo);
 		setMsg(mensagem);

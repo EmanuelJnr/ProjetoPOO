@@ -18,7 +18,7 @@ public class Persistencia {
 	}
 	public void salvarCentral(CentralDeInformacoes ci) {
 		String xml = xstream.toXML(ci);
-		File arquivo = new File("Party Helper.xml");
+		File arquivo = new File("G:\\Meu Drive\\Party Helper.xml");
 
 		try {
 			arquivo.createNewFile();
@@ -31,7 +31,7 @@ public class Persistencia {
 		}
 	}
 	public CentralDeInformacoes recuperarCentral() {
-		File arquivo = new File("Party Helper.xml");
+		File arquivo = new File("G:\\Meu Drive\\Party Helper.xml");
 		try {
 			if (arquivo.exists()) {
 				FileInputStream file = new FileInputStream(arquivo);
