@@ -249,7 +249,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 					Pacote pacoteTemp = ci.buscaPacote(nomePacote);
 					if(novoOrcamento.adicionarPacote(pacoteTemp)) {
 						String nomeFornecedores = "";
-						for (Fornecedor f : novoOrcamento.getFornecedores())
+						for (Fornecedor f : novoOrcamento.getFornecedores())///////////////////////////////////
 							nomeFornecedores += f.getNome();
 
 						float soma = Float.parseFloat(lbSoma.getText());
@@ -409,7 +409,7 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 
 		for (Pacote pacote : novoOrcamento.getPacotes()) {
 			String fornecedores = "";
-			for (Fornecedor f : pacote.getFornecedores()) {
+			for (Fornecedor f : pacote.getFornecedores()) {/////////////////////////////////////////////////////////////
 				fornecedores += f.getNome();
 			}
 			Object[] linha = new Object[3];

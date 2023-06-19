@@ -2,17 +2,17 @@ package Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.JTextArea;
 import Interface.Botao;
 import Interface.Fontes;
 import Interface.Label;
+import Interface.NomeTela;
 import Logica.CentralDeInformacoes;
 import Logica.Fornecedor;
 import Logica.Pacote;
 import Logica.Persistencia;
 import Logica.Servico;
+import Ouvintes.OuvinteNovaTela;
 
 public class TelaDetalhamentoPacote extends TelaPadrao {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,6 @@ public class TelaDetalhamentoPacote extends TelaPadrao {
 		addTextArea();
 		addBotoes();
 		ouvinteBotoes();
-		ouvinteJanela();
 		setVisible(true);
 	}
 
@@ -64,6 +63,7 @@ public class TelaDetalhamentoPacote extends TelaPadrao {
 
 	public void addBotoes() {
 		btnVoltar = new Botao("Voltar", 450, 500, 120, 30);
+		OuvinteNovaTela.proximaTela(btnVoltar, this, NomeTela.TELA_PACOTES);
 		add(btnVoltar);
 
 		btnExcluir = new Botao("Excluir", 220, 500, 120 ,30);
@@ -80,30 +80,6 @@ public class TelaDetalhamentoPacote extends TelaPadrao {
 				dispose();
 				new TelaPacotes();
 			}
-		});
-
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ci.setPacoteRef(new Pacote());
-				p.salvarCentral(ci);
-				dispose();
-				new TelaPacotes();
-			}
-		});
-	}
-
-	public void ouvinteJanela() {
-		this.addWindowListener(new WindowListener() {
-			public void windowOpened(WindowEvent e) {}
-			public void windowIconified(WindowEvent e) {}
-			public void windowDeiconified(WindowEvent e) {}
-			public void windowDeactivated(WindowEvent e) {}
-			public void windowClosing(WindowEvent e) {
-				ci.setPacoteRef(new Pacote());
-				p.salvarCentral(ci);
-			}
-			public void windowClosed(WindowEvent e) {}
-			public void windowActivated(WindowEvent e) {}
 		});
 	}
 }

@@ -1,5 +1,6 @@
 package Telas;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
@@ -29,9 +30,10 @@ public class TelaOrcamentos extends TelaPadrao{
 	Persistencia p = new Persistencia();
 	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnReuniao;
-	private Botao btnEditar;
+	private Botao btnEditarOcamento;
 	private Botao btnFiltrar;
 	private Botao btnRelatorio;
+	private Botao btnEditarContrato;
 	private CheckBox cbContrato;
 	private CheckBox cbOrcamento;
 	private JTable tabela;
@@ -112,13 +114,17 @@ public class TelaOrcamentos extends TelaPadrao{
 		OuvinteNovaTela.proximaTela(btnCadastrar, this, NomeTela.TELA_CADASTRO_ORCAMENTO);
 		add(btnCadastrar);
 
-		btnEditar = new Botao("Editar", 100, 510, 120, 30);
-		add(btnEditar);
+		btnEditarOcamento = new Botao("Editar Oçamento", 415, 460, 120, 30);//100, 510
+		btnEditarOcamento.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		add(btnEditarOcamento);
 
 		btnFiltrar = new Botao("Filtrar", 265, 510, 120, 30);
 		add(btnFiltrar);
 
-		btnRelatorio = new Botao("Relatório", 415, 510, 120, 30);
+		btnEditarContrato = new Botao("Editar Contrato", 415, 510, 120, 30);//415, 460
+		add(btnEditarContrato);
+
+		btnRelatorio = new Botao("Relatório", 100, 510, 120, 30);//415, 510
 		add(btnRelatorio);
 
 		Botao btnVoltar = new Botao("Voltar", 580, 510, 120, 30);
@@ -139,7 +145,7 @@ public class TelaOrcamentos extends TelaPadrao{
 				if(tabela.getSelectedRow() != -1) {
 					String cpf_cnpj = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
 					Cliente c = ci.buscaCliente(cpf_cnpj);
-					if(c.getOrcamento().getTipo().equals("Contrato")) {
+					if(c.getOrcamento().getTipo().equals("Contrato") || c.getOrcamento().getTipo().equals("Concluído")) {
 						ci.setClienteTemp(c);
 						p.salvarCentral(ci);
 						dispose();
@@ -149,7 +155,7 @@ public class TelaOrcamentos extends TelaPadrao{
 			}
 		});
 
-		btnEditar.addActionListener(new ActionListener() {
+		btnEditarOcamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tabela.getSelectedRow() != -1) {
 					String cpf_cnpj = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
@@ -161,12 +167,27 @@ public class TelaOrcamentos extends TelaPadrao{
 			}
 		});
 
+		btnEditarContrato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tabela.getSelectedRow() != -1) {
+					String cpf_cnpj = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
+					Cliente c = ci.buscaCliente(cpf_cnpj);
+					if(c.getOrcamento().getTipo().equals("Contrato") || c.getOrcamento().getTipo().equals("Concluído")) {
+						ci.setClienteTemp(c);
+						p.salvarCentral(ci);
+						dispose();
+						new TelaEditarContrato();
+					}
+				}
+			}
+		});
+
 		btnRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tabela.getSelectedRow() != -1) {
 					String cpf_cnpj = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
 					Cliente c = ci.buscaCliente(cpf_cnpj);
-					if(c.getOrcamento().getTipo().equals("Contrato")) {
+					if(c.getOrcamento().getTipo().equals("Contrato") || c.getOrcamento().getTipo().equals("Concluído")) {
 						ci.setClienteTemp(c);
 						p.salvarCentral(ci);
 						dispose();

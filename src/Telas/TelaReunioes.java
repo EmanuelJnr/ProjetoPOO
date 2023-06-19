@@ -53,11 +53,17 @@ public class TelaReunioes extends TelaPadrao {
 		addTabela();
 		addCampoDeTexto();
 		addBotoes();
+		verificacao();
 		ouvinteBotoes();
 		setVisible(true);
 	}
-	public static void main(String[] args) {
-		new TelaReunioes();
+	
+	public void verificacao() {
+		if(cliente.getOrcamento().getTipo().equals("Concluído")) {
+			btnATA.setEnabled(false);
+			btnReuniao.setEnabled(false);
+			tfDataHora.setEnabled(false);
+		}
 	}
 
 	public void addLabels() {

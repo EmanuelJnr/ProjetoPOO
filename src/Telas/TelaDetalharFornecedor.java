@@ -87,7 +87,7 @@ public class TelaDetalharFornecedor extends TelaPadrao {
 		jp.add(sp);
 		jp.setBounds(580, 65, 192, 135);
 		add(jp);
-		taATA.setEnabled(editavel);
+		taATA.setEnabled(false);
 	}
 
 	public void addRadioButtonDisponivel() {

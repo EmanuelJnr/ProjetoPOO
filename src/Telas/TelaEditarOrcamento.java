@@ -36,8 +36,8 @@ public class TelaEditarOrcamento extends TelaPadrao{
 	private static final long serialVersionUID = 1L;
 	Persistencia p = new Persistencia();
 	CentralDeInformacoes ci = p.recuperarCentral();
-	private CampoDeTexto tfNomeEvento;
 	private JFormattedTextField tfDataHora;
+	private CampoDeTexto tfNomeEvento;
 	private CampoDeTexto tfLocalEvento;
 	private CampoDeTexto tfQtdConvidados;
 	private Botao btnEditar;
@@ -46,20 +46,20 @@ public class TelaEditarOrcamento extends TelaPadrao{
 	private Botao btnAdicionarFornecedor;
 	private Botao btnExcluirPacote;
 	private Botao btnAdicionarPacote;
+	private RadioButton rbCerimonialista;
+	private RadioButton rbCliente;
+	private Label lbSoma;
+	private CheckBox cbTipo;
 	private JTable tabelaTodosFornecedores;
 	private JTable tabelaAddFornecedores;
 	private JTable tabelaTodosPacotes;
 	private JTable tabelaAddPacotes;
 	private DefaultTableModel modeloFornecedores;
 	private DefaultTableModel modeloPacotes;
-	private RadioButton rbCerimonialista;
-	private RadioButton rbCliente;
-	private Label lbSoma;
-	private CheckBox cbTipo;
-	Cliente clienteTemp = ci.getClienteTemp();
+	private Cliente clienteTemp = ci.getClienteTemp();
 
 	public TelaEditarOrcamento () {
-		super("Editar Orçamento");
+		super("Editar Orçamentos");
 		setSize(800, 900);
 		setLocationRelativeTo(null);
 		addCheckBox();
@@ -73,8 +73,28 @@ public class TelaEditarOrcamento extends TelaPadrao{
 		tabelaTodosPacotes();
 		tabelaAddPacotes();
 		preencheComponentes();
+		verificacao();
 		setVisible(true);
 	}
+	public void verificacao() {
+		if(clienteTemp.getOrcamento().getTipo().equals("Concluído")) {
+			tfDataHora.setEnabled(false);
+			tfNomeEvento.setEnabled(false);
+			tfLocalEvento.setEnabled(false);
+			tfQtdConvidados.setEnabled(false);
+			btnEditar.setEnabled(false);
+			btnExcluirFornecedor.setEnabled(false);
+			btnAdicionarFornecedor.setEnabled(false);
+			btnExcluirPacote.setEnabled(false);
+			btnAdicionarPacote.setEnabled(false);
+			rbCerimonialista.setEnabled(false);
+			rbCliente.setEnabled(false);
+			lbSoma.setEnabled(false);
+			cbTipo.setEnabled(false);
+			cbTipo.setSelected(true);
+		}
+	}
+
 	public void preencheComponentes() {
 		if(clienteTemp.getOrcamento().getTipo().equals("Contrato")) {
 			cbTipo.setSelected(true);
@@ -92,6 +112,7 @@ public class TelaEditarOrcamento extends TelaPadrao{
 			rbCerimonialista.setSelected(true);
 		lbSoma.setText(clienteTemp.getOrcamento().getValor()+"");
 	}
+
 	public void addCheckBox() {
 		cbTipo = new CheckBox("Contrato Efetivo", 510, 70, 150, 20);
 		add(cbTipo);
@@ -110,7 +131,7 @@ public class TelaEditarOrcamento extends TelaPadrao{
 	}
 
 	public void addLabels() {
-		Label lbTitulo = new Label("Editar Orçamento", 280, 20, 240, 25);
+		Label lbTitulo = new Label("EDITAR ORÇAMENTOS", 270, 20, 240, 25);
 		lbTitulo.setFont(Fontes.titulo());
 		add(lbTitulo);
 
