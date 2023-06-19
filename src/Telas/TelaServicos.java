@@ -88,6 +88,12 @@ public class TelaServicos extends TelaPadrao{
 				String resultadoJOption = JOptionPane.showInputDialog(null, "Digite um serviço:");
 				if(resultadoJOption != null) {
 					if(!resultadoJOption.equals("")) {
+						for (Servico s: ci.getTodosOsServicos()) {
+							if(s.getServico().equals(resultadoJOption)) {
+								JOptionPane.showMessageDialog(null, "Já existe um serviço com esse nome!");
+								return;
+							}
+						}
 						Object[] row = new Object[1];
 						row[0] = resultadoJOption;
 						modelo.addRow(row);

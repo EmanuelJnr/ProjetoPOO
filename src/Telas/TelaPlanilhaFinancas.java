@@ -14,9 +14,6 @@ import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-
 import Interface.Botao;
 import Interface.Fontes;
 import Interface.Label;
@@ -36,7 +33,7 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 	private Botao btnPlanilha;
 	private JTable tabela;
 	private ArrayList<Cliente> clientesASeremExibidos;
-	
+
 	public TelaPlanilhaFinancas() {
 		super("Orçamentos e Contratos");
 		addBotoes();
@@ -69,8 +66,6 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 					GerarPlanilhaExcel gpe = new GerarPlanilhaExcel();
 					gpe.gerarPlanilhaExcel();
 				}
-				
-				JOptionPane.showMessageDialog(null, "Planilha criada");
 			}
 		});
 	}
@@ -81,7 +76,7 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 		titulo.setFont(Fontes.titulo());
 		add(titulo);
 	}
-	
+
 	public void centralizarOrdenar(DefaultTableModel modelo) {
 		for(int i=0;i<tabela.getColumnCount();i++) {
 			tabela.getColumnModel().getColumn(i).setCellRenderer(AlinhaCelulas.alinhar());
@@ -96,7 +91,7 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 		sorter.setSortKeys(sortKeys);
 		sorter.sort();
 	}
-	
+
 	private void addTabela() {
 		ArrayList<Cliente> todosOsOrcamentos = ci.getTodosOsClientes();
 		clientesASeremExibidos = todosOsOrcamentos;

@@ -122,6 +122,11 @@ public class TelaCadastroPacote extends TelaPadrao{
 					String nomePacote = tfNomePacote.getText();
 					float valor = Float.parseFloat(tfValor.getText());
 					String caracteristicas = taCaracteristicas.getText();
+					
+					if(novoPacote.getFornecedores().size()==0) {
+						JOptionPane.showMessageDialog(null, "Adicione pelo menos um Fornecedor!");
+						return;
+					}
 
 					if(!nomePacote.equals("") && !caracteristicas.equals("")) {
 						novoPacote.setNomePacote(nomePacote);

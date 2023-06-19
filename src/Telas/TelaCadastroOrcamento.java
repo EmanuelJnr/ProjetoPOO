@@ -276,6 +276,11 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 				float somaTotal = Float.parseFloat(lbSoma.getText());
 				Cliente cliente = (Cliente) jcbClientes.getSelectedItem();
 
+				if(novoOrcamento.getFornecedores().size()==0 && novoOrcamento.getPacotes().size()==0) {
+					JOptionPane.showMessageDialog(null, "Adicione pelo menos um Pacote ou Fornecedor!");
+					return;
+				}
+
 				String responsavelPagamento = "";
 				if(rbCerimonialista.isSelected())
 					responsavelPagamento = rbCerimonialista.getText();

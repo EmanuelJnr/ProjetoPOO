@@ -228,6 +228,11 @@ public class TelaCadastroFornecedor extends TelaPadrao {
 				String email = tfEmail.getText();
 				String telefone = tfTelefone.getText();
 				String cpf_cnpj = "";
+				
+				if(novoFornecedor.getServicos().size()==0) {
+					JOptionPane.showMessageDialog(null, "Adicione pelo menos um Serviço!");
+					return;
+				}
 
 				if(rbCPF.isSelected() && ValidaCPF.isCPF(tfCPF.getText())) {
 					cpf_cnpj = tfCPF.getText();
