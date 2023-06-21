@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
@@ -35,22 +34,19 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 	private ArrayList<Cliente> clientesASeremExibidos;
 
 	public TelaPlanilhaFinancas() {
-		super("Orçamentos e Contratos");
+		super("Gerar Planilha");
 		addBotoes();
 		addLabels();
 		addTabela();
 		ouvintesBotoes();
 		setVisible(true);
 	}
-	public static void main(String[] args) {///////////////////////////////////////////////////
-		new TelaPlanilhaFinancas();
-	}
 
 	public void addBotoes() {		
 		btnVoltar = new Botao("Voltar",520,500,120,30);
 		add(btnVoltar);
 
-		btnPlanilha = new Botao("Planilha",300,500,120,30);
+		btnPlanilha = new Botao("Gerar Planilha",300,500,120,30);
 		add(btnPlanilha);
 	}
 

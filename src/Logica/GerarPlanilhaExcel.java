@@ -1,13 +1,12 @@
 package Logica;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -19,14 +18,14 @@ public class GerarPlanilhaExcel {
 	Cliente clienteTemp = ci.getClienteTemp();
 	ArrayList<Fornecedor> todosFornecedores = new ArrayList<>();
 	ArrayList<Pacote> pacotes = new ArrayList<>();
-	
+
 	public GerarPlanilhaExcel() {
 		for (Pacote p : clienteTemp.getOrcamento().getPacotes()) {
 			pacotes.add(p);
 		}
 		preencheFornecedores();
 	}
-	
+
 	public boolean adicionarFornecedor(Fornecedor fAdd) {
 		for (Fornecedor f : todosFornecedores) {
 			if(f.equals(fAdd))
@@ -45,13 +44,13 @@ public class GerarPlanilhaExcel {
 				adicionarFornecedor(f);
 		}
 	}
-	
+
 	public void gerarPlanilhaExcel() {
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet orcamento = workbook.createSheet("Orçamento");
 		int rownum = 0;
 		int valor = 0;
-		
+
 		Row row = orcamento.createRow(rownum++);
 		Cell titulo = row.createCell(0);
 		titulo.setCellValue("FORNECEDOR/PACOTE");
@@ -85,7 +84,7 @@ public class GerarPlanilhaExcel {
 			}  
 		}
 		row = orcamento.createRow(rownum++);
-		
+
 		row = orcamento.createRow(rownum++);
 		Cell cellTextoValor = row.createCell(0);
 		cellTextoValor.setCellValue("Valor total:");
@@ -93,10 +92,19 @@ public class GerarPlanilhaExcel {
 		cellValorFornecedor.setCellValue(valor);
 
 		try {     
-			FileOutputStream out = new FileOutputStream(new File("finanças "+clienteTemp.getOrcamento().getNomeEvento()+".xls"));
+			FileOutputStream out = new FileOutputStream(new File("Finanças "+clienteTemp.getOrcamento().getNomeEvento()+".xls"));
 			workbook.write(out);
 			out.close();
+			workbook.close();
 			JOptionPane.showMessageDialog(null,"Arquivo Excel criado com sucesso!");
+
+			Desktop desktop = Desktop.getDesktop();
+			File file = new File("Finanças "+clienteTemp.getOrcamento().getNomeEvento()+".xls");
+			try {
+				desktop.open(file);
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null,"Não conseguiu abrir o programa do Excel, mas a planilha foi salva no Eclipse!");
+			}
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null,"Arquivo não encontrado!");
 		} catch (IOException e) {
