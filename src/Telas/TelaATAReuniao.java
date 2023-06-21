@@ -37,6 +37,7 @@ public class TelaATAReuniao extends TelaPadrao{
 
 	public void textAta() {
 		taATA = new JTextArea(5,10);
+		taATA.setText(ci.getReuniaoTemp().getAta());
 		taATA.setBounds(8, 35, 370, 180);
 		add(taATA);
 	}

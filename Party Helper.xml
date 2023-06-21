@@ -1,6 +1,6 @@
 <Logica.CentralDeInformacoes>
   <admin>
-    <nome>emanuel</nome>
+    <nome>emanuel lopes ventura júnior</nome>
     <email>junior.ssu@hotmail.com</email>
     <senha>1</senha>
   </admin>
@@ -29,16 +29,16 @@
     <fornecedores/>
   </pacoteRef>
   <clienteTemp>
-    <nome>Jose Carlos</nome>
-    <email>junior.ssu57@gmail.com</email>
-    <CPF__CNPJ>86.934.846/0001-14</CPF__CNPJ>
-    <telefone>(22)2.2222-2222</telefone>
+    <nome>Junior</nome>
+    <email>junior.ssu@hotmail.com</email>
+    <CPF__CNPJ>33.406.154/0001-37</CPF__CNPJ>
+    <telefone>(33)3.3333-3333</telefone>
     <orcamento>
-      <nomeEvento>Aniversário da Cidade</nomeEvento>
-      <dataHora>2023-06-25T19:00:00</dataHora>
-      <dataModificacao>2023-06-21T05:38:15.9221153</dataModificacao>
-      <localEvento>Praça do Pitoco</localEvento>
-      <qtdConvidados>2600</qtdConvidados>
+      <nomeEvento>Festa Junina</nomeEvento>
+      <dataHora>2023-06-23T23:00:00</dataHora>
+      <dataModificacao>2023-06-21T16:46:58.5410069</dataModificacao>
+      <localEvento>Praça de Central</localEvento>
+      <qtdConvidados>2333</qtdConvidados>
       <fornecedores>
         <Logica.Fornecedor>
           <nome>Lara</nome>
@@ -53,7 +53,6 @@
           <qtdContratos>0</qtdContratos>
           <valor>700.0</valor>
         </Logica.Fornecedor>
-        <Logica.Fornecedor reference="../../../../fornecedorTemp"/>
         <Logica.Fornecedor>
           <nome>Jonas</nome>
           <email>junior.ssu57@gmail.com</email>
@@ -68,43 +67,52 @@
           <comentarios>O bicho é brabo</comentarios>
           <valor>4020.0</valor>
         </Logica.Fornecedor>
+        <Logica.Fornecedor reference="../../../../fornecedorTemp"/>
       </fornecedores>
       <pacotes>
         <Logica.Pacote>
           <nomePacote>Pacotão</nomePacote>
           <valor>34.0</valor>
           <fornecedores>
-            <Logica.Fornecedor reference="../../../../fornecedores/Logica.Fornecedor[3]"/>
+            <Logica.Fornecedor reference="../../../../fornecedores/Logica.Fornecedor[2]"/>
           </fornecedores>
           <caracteristicas>adultos</caracteristicas>
-        </Logica.Pacote>
-        <Logica.Pacote>
-          <nomePacote>Pacote completo</nomePacote>
-          <valor>2499.99</valor>
-          <fornecedores>
-            <Logica.Fornecedor reference="../../../../fornecedores/Logica.Fornecedor[3]"/>
-          </fornecedores>
-          <caracteristicas>Crianças</caracteristicas>
         </Logica.Pacote>
         <Logica.Pacote>
           <nomePacote>Pacote simples</nomePacote>
           <valor>980.78</valor>
           <fornecedores>
-            <Logica.Fornecedor reference="../../../../fornecedores/Logica.Fornecedor[3]"/>
+            <Logica.Fornecedor reference="../../../../fornecedores/Logica.Fornecedor[2]"/>
           </fornecedores>
           <caracteristicas>Adultos</caracteristicas>
         </Logica.Pacote>
+        <Logica.Pacote>
+          <nomePacote>Pacote completo</nomePacote>
+          <valor>2499.99</valor>
+          <fornecedores>
+            <Logica.Fornecedor reference="../../../../fornecedores/Logica.Fornecedor[2]"/>
+          </fornecedores>
+          <caracteristicas>Crianças</caracteristicas>
+        </Logica.Pacote>
       </pacotes>
-      <reunioes/>
+      <reunioes>
+        <Logica.Reuniao>
+          <dataHora>2023-06-23T16:31:00</dataHora>
+          <ata>Todos os organizadores participarão da reunião.</ata>
+        </Logica.Reuniao>
+        <Logica.Reuniao>
+          <dataHora>2023-06-23T17:31:00</dataHora>
+        </Logica.Reuniao>
+      </reunioes>
       <fotos/>
-      <valor>8234.7705</valor>
+      <valor>4524.77</valor>
       <responsavelPagamento>Cerimonialista</responsavelPagamento>
       <tipo>Contrato</tipo>
     </orcamento>
   </clienteTemp>
   <reuniaoTemp>
-    <dataHora>2023-06-22T23:00:00</dataHora>
-    <ata>Todos os participantes estavam presentes na reunião.</ata>
+    <dataHora>2023-06-23T15:31:00</dataHora>
+    <ata>Todo mundo estava de verde.</ata>
   </reuniaoTemp>
   <todosOsClientes>
     <Logica.Cliente>
@@ -119,7 +127,7 @@
         <localEvento>Praça</localEvento>
         <qtdConvidados>10</qtdConvidados>
         <fornecedores>
-          <Logica.Fornecedor reference="../../../../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor[3]"/>
+          <Logica.Fornecedor reference="../../../../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor[2]"/>
         </fornecedores>
         <pacotes>
           <Logica.Pacote reference="../../../../../clienteTemp/orcamento/pacotes/Logica.Pacote"/>
@@ -136,21 +144,22 @@
         <tipo>Concluído</tipo>
       </orcamento>
     </Logica.Cliente>
+    <Logica.Cliente reference="../../clienteTemp"/>
     <Logica.Cliente>
-      <nome>Junior</nome>
-      <email>junior.ssu@hotmail.com</email>
-      <CPF__CNPJ>33.406.154/0001-37</CPF__CNPJ>
-      <telefone>(33)3.3333-3333</telefone>
+      <nome>Jose Carlos</nome>
+      <email>junior.ssu57@gmail.com</email>
+      <CPF__CNPJ>86.934.846/0001-14</CPF__CNPJ>
+      <telefone>(22)2.2222-2222</telefone>
       <orcamento>
-        <nomeEvento>Festa Junina</nomeEvento>
-        <dataHora>2023-06-23T23:00:00</dataHora>
-        <dataModificacao>2023-06-21T05:10:05.9360024</dataModificacao>
-        <localEvento>Praça de Central</localEvento>
-        <qtdConvidados>2333</qtdConvidados>
+        <nomeEvento>Aniversário da Cidade</nomeEvento>
+        <dataHora>2023-06-25T19:00:00</dataHora>
+        <dataModificacao>2023-06-21T05:38:15.9221153</dataModificacao>
+        <localEvento>Praça do Pitoco</localEvento>
+        <qtdConvidados>2600</qtdConvidados>
         <fornecedores>
           <Logica.Fornecedor reference="../../../../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor"/>
-          <Logica.Fornecedor reference="../../../../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor[3]"/>
           <Logica.Fornecedor reference="../../../../../fornecedorTemp"/>
+          <Logica.Fornecedor reference="../../../../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor[2]"/>
         </fornecedores>
         <pacotes>
           <Logica.Pacote reference="../../../../../clienteTemp/orcamento/pacotes/Logica.Pacote"/>
@@ -158,32 +167,81 @@
           <Logica.Pacote reference="../../../../../clienteTemp/orcamento/pacotes/Logica.Pacote[2]"/>
         </pacotes>
         <reunioes>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T14:01:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T14:00:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T14:31:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T13:31:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T13:29:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T13:00:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T12:30:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T14:31:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T12:00:00</dataHora>
+          </Logica.Reuniao>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T15:01:00</dataHora>
+          </Logica.Reuniao>
           <Logica.Reuniao reference="../../../../../reuniaoTemp"/>
+          <Logica.Reuniao>
+            <dataHora>2023-06-23T16:01:00</dataHora>
+          </Logica.Reuniao>
         </reunioes>
         <fotos/>
-        <valor>4524.77</valor>
+        <valor>8234.7705</valor>
         <responsavelPagamento>Cerimonialista</responsavelPagamento>
-        <tipo>Orçamento</tipo>
+        <tipo>Contrato</tipo>
       </orcamento>
     </Logica.Cliente>
-    <Logica.Cliente reference="../../clienteTemp"/>
   </todosOsClientes>
   <todosOsServicos>
     <Logica.Servico reference="../../fornecedorTemp/servicos/Logica.Servico"/>
     <Logica.Servico reference="../../fornecedorTemp/servicos/Logica.Servico[2]"/>
   </todosOsServicos>
   <todosOsFornecedores>
-    <Logica.Fornecedor reference="../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor[3]"/>
+    <Logica.Fornecedor reference="../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor[2]"/>
     <Logica.Fornecedor reference="../../fornecedorTemp"/>
     <Logica.Fornecedor reference="../../clienteTemp/orcamento/fornecedores/Logica.Fornecedor"/>
   </todosOsFornecedores>
   <todosOsPacotes>
     <Logica.Pacote reference="../../clienteTemp/orcamento/pacotes/Logica.Pacote"/>
-    <Logica.Pacote reference="../../clienteTemp/orcamento/pacotes/Logica.Pacote[3]"/>
     <Logica.Pacote reference="../../clienteTemp/orcamento/pacotes/Logica.Pacote[2]"/>
+    <Logica.Pacote reference="../../clienteTemp/orcamento/pacotes/Logica.Pacote[3]"/>
   </todosOsPacotes>
   <todasAsReunioes>
     <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente/orcamento/reunioes/Logica.Reuniao"/>
+    <Logica.Reuniao>
+      <dataHora>2023-06-22T23:00:00</dataHora>
+      <ata>Todos os participantes estavam presentes na reunião.</ata>
+    </Logica.Reuniao>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[2]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[3]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[4]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[5]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[6]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[7]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[8]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[9]"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[10]"/>
     <Logica.Reuniao reference="../../reuniaoTemp"/>
+    <Logica.Reuniao reference="../../todosOsClientes/Logica.Cliente[3]/orcamento/reunioes/Logica.Reuniao[12]"/>
+    <Logica.Reuniao reference="../../clienteTemp/orcamento/reunioes/Logica.Reuniao"/>
+    <Logica.Reuniao reference="../../clienteTemp/orcamento/reunioes/Logica.Reuniao[2]"/>
   </todasAsReunioes>
 </Logica.CentralDeInformacoes>

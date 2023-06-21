@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -57,7 +56,7 @@ public class TelaReunioes extends TelaPadrao {
 		ouvinteBotoes();
 		setVisible(true);
 	}
-	
+
 	public void verificacao() {
 		if(cliente.getOrcamento().getTipo().equals("Concluído")) {
 			btnATA.setEnabled(false);
@@ -135,6 +134,18 @@ public class TelaReunioes extends TelaPadrao {
 		add(btnVoltar);
 	}
 
+	public String tratarNome(String nomeCompleto) {
+		String[] nomeSplit = nomeCompleto.split(" ");
+		String resultado = "";
+		for (String nome : nomeSplit) {
+			String primeiraLetra = nome.substring(0, 1).toUpperCase();
+			String restanteNome = nome.substring(1);
+			String nomeCapitalizado = primeiraLetra + restanteNome;
+			resultado += nomeCapitalizado+" ";
+		}
+		return resultado;
+	}
+
 	public void ouvinteBotoes() {
 		btnReuniao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -143,21 +154,36 @@ public class TelaReunioes extends TelaPadrao {
 						String tempoI1 = tfDataHora.getText();
 						LocalDateTime dataHora = LocalDateTime.parse(tempoI1, parser);
 
-						if(dataHora.isBefore(LocalDateTime.now())) {
+						if(dataHora.isBefore(LocalDateTime.now())) {//ela tentou marcar uma reunião para antes do instante de agora
 							JOptionPane.showMessageDialog(null, "Essa data já ocorreu!");
-							tfDataHora.setText("");
 							return;
 						}
-						if(dataHora.isAfter(cliente.getOrcamento().getDataHora())) {
-							JOptionPane.showMessageDialog(null, "Não pode marcar uma reunião para depois do evento!");
-							tfDataHora.setText("");
-							return;
-						}
-						for(Reuniao r : ci.getTodasAsReunioes()) {
-							if(r.getDataHora().equals(dataHora)) {
-								JOptionPane.showMessageDialog(null, "Já existe uma reunião marcada com essa data e hora!");
+
+						for(Reuniao r : ci.getTodasAsReunioes()) {//percorre todas as reuniões já marcadas no sistema
+							if(dataHora.isAfter(r.getDataHora()) && dataHora.isBefore(r.getDataHora().plusMinutes(30))) {//verifica se a reunião que está tentando marcar está no intervalo de 30 minutos depois de uma reunião já marcada no sistema.
+								JOptionPane.showMessageDialog(null, "Tem uma reunião marcada para: "+r.getDataHora().format(parser)+" horas, tente marcar para 30 minutos depois!");
 								return;
 							}
+						}
+
+						for(Reuniao r : ci.getTodasAsReunioes()) {//percorre todas as reuniões já marcadas no sistema
+							if(r.getDataHora().equals(dataHora)) {//verifica se a reunião que está tentando marcar é igual a uma reunião já marcada no sistema.
+								JOptionPane.showMessageDialog(null, "Tem uma reunião marcada para exatamente essa hora!");
+								return;
+							}
+						}
+
+						for(Reuniao r : ci.getTodasAsReunioes()) {//percorre todas as reuniões já marcadas no sistema
+							if(dataHora.isBefore(r.getDataHora()) && dataHora.isAfter(r.getDataHora().minusMinutes(30))) {//verifica se a reunião que está tentando marcar está no intervalo de 30 minutos antes de uma reunião já marcada no sistema.
+								JOptionPane.showMessageDialog(null, "Tem uma reunião marcada para: "+r.getDataHora().format(parser)+" horas, tente marcar para 30 minutos antes!");
+								return;
+							}
+						}
+
+
+						if(dataHora.isAfter(cliente.getOrcamento().getDataHora())) {//ela tentou marcar uma reunião para depois da data e hora do evento
+							JOptionPane.showMessageDialog(null, "Não pode marcar uma reunião para depois do evento!");
+							return;
 						}
 
 						try {
@@ -166,7 +192,10 @@ public class TelaReunioes extends TelaPadrao {
 							JOptionPane.showMessageDialog(null, "O e-mail do programa não está mais válido!");
 						}
 						try {
-							msg.enviarEmail(cliente.getEmail(), "Reunião Party Helper", "Uma reunião com a Cerimonialista foi marcada para: "+tfDataHora.getText());
+							String corpoEmail = "\nEu, "+tratarNome(ci.getAdmin().getNome())+", Cerimonialista e organizador(a) de eventos, venho atravéz deste lhe convidar para a reunião que "
+									+ "será realizada na dada: "+tfDataHora.getText()+" horas, que falaremos sobre o evento que está marcado para o dia: "+cliente.getOrcamento().getDataHora().format(parser)+" horas.";
+
+							msg.enviarEmail(cliente.getEmail(), "Reunião Party Helper", corpoEmail);
 
 							Reuniao reuniao = new Reuniao(dataHora);
 							ci.getTodasAsReunioes().add(reuniao);
@@ -215,13 +244,11 @@ public class TelaReunioes extends TelaPadrao {
 
 					for (Reuniao r : cliente.getOrcamento().getReunioes()) {
 						if(r.getDataHora().equals(dataHora)) {
-							if(r.getAta() == null) {
-								ci.setReuniaoTemp(r);
-								p.salvarCentral(ci);
-								dispose();
-								new TelaATAReuniao();
-								return;
-							}
+							ci.setReuniaoTemp(r);
+							p.salvarCentral(ci);
+							dispose();
+							new TelaATAReuniao();
+							return;
 						}
 					}
 				}
