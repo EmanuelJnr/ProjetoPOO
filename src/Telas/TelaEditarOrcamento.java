@@ -195,11 +195,9 @@ public class TelaEditarOrcamento extends TelaPadrao{
 	}
 
 	public static boolean isNumeric(String s) {
-		if (s == null || s.equals("")) {
+		if (s == null || s.equals(""))
 			return false;
-		}
-		for (int i = 0; i < s.length(); i++)
-		{
+		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
 			if (c < '0' || c > '9') {
 				return false;
@@ -237,24 +235,19 @@ public class TelaEditarOrcamento extends TelaPadrao{
 					if(ci.buscaFornecedor(cpf_cnpj).getDiponivel().equals("Sim")) {
 						Fornecedor fornecedorTemp = ci.buscaFornecedor(cpf_cnpj);
 						String resultado = JOptionPane.showInputDialog(null, "Digite o valor para esse fornecedor:");
-						if(resultado != null) {
-							if(clienteTemp.adicionarFornecedor(fornecedorTemp)) {
-								if(resultado.equals("")) {
-									resultado = "0";
-								}
-								if(isNumeric(resultado)) {
-									fornecedorTemp.setValor(Float.parseFloat(resultado));
+						if(clienteTemp.adicionarFornecedor(fornecedorTemp)) {
+							if(isNumeric(resultado)) {
+								fornecedorTemp.setValor(Float.parseFloat(resultado));
 
-									float soma = Float.parseFloat(lbSoma.getText());
-									soma += fornecedorTemp.getValor();
-									lbSoma.setText(""+soma);
+								float soma = Float.parseFloat(lbSoma.getText());
+								soma += fornecedorTemp.getValor();
+								lbSoma.setText(""+soma);
 
-									Object[] row = new Object[3];
-									row[0] = fornecedorTemp.getNome();
-									row[1] = fornecedorTemp.getCPF_CNPJ();
-									row[2] = fornecedorTemp.getValor();
-									modeloFornecedores.addRow(row);
-								}
+								Object[] row = new Object[3];
+								row[0] = fornecedorTemp.getNome();
+								row[1] = fornecedorTemp.getCPF_CNPJ();
+								row[2] = fornecedorTemp.getValor();
+								modeloFornecedores.addRow(row);
 							}
 						}
 					}

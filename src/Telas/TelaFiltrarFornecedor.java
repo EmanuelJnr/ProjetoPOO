@@ -116,10 +116,10 @@ public class TelaFiltrarFornecedor extends TelaPadrao{
 			}
 			Object[] linha = new Object[5];
 			linha[0] = f.getNome();
-			linha[1]= f.getEmail();
-			linha[2]= f.getCPF_CNPJ();
-			linha[3]= f.getTelefone();
-			linha[4]= servicos;
+			linha[1] = f.getEmail();
+			linha[2] = f.getCPF_CNPJ();
+			linha[3] = f.getTelefone();
+			linha[4] = servicos;
 			modelo.addRow(linha);
 		}
 		return modelo;

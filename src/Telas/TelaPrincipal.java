@@ -9,7 +9,7 @@ import Logica.Cliente;
 import Logica.Persistencia;
 import Ouvintes.OuvinteNovaTela;
 
-public class TelaPrincipal extends TelaPadrao{
+public class TelaPrincipal extends TelaPadrao{	
 	private static final long serialVersionUID = 1L;
 	Persistencia p = new Persistencia();
 	CentralDeInformacoes ci = p.recuperarCentral();

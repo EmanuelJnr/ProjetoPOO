@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ButtonGroup;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
@@ -15,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import Interface.Botao;
-import Interface.CheckBox;
 import Interface.Fontes;
 import Interface.Label;
 import Interface.NomeTela;
+import Interface.RadioButton;
 import Logica.AlinhaCelulas;
 import Logica.CentralDeInformacoes;
 import Logica.Cliente;
@@ -31,26 +32,23 @@ public class TelaOrcamentos extends TelaPadrao{
 	CentralDeInformacoes ci = p.recuperarCentral();
 	private Botao btnReuniao;
 	private Botao btnEditarOcamento;
-	private Botao btnFiltrar;
 	private Botao btnRelatorio;
 	private Botao btnEditarContrato;
-	private CheckBox cbContrato;
-	private CheckBox cbOrcamento;
+	private RadioButton rbContratos;
+	private RadioButton rbOrcamentos;
+	private RadioButton rbTodos;
+	private ButtonGroup grupo;
 	private JTable tabela;
 	private ArrayList<Cliente> clientesASeremExibidos;
 
 	public TelaOrcamentos() {
 		super("Orçamentos e Contratos");
 		addBotoes();
-		addCheckBox();
+		addRadioButtons();
 		addLabels();
 		addTabela();
 		ouvinteBotoes();
 		setVisible(true);
-	}
-	
-	public static void main(String[] args) {
-		new TelaOrcamentos();
 	}
 
 	public void addLabels() {
@@ -122,9 +120,6 @@ public class TelaOrcamentos extends TelaPadrao{
 		btnEditarOcamento.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(btnEditarOcamento);
 
-		btnFiltrar = new Botao("Filtrar", 265, 510, 120, 30);
-		add(btnFiltrar);
-
 		btnEditarContrato = new Botao("Editar Contrato", 415, 510, 120, 30);
 		add(btnEditarContrato);
 
@@ -136,11 +131,21 @@ public class TelaOrcamentos extends TelaPadrao{
 		add(btnVoltar);
 	}
 
-	public void addCheckBox() {
-		cbContrato = new CheckBox("Contrato", 261, 460, 73, 20);
-		cbOrcamento = new CheckBox("Orçamento", 261, 480, 86, 20);
-		add(cbContrato);
-		add(cbOrcamento);
+	public void addRadioButtons() {
+		rbContratos = new RadioButton("Contratos", 261, 460, 78, 20);
+		add(rbContratos);
+
+		rbOrcamentos = new RadioButton("Orçamentos", 261, 490, 93, 20);
+		add(rbOrcamentos);
+
+		rbTodos = new RadioButton("Todos", 261, 520, 60, 20);
+		add(rbTodos);
+
+		grupo = new ButtonGroup();
+		grupo.add(rbContratos);
+		grupo.add(rbOrcamentos);
+		grupo.add(rbTodos);
+		rbTodos.setSelected(true);
 	}
 
 	public void ouvinteBotoes() {
@@ -201,20 +206,45 @@ public class TelaOrcamentos extends TelaPadrao{
 			}
 		});
 
-		btnFiltrar.addActionListener(new ActionListener() {
+		rbContratos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Cliente> todosOsClientes = ci.getTodosOsClientes();
 				clientesASeremExibidos = new ArrayList<Cliente>();
 
 				for(Cliente c: todosOsClientes) {
-					if(!c.getOrcamento().getTipo().equals("Orçamento") && cbOrcamento.isSelected())
-						continue;
-					if(!c.getOrcamento().getTipo().equals("Contrato") && cbContrato.isSelected())
+					if(!c.getOrcamento().getTipo().equals("Contrato"))
 						continue;
 					clientesASeremExibidos.add(c);
 				}
 
 				DefaultTableModel modelo = criarModelo(clientesASeremExibidos);
+				tabela.setModel(modelo);
+				centralizarOrdenar(modelo);
+				tabela.repaint();
+			}
+		});
+
+		rbOrcamentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Cliente> todosOsClientes = ci.getTodosOsClientes();
+				clientesASeremExibidos = new ArrayList<Cliente>();
+
+				for(Cliente c: todosOsClientes) {
+					if(!c.getOrcamento().getTipo().equals("Orçamento"))
+						continue;
+					clientesASeremExibidos.add(c);
+				}
+
+				DefaultTableModel modelo = criarModelo(clientesASeremExibidos);
+				tabela.setModel(modelo);
+				centralizarOrdenar(modelo);
+				tabela.repaint();
+			}
+		});
+
+		rbTodos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel modelo = criarModelo(ci.getTodosOsClientes());
 				tabela.setModel(modelo);
 				centralizarOrdenar(modelo);
 				tabela.repaint();
