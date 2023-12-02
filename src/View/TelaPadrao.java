@@ -10,7 +10,7 @@ public abstract class TelaPadrao extends JFrame{
 		super(nome);
 		setSize(800, 600);
 		setLayout(null);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/PartyHelper.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Controller/PartyHelper.png")));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);

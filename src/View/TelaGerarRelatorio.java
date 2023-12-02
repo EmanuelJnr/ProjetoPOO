@@ -103,7 +103,7 @@ public class TelaGerarRelatorio extends TelaPadrao{
 			PdfWriter.getInstance(documento, os);
 			documento.open();
 
-			Image logoTipo = Image.getInstance("src/Imagens/PartyHelperLogoTipoPDF.png");
+			Image logoTipo = Image.getInstance("src/Controller/PartyHelperLogoTipoPDF.png");
 			logoTipo.setAlignment(Paragraph.ALIGN_CENTER);
 			logoTipo.scalePercent(45, 45);
 			documento.add(Image.getInstance(logoTipo));
