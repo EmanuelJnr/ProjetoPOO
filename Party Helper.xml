@@ -2,15 +2,30 @@
   <admin>
     <nome>Emanuel</nome>
     <email>junior.ssu@hotmail.com</email>
-    <senha>12345</senha>
+    <senha>lubdun</senha>
   </admin>
   <servicosTemp/>
   <fornecedoresTemp/>
   <pacotesTemp/>
   <fornecedorTemp>
-    <servicos/>
-    <diponivel>Sim</diponivel>
+    <nome>Ivaneide Shows</nome>
+    <email>ivaneide.shows@gmail.com</email>
+    <CPF__CNPJ>497.323.120-76</CPF__CNPJ>
+    <telefone>(81)9.8712-4563</telefone>
+    <servicos>
+      <DAO.Servico>
+        <servico>Equipamento de Som</servico>
+      </DAO.Servico>
+      <DAO.Servico>
+        <servico>Mesas</servico>
+      </DAO.Servico>
+      <DAO.Servico>
+        <servico>Cadeiras</servico>
+      </DAO.Servico>
+    </servicos>
+    <diponivel>O fornecedor foi Bloqueado</diponivel>
     <qtdContratos>0</qtdContratos>
+    <comentarios></comentarios>
     <valor>0.0</valor>
   </fornecedorTemp>
   <pacoteRef>
@@ -19,9 +34,123 @@
   </pacoteRef>
   <clienteTemp/>
   <reuniaoTemp/>
-  <todosOsClientes/>
-  <todosOsServicos/>
-  <todosOsFornecedores/>
-  <todosOsPacotes/>
+  <todosOsClientes>
+    <DAO.ClienteDAOImpl>
+      <nome>Noel</nome>
+      <email>junior.ssu57@gmail.com</email>
+      <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
+      <telefone>(83)9.9864-0846</telefone>
+    </DAO.ClienteDAOImpl>
+  </todosOsClientes>
+  <todosOsServicos>
+    <DAO.Servico>
+      <servico>Balões</servico>
+    </DAO.Servico>
+    <DAO.Servico reference="../../fornecedorTemp/servicos/DAO.Servico[2]"/>
+    <DAO.Servico reference="../../fornecedorTemp/servicos/DAO.Servico[3]"/>
+    <DAO.Servico>
+      <servico>Decoração</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Petiscos</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Cenário</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Buffet</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Talheres</servico>
+    </DAO.Servico>
+    <DAO.Servico reference="../../fornecedorTemp/servicos/DAO.Servico"/>
+    <DAO.Servico>
+      <servico>Bolos</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Cantor</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Dançarinos</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Lasers</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Luzes</servico>
+    </DAO.Servico>
+    <DAO.Servico>
+      <servico>Palco</servico>
+    </DAO.Servico>
+  </todosOsServicos>
+  <todosOsFornecedores>
+    <DAO.Fornecedor>
+      <nome>Caio Festas</nome>
+      <email>caio_festas@hotmail.com</email>
+      <CPF__CNPJ>578.952.290-44</CPF__CNPJ>
+      <telefone>(83)9.9999-9999</telefone>
+      <servicos>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico"/>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[4]"/>
+        <DAO.Servico reference="../../../../fornecedorTemp/servicos/DAO.Servico"/>
+      </servicos>
+      <diponivel>Sim</diponivel>
+      <qtdContratos>0</qtdContratos>
+      <valor>0.0</valor>
+    </DAO.Fornecedor>
+    <DAO.Fornecedor reference="../../fornecedorTemp"/>
+    <DAO.Fornecedor>
+      <nome>Maria Eventos</nome>
+      <email>maria-eventos4@hotmail.com</email>
+      <CPF__CNPJ>19.502.272/0001-18</CPF__CNPJ>
+      <telefone>(11)9.3548-3466</telefone>
+      <servicos>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[15]"/>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[14]"/>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[13]"/>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[12]"/>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[11]"/>
+        <DAO.Servico reference="../../../../fornecedorTemp/servicos/DAO.Servico"/>
+      </servicos>
+      <diponivel>O fornecedor fechou</diponivel>
+      <qtdContratos>0</qtdContratos>
+      <comentarios></comentarios>
+      <valor>0.0</valor>
+    </DAO.Fornecedor>
+    <DAO.Fornecedor>
+      <nome>Papai Noel</nome>
+      <email>noel.papai@hotmail.com</email>
+      <CPF__CNPJ>33.817.261/0001-58</CPF__CNPJ>
+      <telefone>(22)9.3545-4165</telefone>
+      <servicos>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[4]"/>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[6]"/>
+        <DAO.Servico reference="../../../../todosOsServicos/DAO.Servico[14]"/>
+      </servicos>
+      <diponivel>Sim</diponivel>
+      <qtdContratos>0</qtdContratos>
+      <valor>0.0</valor>
+    </DAO.Fornecedor>
+  </todosOsFornecedores>
+  <todosOsPacotes>
+    <DAO.Pacote>
+      <nomePacote>Festa Completa</nomePacote>
+      <valor>550.0</valor>
+      <fornecedores>
+        <DAO.Fornecedor reference="../../../../todosOsFornecedores/DAO.Fornecedor"/>
+        <DAO.Fornecedor reference="../../../../todosOsFornecedores/DAO.Fornecedor[4]"/>
+      </fornecedores>
+      <caracteristicas>Para todos os públicos!</caracteristicas>
+    </DAO.Pacote>
+    <DAO.Pacote>
+      <nomePacote>Proibidão</nomePacote>
+      <valor>1800.0</valor>
+      <fornecedores>
+        <DAO.Fornecedor reference="../../../../fornecedorTemp"/>
+        <DAO.Fornecedor reference="../../../../todosOsFornecedores/DAO.Fornecedor[3]"/>
+      </fornecedores>
+      <caracteristicas>Apenas para adultos.</caracteristicas>
+    </DAO.Pacote>
+  </todosOsPacotes>
   <todasAsReunioes/>
 </Controller.CentralDeInformacoes>

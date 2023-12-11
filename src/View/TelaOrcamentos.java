@@ -212,9 +212,11 @@ public class TelaOrcamentos extends TelaPadrao{
 				clientesASeremExibidos = new ArrayList<ClienteDAOImpl>();
 
 				for(ClienteDAOImpl c: todosOsClientes) {
-					if(!c.getOrcamento().getTipo().equals("Contrato"))
-						continue;
-					clientesASeremExibidos.add(c);
+					if(c.getOrcamento() != null) {
+						if (!c.getOrcamento().getTipo().equals("Contrato"))
+							continue;
+						clientesASeremExibidos.add(c);
+					}
 				}
 
 				DefaultTableModel modelo = criarModelo(clientesASeremExibidos);
@@ -230,9 +232,11 @@ public class TelaOrcamentos extends TelaPadrao{
 				clientesASeremExibidos = new ArrayList<ClienteDAOImpl>();
 
 				for(ClienteDAOImpl c: todosOsClientes) {
-					if(!c.getOrcamento().getTipo().equals("Orçamento"))
-						continue;
-					clientesASeremExibidos.add(c);
+					if(c.getOrcamento() != null) {
+						if (!c.getOrcamento().getTipo().equals("Orçamento"))
+							continue;
+						clientesASeremExibidos.add(c);
+					}
 				}
 
 				DefaultTableModel modelo = criarModelo(clientesASeremExibidos);
