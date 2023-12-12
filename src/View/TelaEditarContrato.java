@@ -83,7 +83,7 @@ public class TelaEditarContrato extends TelaPadrao{
 			}
 		});
 	}
-	
+
 	public void verificacao() {
 		if(clienteTemp.getOrcamento().getTipo().equals("Concluído")) {
 			btnAddComentario.setEnabled(false);
@@ -151,11 +151,17 @@ public class TelaEditarContrato extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 				if(tabela.getSelectedRow() != -1) {
 					String cpf_cnpj = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
-					if(todosFornecedoresClinte.get(tabela.getSelectedRow()).getComentarios() == null) {
-						String comentario = JOptionPane.showInputDialog(null, "Digite um comentário para esse fornecedor:");
-						if(comentario != null && !comentario.equals("")) {
-							buscaFornecedor(cpf_cnpj).setComentarios(comentario);
-						}
+					Fornecedor f = buscaFornecedor(cpf_cnpj);
+					String comentario = JOptionPane.showInputDialog(null, "Digite um comentário para esse fornecedor:",f.getComentarios());
+					if(comentario != null && !comentario.equals("")) {
+						modelo.removeRow(tabela.getSelectedRow());
+						f.setComentarios(comentario);
+
+						Object[] row = new Object[3];
+						row[0] = f.getNome();
+						row[1] = f.getCPF_CNPJ();
+						row[2] = f.getComentarios();
+						modelo.addRow(row);
 					}
 				}
 			}
@@ -169,9 +175,11 @@ public class TelaEditarContrato extends TelaPadrao{
 						return;
 					}
 				}
-				
+
 				if(cbConcluido.isSelected()) {
 					clienteTemp.getOrcamento().setTipo("Concluído");
+					for (Fornecedor f : todosFornecedoresClinte)
+						f.setQtdContratos(f.getQtdContratos()+1);
 					p.salvarCentral(ci);
 					dispose();
 					new TelaOrcamentos();

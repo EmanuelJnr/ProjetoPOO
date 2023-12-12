@@ -77,15 +77,12 @@ public class GerarPlanilhaExcel {
 			for (Pacote p : pacotes) {
 				int cellnum = 0;
 				row = orcamento.createRow(rownum++);
-				Cell cellPacote = row.createCell(cellnum);
-				cellPacote.setCellValue("Pacote(s)");
-				row = orcamento.createRow(rownum++);
 				Cell cellNome = row.createCell(cellnum++);
-				cellNome.setCellValue(p.getNomePacote());		
+				cellNome.setCellValue(p.getNomePacote());
 				Cell cellValorFornecedor = row.createCell(cellnum);
 				cellValorFornecedor.setCellValue(p.getValor());
 				valor += p.getValor();
-			}  
+			}
 		}
 		row = orcamento.createRow(rownum++);
 

@@ -3,10 +3,8 @@ package View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -21,15 +19,15 @@ public class TelaCadastroPacote extends TelaPadrao{
 	Persistencia p = new Persistencia();
 	CentralDeInformacoes ci = p.recuperarCentral();
 	private CampoDeTexto tfNomePacote;
-	private CampoDeTexto tfValor;
+	private CampoDeTexto tfCaracteristicas;
 	private Botao btnCadastrar;
 	private Botao btnVoltar;
 	private Botao btnExcluir;
 	private Botao btnAdicionar;
-	private JTextArea taCaracteristicas;
 	private JTable tabelaTodos;
 	private JTable tabelaAdd;
 	private DefaultTableModel modelo;
+	private Label lbSoma;
 	private Pacote novoPacote = new Pacote();
 
 	public TelaCadastroPacote() {
@@ -37,7 +35,6 @@ public class TelaCadastroPacote extends TelaPadrao{
 		addLabels();
 		addCamposDeTexto();
 		addBotoes();
-		addTextArea();
 		ouvinteBotoes();
 		tabelaTodosFornecedores();
 		tabelaAddFornecedores();
@@ -51,18 +48,13 @@ public class TelaCadastroPacote extends TelaPadrao{
 
 		add(new Label("Público alvo deste pacote", 607, 43, 200, 30));
 		add(new Label("Nome do pacote: ", 70, 100, 160, 25));
-		add(new Label("Valor: ", 70, 150, 120, 25));
+
+		add(new Label("Soma dos montantes:", 70, 150, 120, 30));
+		lbSoma = new Label("0.0", 220, 150, 200, 30);
+		add(lbSoma);
+
 		add(new Label("Fornecedores deste pacote", 126, 205, 200, 30));
 		add(new Label("Todos os fornecedores", 513, 205, 150, 30));
-	}
-
-	public void addTextArea() {
-		taCaracteristicas = new JTextArea(8,15);
-		JScrollPane sp = new JScrollPane(taCaracteristicas, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		JPanel jp = new JPanel();
-		jp.add(sp);
-		jp.setBounds(580, 65, 192, 135);
-		add(jp);
 	}
 
 	public void addCamposDeTexto() {
@@ -70,10 +62,8 @@ public class TelaCadastroPacote extends TelaPadrao{
 		tfNomePacote.setDocument(new LimitaCaracteres(LimitaCaracteres.TipoEntrada.NOME));
 		add(tfNomePacote);
 
-		tfValor = new CampoDeTexto("", 220, 150, 350, 25);
-		tfValor.setDocument(new LimitaCaracteres(LimitaCaracteres.TipoEntrada.NUMEROPONTO));
-		tfValor.addFocusListener(new OuvinteFocoValor(tfValor));
-		add(tfValor);
+		tfCaracteristicas = new CampoDeTexto("", 580, 67, 192, 25);
+		add(tfCaracteristicas);
 	}
 
 	public void addBotoes() {	
@@ -90,12 +80,27 @@ public class TelaCadastroPacote extends TelaPadrao{
 		add(btnVoltar);
 	}
 
+	public static boolean isNumeric(String s) {
+		if (s == null || s.equals("")) {
+			return false;
+		}
+		for (int i=0;i<s.length();i++) {
+			char c = s.charAt(i);
+			if (c < '0' || c > '9')
+				return false;
+		}
+		return true;
+	}
+
 	public void ouvinteBotoes() {
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tabelaAdd.getSelectedRow() != -1) {
 					String cpf_cnpj = tabelaAdd.getValueAt(tabelaAdd.getSelectedRow(), 1).toString();
 					modelo.removeRow(tabelaAdd.getSelectedRow());
+					float soma = Float.parseFloat(lbSoma.getText());
+					soma -= ci.buscaFornecedor(cpf_cnpj).getValor();
+					lbSoma.setText(""+soma);
 					novoPacote.getFornecedores().remove(ci.buscaFornecedor(cpf_cnpj));
 				}
 			}
@@ -105,13 +110,27 @@ public class TelaCadastroPacote extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 				if(tabelaTodos.getSelectedRow() != -1) {
 					String cpf_cnpj = tabelaTodos.getValueAt(tabelaTodos.getSelectedRow(), 1).toString();
-					if(novoPacote.adicionarFornecedor(ci.buscaFornecedor(cpf_cnpj))) {
-						Fornecedor f = ci.buscaFornecedor(cpf_cnpj);
-						Object[] row = new Object[3];
-						row[0] = f.getNome();
-						row[1] = f.getCPF_CNPJ();
-						row[2] = f.getQtdContratos();
-						modelo.addRow(row);
+					Fornecedor f = ci.buscaFornecedor(cpf_cnpj);
+					if(f.getDiponivel().equals("Sim")) {
+						String resultado = JOptionPane.showInputDialog(null, "Digite o valor para esse fornecedor:");
+						if(isNumeric(resultado)) {
+							if(novoPacote.adicionarFornecedor(f)) {
+								f.setValor(Float.parseFloat(resultado));
+
+								float soma = Float.parseFloat(lbSoma.getText());
+								soma += f.getValor();
+								lbSoma.setText(""+soma);
+
+								Object[] row = new Object[3];
+								row[0] = f.getNome();
+								row[1] = f.getCPF_CNPJ();
+								row[2] = f.getValor();
+								modelo.addRow(row);
+							}
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Esse fornecedor não está disponível!");
 					}
 				}
 			}
@@ -121,9 +140,9 @@ public class TelaCadastroPacote extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nomePacote = tfNomePacote.getText();
-					float valor = Float.parseFloat(tfValor.getText());
-					String caracteristicas = taCaracteristicas.getText();
-					
+					float valor = Float.parseFloat(lbSoma.getText());
+					String caracteristicas = tfCaracteristicas.getText();
+
 					if(novoPacote.getFornecedores().size()==0) {
 						JOptionPane.showMessageDialog(null, "Adicione pelo menos um Fornecedor!");
 						return;
@@ -167,13 +186,13 @@ public class TelaCadastroPacote extends TelaPadrao{
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Nome");
 		modelo.addColumn("Física/Jurídica");
-		modelo.addColumn("Contratos");
+		modelo.addColumn("Diponível");
 
 		for(Fornecedor f : ci.getTodosOsFornecedores()) {
 			Object[] linha = new Object[3];
 			linha[0] = f.getNome();
 			linha[1] = f.getCPF_CNPJ();
-			linha[2] = f.getQtdContratos();
+			linha[2] = f.getDiponivel();
 			modelo.addRow(linha);
 		}
 		tabelaTodos = new JTable(modelo);
@@ -191,13 +210,13 @@ public class TelaCadastroPacote extends TelaPadrao{
 		modelo = new DefaultTableModel();
 		modelo.addColumn("Nome");
 		modelo.addColumn("Física/Jurídica");
-		modelo.addColumn("Contratos");
+		modelo.addColumn("Valor");
 
 		for(Fornecedor f : novoPacote.getFornecedores()) {
 			Object[] linha = new Object[3];
 			linha[0] = f.getNome();
 			linha[1] = f.getCPF_CNPJ();
-			linha[2] = f.getQtdContratos();
+			linha[2] = f.getValor();
 			modelo.addRow(linha);
 		}
 		tabelaAdd = new JTable(modelo);

@@ -39,9 +39,9 @@ public class TelaDetalhamentoPacote extends TelaPadrao {
 		titulo.setFont(Fontes.titulo());
 		add(titulo);
 
-		add(new Label("Nome: ", 120, 120, 120, 25));
-		add(new Label("Preço: ", 120, 170, 120, 25));
-		add(new Label("Serviços prestados: ", 120, 220, 200, 25));
+		add(new Label("Nome: ", 120, 115, 120, 25));
+		add(new Label("Valor total: ", 120, 165, 200, 25));
+		add(new Label("Serviços prestados: ", 120, 215, 200, 25));
 
 		lbNome = new Label(pacoteRef.getNomePacote(), 300, 115, 120, 25);
 		add(lbNome);

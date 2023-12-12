@@ -236,8 +236,8 @@ public class TelaEditarOrcamento extends TelaPadrao{
 					if(ci.buscaFornecedor(cpf_cnpj).getDiponivel().equals("Sim")) {
 						Fornecedor fornecedorTemp = ci.buscaFornecedor(cpf_cnpj);
 						String resultado = JOptionPane.showInputDialog(null, "Digite o valor para esse fornecedor:");
-						if(clienteTemp.adicionarFornecedor(fornecedorTemp)) {
-							if(isNumeric(resultado)) {
+						if(isNumeric(resultado)) {
+							if(clienteTemp.adicionarFornecedor(fornecedorTemp)) {
 								fornecedorTemp.setValor(Float.parseFloat(resultado));
 
 								float soma = Float.parseFloat(lbSoma.getText());
@@ -251,6 +251,9 @@ public class TelaEditarOrcamento extends TelaPadrao{
 								modeloFornecedores.addRow(row);
 							}
 						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Esse fornecedor não está disponível!");
 					}
 				}
 			}
@@ -289,8 +292,8 @@ public class TelaEditarOrcamento extends TelaPadrao{
 						Object[] linha = new Object[3];
 
 						linha[0] = pacote.getNomePacote();
-						linha[1] = pacote.getValor();
-						linha[2] = fornecedores;
+						linha[1] = fornecedores;
+						linha[2] = pacote.getValor();
 
 						modeloPacotes.addRow(linha);
 					}

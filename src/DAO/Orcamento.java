@@ -20,7 +20,10 @@ public class Orcamento {
 	private String responsavelPagamento;
 	private String tipo;
 
-	public Orcamento(String nomeEvento, LocalDateTime dataHora, String localEvento, String qtdConvidados, ArrayList<Fornecedor> fornecedores, ArrayList<Pacote> pacotes, float valor, String responsavelPagamento) {
+	public Orcamento(String nomeEvento, LocalDateTime dataHora,
+			String localEvento, String qtdConvidados,
+			ArrayList<Fornecedor> fornecedores, ArrayList<Pacote> pacotes,
+			float valor, String responsavelPagamento) {
 		this.nomeEvento = nomeEvento;
 		this.dataHora = dataHora;
 		dataModificacao = LocalDateTime.now();

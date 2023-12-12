@@ -203,26 +203,24 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 					if(ci.buscaFornecedor(cpf_cnpj).getDiponivel().equals("Sim")) {
 						Fornecedor fornecedorTemp = ci.buscaFornecedor(cpf_cnpj);
 						String resultado = JOptionPane.showInputDialog(null, "Digite o valor para esse fornecedor:");
-						if(resultado != null) {
+						if(isNumeric(resultado)) {
 							if(novoOrcamento.adicionarFornecedor(fornecedorTemp)) {
-								if(resultado.equals("")) {
-									resultado = "0";
-								}
-								if(isNumeric(resultado)) {
-									fornecedorTemp.setValor(Float.parseFloat(resultado));
+								fornecedorTemp.setValor(Float.parseFloat(resultado));
 
-									float soma = Float.parseFloat(lbSoma.getText());
-									soma += fornecedorTemp.getValor();
-									lbSoma.setText(""+soma);
+								float soma = Float.parseFloat(lbSoma.getText());
+								soma += fornecedorTemp.getValor();
+								lbSoma.setText(""+soma);
 
-									Object[] row = new Object[3];
-									row[0] = fornecedorTemp.getNome();
-									row[1] = fornecedorTemp.getCPF_CNPJ();
-									row[2] = fornecedorTemp.getValor();
-									modeloFornecedores.addRow(row);
-								}
+								Object[] row = new Object[3];
+								row[0] = fornecedorTemp.getNome();
+								row[1] = fornecedorTemp.getCPF_CNPJ();
+								row[2] = fornecedorTemp.getValor();
+								modeloFornecedores.addRow(row);
 							}
 						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Esse fornecedor não está disponível!");
 					}
 				}
 			}
@@ -250,8 +248,8 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 					Pacote pacoteTemp = ci.buscaPacote(nomePacote);
 					if(novoOrcamento.adicionarPacote(pacoteTemp)) {
 						String nomeFornecedores = "";
-						for (Fornecedor f : novoOrcamento.getFornecedores())
-							nomeFornecedores += f.getNome();
+						for (Fornecedor f : pacoteTemp.getFornecedores())
+							nomeFornecedores += " " + f.getNome();
 
 						float soma = Float.parseFloat(lbSoma.getText());
 						soma += pacoteTemp.getValor();
@@ -260,8 +258,8 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 						Object[] linha = new Object[3];
 
 						linha[0] = pacoteTemp.getNomePacote();
-						linha[1] = pacoteTemp.getValor();
-						linha[2] = nomeFornecedores;
+						linha[1] = nomeFornecedores;
+						linha[2] = pacoteTemp.getValor();
 
 						modeloPacotes.addRow(linha);
 					}
@@ -380,20 +378,19 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 	public void tabelaTodosPacotes() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Nome");
-		modelo.addColumn("Valor");
 		modelo.addColumn("Fonecedores");
+		modelo.addColumn("Valor");
 
 		for (Pacote pacote : ci.getTodosOsPacotes()) {
 			String fornecedores = "";
 
 			for (Fornecedor f : pacote.getFornecedores()) {
-				fornecedores += f.getNome();
+				fornecedores += " " + f.getNome();
 			}
 			Object[] linha = new Object[3];
 			linha[0] = pacote.getNomePacote();
-			linha[1] = pacote.getValor();
-			linha[2] = fornecedores;
-
+			linha[1] = fornecedores;
+			linha[2] = pacote.getValor();
 			modelo.addRow(linha);
 		}
 		tabelaTodosPacotes = new JTable(modelo);
@@ -410,20 +407,18 @@ public class TelaCadastroOrcamento extends TelaPadrao{
 	public void tabelaAddPacotes() {
 		modeloPacotes = new DefaultTableModel();
 		modeloPacotes.addColumn("Nome");
-		modeloPacotes.addColumn("Valor");
 		modeloPacotes.addColumn("Fonecedores");
+		modeloPacotes.addColumn("Valor");
 
 		for (Pacote pacote : novoOrcamento.getPacotes()) {
 			String fornecedores = "";
-			for (Fornecedor f : pacote.getFornecedores()) {
-				fornecedores += f.getNome();
-			}
+			for (Fornecedor f : pacote.getFornecedores())
+				fornecedores += " " + f.getNome();
+
 			Object[] linha = new Object[3];
-
 			linha[0] = pacote.getNomePacote();
-			linha[1] = pacote.getValor();
-			linha[2] = fornecedores;
-
+			linha[1] = fornecedores;
+			linha[2] = pacote.getValor();
 			modeloPacotes.addRow(linha);
 		}
 		tabelaAddPacotes = new JTable(modeloPacotes);
