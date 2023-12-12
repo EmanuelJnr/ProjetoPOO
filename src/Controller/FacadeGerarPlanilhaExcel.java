@@ -16,14 +16,14 @@ import DAO.ClienteDAOImpl;
 import DAO.Fornecedor;
 import DAO.Pacote;
 
-public class GerarPlanilhaExcel {
+public class FacadeGerarPlanilhaExcel {
 	Persistencia p = new Persistencia();
 	CentralDeInformacoes ci = p.recuperarCentral();
 	ClienteDAOImpl clienteTemp = ci.getClienteTemp();
 	ArrayList<Fornecedor> todosFornecedores = new ArrayList<>();
 	ArrayList<Pacote> pacotes = new ArrayList<>();
 
-	public GerarPlanilhaExcel() {
+	public FacadeGerarPlanilhaExcel() {
 		for (Pacote p : clienteTemp.getOrcamento().getPacotes()) {
 			pacotes.add(p);
 		}
@@ -112,5 +112,4 @@ public class GerarPlanilhaExcel {
 			JOptionPane.showMessageDialog(null,"Erro na edição!!");
 		}
 	}
-
 }

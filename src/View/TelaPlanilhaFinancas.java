@@ -19,7 +19,7 @@ import ElementosGraficos.Label;
 import ElementosGraficos.NomeTela;
 import Controller.AlinhaCelulas;
 import Controller.CentralDeInformacoes;
-import Controller.GerarPlanilhaExcel;
+import Controller.FacadeGerarPlanilhaExcel;
 import Controller.OuvinteNovaTela;
 import Controller.Persistencia;
 import DAO.ClienteDAOImpl;
@@ -58,8 +58,8 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 					String cpf_cnpj = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
 					ci.setClienteTemp(ci.buscaCliente(cpf_cnpj));
 					p.salvarCentral(ci);
-					GerarPlanilhaExcel gpe = new GerarPlanilhaExcel();
-					gpe.gerarPlanilhaExcel();
+					FacadeGerarPlanilhaExcel fgpe = new FacadeGerarPlanilhaExcel();
+					fgpe.gerarPlanilhaExcel();
 				}
 			}
 		});
