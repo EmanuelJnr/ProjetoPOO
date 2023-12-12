@@ -33,16 +33,16 @@
     <fornecedores/>
   </pacoteRef>
   <clienteTemp>
-    <nome>Gustavo</nome>
-    <email>gustavo@hotmail.com</email>
-    <CPF__CNPJ>37.322.355/0001-07</CPF__CNPJ>
-    <telefone>(83)9.9898-9898</telefone>
+    <nome>Noel</nome>
+    <email>junior.ssu57@gmail.com</email>
+    <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
+    <telefone>(83)9.9864-0846</telefone>
     <orcamento>
-      <nomeEvento>Festa de Natal</nomeEvento>
-      <dataHora>2023-12-24T22:00:00</dataHora>
-      <dataModificacao>2023-12-11T22:17:06.1376777</dataModificacao>
-      <localEvento>Em casa</localEvento>
-      <qtdConvidados>50</qtdConvidados>
+      <nomeEvento>Festança</nomeEvento>
+      <dataHora>2023-12-12T22:09:00</dataHora>
+      <dataModificacao>2023-12-12T00:10:32.1987667</dataModificacao>
+      <localEvento>Praça central</localEvento>
+      <qtdConvidados>1500</qtdConvidados>
       <fornecedores>
         <DAO.Fornecedor>
           <nome>Papai Noel</nome>
@@ -65,108 +65,108 @@
           <comentarios>Brabo!</comentarios>
           <valor>6.0</valor>
         </DAO.Fornecedor>
+        <DAO.Fornecedor>
+          <nome>Caio Festas</nome>
+          <email>caio_festas@hotmail.com</email>
+          <CPF__CNPJ>578.952.290-44</CPF__CNPJ>
+          <telefone>(83)9.9999-9999</telefone>
+          <servicos>
+            <DAO.Servico>
+              <servico>Balões</servico>
+            </DAO.Servico>
+            <DAO.Servico reference="../../../DAO.Fornecedor/servicos/DAO.Servico"/>
+            <DAO.Servico reference="../../../../../../fornecedorTemp/servicos/DAO.Servico"/>
+          </servicos>
+          <diponivel>Sim</diponivel>
+          <qtdContratos>0</qtdContratos>
+          <valor>5.0</valor>
+        </DAO.Fornecedor>
       </fornecedores>
-      <pacotes/>
-      <reunioes/>
+      <pacotes>
+        <DAO.Pacote>
+          <nomePacote>Proibidão</nomePacote>
+          <valor>1800.0</valor>
+          <fornecedores>
+            <DAO.Fornecedor reference="../../../../../../fornecedorTemp"/>
+            <DAO.Fornecedor>
+              <nome>Maria Eventos</nome>
+              <email>maria-eventos4@hotmail.com</email>
+              <CPF__CNPJ>19.502.272/0001-18</CPF__CNPJ>
+              <telefone>(11)9.3548-3466</telefone>
+              <servicos>
+                <DAO.Servico>
+                  <servico>Palco</servico>
+                </DAO.Servico>
+                <DAO.Servico reference="../../../../../../fornecedores/DAO.Fornecedor/servicos/DAO.Servico[3]"/>
+                <DAO.Servico>
+                  <servico>Lasers</servico>
+                </DAO.Servico>
+                <DAO.Servico>
+                  <servico>Dançarinos</servico>
+                </DAO.Servico>
+                <DAO.Servico>
+                  <servico>Cantor</servico>
+                </DAO.Servico>
+                <DAO.Servico reference="../../../../../../../../fornecedorTemp/servicos/DAO.Servico"/>
+              </servicos>
+              <diponivel>O fornecedor fechou</diponivel>
+              <qtdContratos>0</qtdContratos>
+              <comentarios></comentarios>
+              <valor>0.0</valor>
+            </DAO.Fornecedor>
+          </fornecedores>
+          <caracteristicas>Apenas para adultos.</caracteristicas>
+        </DAO.Pacote>
+        <DAO.Pacote>
+          <nomePacote>Festa Completa</nomePacote>
+          <valor>550.0</valor>
+          <fornecedores>
+            <DAO.Fornecedor reference="../../../../fornecedores/DAO.Fornecedor[2]"/>
+            <DAO.Fornecedor reference="../../../../fornecedores/DAO.Fornecedor"/>
+          </fornecedores>
+          <caracteristicas>Para todos os públicos!</caracteristicas>
+        </DAO.Pacote>
+      </pacotes>
+      <reunioes>
+        <Model.Reuniao>
+          <dataHora>2023-12-12T00:12:00</dataHora>
+          <ata>A reunião começou bem.</ata>
+        </Model.Reuniao>
+      </reunioes>
       <fotos/>
-      <valor>150.0</valor>
+      <valor>2451.0</valor>
       <responsavelPagamento>Cerimonialista</responsavelPagamento>
-      <tipo>Concluído</tipo>
+      <tipo>Contrato</tipo>
     </orcamento>
   </clienteTemp>
-  <reuniaoTemp>
-    <dataHora>2023-12-12T00:12:00</dataHora>
-    <ata>A reunião começou bem.</ata>
-  </reuniaoTemp>
+  <reuniaoTemp reference="../clienteTemp/orcamento/reunioes/Model.Reuniao"/>
   <todosOsClientes>
+    <DAO.ClienteDAOImpl reference="../../clienteTemp"/>
     <DAO.ClienteDAOImpl>
-      <nome>Noel</nome>
-      <email>junior.ssu57@gmail.com</email>
-      <CPF__CNPJ>100.124.834-19</CPF__CNPJ>
-      <telefone>(83)9.9864-0846</telefone>
+      <nome>Gustavo</nome>
+      <email>gustavo@hotmail.com</email>
+      <CPF__CNPJ>37.322.355/0001-07</CPF__CNPJ>
+      <telefone>(83)9.9898-9898</telefone>
       <orcamento>
-        <nomeEvento>Festança</nomeEvento>
-        <dataHora>2023-12-12T22:09:00</dataHora>
-        <dataModificacao>2023-12-12T00:10:32.1987667</dataModificacao>
-        <localEvento>Praça central</localEvento>
-        <qtdConvidados>1500</qtdConvidados>
+        <nomeEvento>Festa de Natal</nomeEvento>
+        <dataHora>2023-12-24T22:00:00</dataHora>
+        <dataModificacao>2023-12-11T22:17:06.1376777</dataModificacao>
+        <localEvento>Em casa</localEvento>
+        <qtdConvidados>50</qtdConvidados>
         <fornecedores>
           <DAO.Fornecedor reference="../../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor"/>
-          <DAO.Fornecedor>
-            <nome>Caio Festas</nome>
-            <email>caio_festas@hotmail.com</email>
-            <CPF__CNPJ>578.952.290-44</CPF__CNPJ>
-            <telefone>(83)9.9999-9999</telefone>
-            <servicos>
-              <DAO.Servico>
-                <servico>Balões</servico>
-              </DAO.Servico>
-              <DAO.Servico reference="../../../../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor/servicos/DAO.Servico"/>
-              <DAO.Servico reference="../../../../../../../fornecedorTemp/servicos/DAO.Servico"/>
-            </servicos>
-            <diponivel>Sim</diponivel>
-            <qtdContratos>0</qtdContratos>
-            <valor>5.0</valor>
-          </DAO.Fornecedor>
         </fornecedores>
-        <pacotes>
-          <DAO.Pacote>
-            <nomePacote>Proibidão</nomePacote>
-            <valor>1800.0</valor>
-            <fornecedores>
-              <DAO.Fornecedor reference="../../../../../../../fornecedorTemp"/>
-              <DAO.Fornecedor>
-                <nome>Maria Eventos</nome>
-                <email>maria-eventos4@hotmail.com</email>
-                <CPF__CNPJ>19.502.272/0001-18</CPF__CNPJ>
-                <telefone>(11)9.3548-3466</telefone>
-                <servicos>
-                  <DAO.Servico>
-                    <servico>Palco</servico>
-                  </DAO.Servico>
-                  <DAO.Servico reference="../../../../../../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor/servicos/DAO.Servico[3]"/>
-                  <DAO.Servico>
-                    <servico>Lasers</servico>
-                  </DAO.Servico>
-                  <DAO.Servico>
-                    <servico>Dançarinos</servico>
-                  </DAO.Servico>
-                  <DAO.Servico>
-                    <servico>Cantor</servico>
-                  </DAO.Servico>
-                  <DAO.Servico reference="../../../../../../../../../fornecedorTemp/servicos/DAO.Servico"/>
-                </servicos>
-                <diponivel>O fornecedor fechou</diponivel>
-                <qtdContratos>0</qtdContratos>
-                <comentarios></comentarios>
-                <valor>0.0</valor>
-              </DAO.Fornecedor>
-            </fornecedores>
-            <caracteristicas>Apenas para adultos.</caracteristicas>
-          </DAO.Pacote>
-          <DAO.Pacote>
-            <nomePacote>Festa Completa</nomePacote>
-            <valor>550.0</valor>
-            <fornecedores>
-              <DAO.Fornecedor reference="../../../../fornecedores/DAO.Fornecedor[2]"/>
-              <DAO.Fornecedor reference="../../../../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor"/>
-            </fornecedores>
-            <caracteristicas>Para todos os públicos!</caracteristicas>
-          </DAO.Pacote>
-        </pacotes>
-        <reunioes>
-          <Model.Reuniao reference="../../../../../reuniaoTemp"/>
-        </reunioes>
+        <pacotes/>
+        <reunioes/>
         <fotos/>
-        <valor>2451.0</valor>
+        <valor>150.0</valor>
         <responsavelPagamento>Cerimonialista</responsavelPagamento>
-        <tipo>Contrato</tipo>
+        <tipo>Concluído</tipo>
       </orcamento>
     </DAO.ClienteDAOImpl>
-    <DAO.ClienteDAOImpl reference="../../clienteTemp"/>
   </todosOsClientes>
   <todosOsServicos>
-    <DAO.Servico reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico"/>
+    <DAO.Servico reference="../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico"/>
     <DAO.Servico reference="../../fornecedorTemp/servicos/DAO.Servico[2]"/>
     <DAO.Servico reference="../../fornecedorTemp/servicos/DAO.Servico[3]"/>
     <DAO.Servico reference="../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor/servicos/DAO.Servico"/>
@@ -184,26 +184,26 @@
     <DAO.Servico>
       <servico>Bolos</servico>
     </DAO.Servico>
-    <DAO.Servico reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico[5]"/>
-    <DAO.Servico reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico[4]"/>
-    <DAO.Servico reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico[3]"/>
+    <DAO.Servico reference="../../clienteTemp/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico[5]"/>
+    <DAO.Servico reference="../../clienteTemp/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico[4]"/>
+    <DAO.Servico reference="../../clienteTemp/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico[3]"/>
     <DAO.Servico reference="../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor/servicos/DAO.Servico[3]"/>
-    <DAO.Servico reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico"/>
+    <DAO.Servico reference="../../clienteTemp/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]/servicos/DAO.Servico"/>
   </todosOsServicos>
   <todosOsFornecedores>
-    <DAO.Fornecedor reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/fornecedores/DAO.Fornecedor[2]"/>
+    <DAO.Fornecedor reference="../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor[2]"/>
     <DAO.Fornecedor reference="../../fornecedorTemp"/>
-    <DAO.Fornecedor reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]"/>
+    <DAO.Fornecedor reference="../../clienteTemp/orcamento/pacotes/DAO.Pacote/fornecedores/DAO.Fornecedor[2]"/>
     <DAO.Fornecedor reference="../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor"/>
   </todosOsFornecedores>
   <todosOsPacotes>
-    <DAO.Pacote reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/pacotes/DAO.Pacote[2]"/>
-    <DAO.Pacote reference="../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/pacotes/DAO.Pacote"/>
+    <DAO.Pacote reference="../../clienteTemp/orcamento/pacotes/DAO.Pacote[2]"/>
+    <DAO.Pacote reference="../../clienteTemp/orcamento/pacotes/DAO.Pacote"/>
     <DAO.Pacote>
       <nomePacote>Natalino</nomePacote>
       <valor>1500.0</valor>
       <fornecedores>
-        <DAO.Fornecedor reference="../../../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/fornecedores/DAO.Fornecedor[2]"/>
+        <DAO.Fornecedor reference="../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor[2]"/>
         <DAO.Fornecedor reference="../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor"/>
       </fornecedores>
       <caracteristicas>Adultos</caracteristicas>
@@ -212,7 +212,7 @@
       <nomePacote>Fim de ano</nomePacote>
       <valor>600.0</valor>
       <fornecedores>
-        <DAO.Fornecedor reference="../../../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/fornecedores/DAO.Fornecedor[2]"/>
+        <DAO.Fornecedor reference="../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor[2]"/>
       </fornecedores>
       <caracteristicas>Todas as idades</caracteristicas>
     </DAO.Pacote>
@@ -221,12 +221,12 @@
       <valor>11.0</valor>
       <fornecedores>
         <DAO.Fornecedor reference="../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor"/>
-        <DAO.Fornecedor reference="../../../../todosOsClientes/DAO.ClienteDAOImpl/orcamento/fornecedores/DAO.Fornecedor[2]"/>
+        <DAO.Fornecedor reference="../../../../clienteTemp/orcamento/fornecedores/DAO.Fornecedor[2]"/>
       </fornecedores>
       <caracteristicas>Todos</caracteristicas>
     </DAO.Pacote>
   </todosOsPacotes>
   <todasAsReunioes>
-    <Model.Reuniao reference="../../reuniaoTemp"/>
+    <Model.Reuniao reference="../../clienteTemp/orcamento/reunioes/Model.Reuniao"/>
   </todasAsReunioes>
 </Controller.CentralDeInformacoes>

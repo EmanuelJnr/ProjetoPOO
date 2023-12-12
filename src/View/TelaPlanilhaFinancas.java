@@ -31,7 +31,6 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 	private Botao btnVoltar;
 	private Botao btnPlanilha;
 	private JTable tabela;
-	private ArrayList<ClienteDAOImpl> clientesASeremExibidos;
 
 	public TelaPlanilhaFinancas() {
 		super("Gerar Planilha");
@@ -90,7 +89,6 @@ public class TelaPlanilhaFinancas extends TelaPadrao{
 
 	private void addTabela() {
 		ArrayList<ClienteDAOImpl> todosOsOrcamentos = ci.getTodosOsClientes();
-		clientesASeremExibidos = todosOsOrcamentos;
 		DefaultTableModel modelo = criarModelo(todosOsOrcamentos);
 		tabela = new JTable(modelo);
 		centralizarOrdenar(modelo);		
