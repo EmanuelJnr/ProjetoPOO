@@ -4,13 +4,12 @@ import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -20,20 +19,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import ElementosGraficos.Botao;
 import ElementosGraficos.CheckBox;
 import ElementosGraficos.Fontes;
 import ElementosGraficos.Label;
 import ElementosGraficos.NomeTela;
 import Model.Foto;
+import Strategy.RelatorioCompleto;
+import Strategy.RelatorioFotos;
+import Strategy.RelatorioStrategy;
+import Strategy.RelatorioTexto;
+import Strategy.RelatorioVazio;
 import Controller.AlinhaCelulas;
 import Controller.CentralDeInformacoes;
 import Controller.OuvinteNovaTela;
@@ -62,6 +59,7 @@ public class TelaGerarRelatorio extends TelaPadrao{
 	private ArrayList<Fornecedor> todosFornecedores = new ArrayList<>();
 	private DefaultTableModel modelo;
 	private JTable tabela;
+	private Map<String, CheckBox> map = new HashMap<>();
 
 	public TelaGerarRelatorio() {
 		super("Gerar Relatório");
@@ -93,118 +91,39 @@ public class TelaGerarRelatorio extends TelaPadrao{
 		}
 	}
 
-	public void gerarRelatorio() {
+	public void gerarRelatorio() throws DocumentException, IOException {
 		preencheFornecedores();
-		Document documento = new Document(PageSize.A4);
+		RelatorioStrategy relatorioStrategy;
 		boolean nenhumaMarcada = true;
-
-		try {
-			FileOutputStream os = new FileOutputStream("Relatório "+clienteTemp.getOrcamento().getNomeEvento()+".pdf");
-			PdfWriter.getInstance(documento, os);
-			documento.open();
-
-			Image logoTipo = Image.getInstance("src/Controller/PartyHelperLogoTipoPDF.png");
-			logoTipo.setAlignment(Paragraph.ALIGN_CENTER);
-			logoTipo.scalePercent(45, 45);
-			documento.add(Image.getInstance(logoTipo));
-
-			documento.add(new Paragraph("\n"));
-
-			List<CheckBox> todosCB = Arrays.asList(cbNomeEvento, cbNomeCliente, cbEmailCliente, cbDataHorario, cbLocal, cbTamanho,
-					cbValorEvento, cbFornecedores, cbTodos);
-
-
-			for (CheckBox cb : todosCB) {
-				if(cb.isSelected()) {
-					nenhumaMarcada = false;
-				}
+		
+		map.put("nomeEvento", cbNomeEvento);
+		map.put("nomeCliente", cbNomeCliente);
+		map.put("emailCliente", cbEmailCliente);
+		map.put("dataHorario", cbDataHorario);
+		map.put("local", cbLocal);
+		map.put("tamanho", cbTamanho);
+		map.put("valorEvento", cbValorEvento);
+		map.put("fornecedores", cbFornecedores);
+		map.put("todos", cbTodos);
+		for (CheckBox cb : map.values()) {
+			if(cb.isSelected()) {
+				nenhumaMarcada = false;
 			}
-
-			if(!nenhumaMarcada) {
-				Font fonteRelatorio = new Font(FontFamily.HELVETICA, 14.0f, Font.UNDERLINE);
-				Paragraph titulo = new Paragraph("RELATÓRIO", fonteRelatorio);
-				titulo.setAlignment(Paragraph.ALIGN_CENTER);
-				documento.add(titulo);
-
-				documento.add(new Paragraph("\n\n"));
-
-				if(cbNomeEvento.isSelected()) {
-					Paragraph nomeEvento = new Paragraph("• "+cbNomeEvento.getText()+": "+clienteTemp.getOrcamento().getNomeEvento());
-					documento.add(nomeEvento);
-					documento.add(new Paragraph("\n"));
-				}
-
-				if(cbNomeCliente.isSelected()) {
-					Paragraph nomeCliente = new Paragraph("• "+cbNomeCliente.getText()+": "+clienteTemp.getNome());
-					documento.add(nomeCliente);
-					documento.add(new Paragraph("\n"));
-				}
-
-				if(cbEmailCliente.isSelected()) {
-					Paragraph emailCliente = new Paragraph("• "+cbEmailCliente.getText()+": "+clienteTemp.getEmail());
-					documento.add(emailCliente);
-					documento.add(new Paragraph("\n"));
-				}
-
-				DateTimeFormatter parser = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy HH:mm").toFormatter();
-				if(cbDataHorario.isSelected()) {
-					Paragraph dataHoraEvento = new Paragraph("• "+cbDataHorario.getText()+": "+clienteTemp.getOrcamento().getDataHora().format(parser)+" h");
-					documento.add(dataHoraEvento);
-					documento.add(new Paragraph("\n"));
-				}
-
-				if(cbLocal.isSelected()) {
-					Paragraph localEvento = new Paragraph("• "+cbLocal.getText()+": "+clienteTemp.getOrcamento().getLocalEvento());
-					documento.add(localEvento);
-					documento.add(new Paragraph("\n"));
-				}
-
-				if(cbTamanho.isSelected()) {
-					Paragraph QtdConvidados = new Paragraph("• "+"Quantidade de pessoas que participarão no Evento: "+clienteTemp.getOrcamento().getQtdConvidados());
-					documento.add(QtdConvidados);
-					documento.add(new Paragraph("\n"));
-				}
-
-				if(cbFornecedores.isSelected()) {
-					documento.add(new Paragraph("• A lista de Pacotes:\n"));
-					for (Pacote p : clienteTemp.getOrcamento().getPacotes()) {
-						Paragraph nomeFornecedor = new Paragraph("- "+p.getNomePacote()+", Valor a ser pago: "+p.getValor()+" Reais\n");
-						documento.add(nomeFornecedor);
-					}
-					documento.add(new Paragraph("\n"));
-
-					documento.add(new Paragraph("• A lista de fornecedores que participarão do evento:\n"));
-					for (Fornecedor f : todosFornecedores) {
-						Paragraph nomeFornecedor = new Paragraph("- "+f.getNome()+", Valor a ser pago: "+f.getValor()+" Reais\n");
-						documento.add(nomeFornecedor);
-					}
-					documento.add(new Paragraph("\n"));
-
-					Font fonteValorTotal = new Font(FontFamily.HELVETICA, 12.0f, Font.UNDERLINE);
-					Paragraph ValorTotal = new Paragraph("• "+cbValorEvento.getText()+": "+clienteTemp.getOrcamento().getValor()+" Reais", fonteValorTotal);
-					titulo.setAlignment(Paragraph.ALIGN_CENTER);
-					documento.add(ValorTotal);
-				}
-
-				int indentation = 0;
-				for (Foto f : clienteTemp.getOrcamento().getFotos()) {
-					Image i = Image.getInstance(f.getCaminhoDaFoto());
-					float scaler = ((documento.getPageSize().getWidth() - documento.leftMargin()
-							- documento.rightMargin() - indentation) / i.getWidth()) * 100;
-					i.scalePercent(scaler);
-					documento.add(i);
-				}
-			}
-
-			else
-				documento.add(new Paragraph("Não consta"));
-
-			documento.close();
-		} catch (DocumentException de) {
-			JOptionPane.showMessageDialog(null, "Erro ao gerar relatório!");
-		} catch (IOException io) {
-			JOptionPane.showMessageDialog(null, "Erro no arquivo do relatório!");
 		}
+
+		if(!nenhumaMarcada && tabela.getModel().getRowCount()!=0) {
+			relatorioStrategy = new RelatorioCompleto();
+		}
+		else if(!nenhumaMarcada && tabela.getModel().getRowCount()==0) {
+			relatorioStrategy = new RelatorioTexto();
+		}
+		else if(nenhumaMarcada && tabela.getModel().getRowCount()!=0) {
+			relatorioStrategy = new RelatorioFotos();
+		}
+		else {
+			relatorioStrategy = new RelatorioVazio();
+		}
+		relatorioStrategy.gerarRelatorio(clienteTemp, todosFornecedores, map);
 	}
 
 	public void addLabels() {
@@ -338,7 +257,11 @@ public class TelaGerarRelatorio extends TelaPadrao{
 
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gerarRelatorio();
+				try {
+					gerarRelatorio();
+				} catch (DocumentException | IOException e1) {
+					e1.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(null, "Relatório criado!");
 
 				Desktop desktop = Desktop.getDesktop();
